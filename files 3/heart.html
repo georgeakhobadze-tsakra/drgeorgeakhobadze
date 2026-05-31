@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congenital Heart Guide — Dr. George Akhobadze</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3355;
+    --navy-border: #1e3560;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --teal: #4ab8c1;
+    --teal-dim: rgba(74,184,193,0.12);
+    --amber: #d4882a;
+    --amber-dim: rgba(212,136,42,0.12);
+    --text: #d8dff0;
+    --text-muted: #7a8aaa;
+    --text-bright: #f0f4ff;
+    --red-soft: #e05a5a;
+    --green-soft: #4caf82;
+    --purple-soft: #8b6fc4;
+    --pink-soft: #c46f9a;
+    --blue-soft: #5a8fe0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,15,30,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; font-size: 1.15rem;
+    color: var(--gold); text-decoration: none; letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .nav-links { display: flex; align-items: center; gap: 0.2rem; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 0.4rem 0.75rem; border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-bright); background: rgba(255,255,255,0.05); }
+  .nav-links a.active { color: var(--teal); }
+  .btn-join {
+    background: var(--gold); color: var(--navy) !important;
+    font-weight: 600 !important; padding: 0.45rem 1rem !important;
+    border-radius: 5px; transition: background 0.2s !important;
+  }
+  .btn-join:hover { background: var(--gold-light) !important; }
+
+  .lang-toggle {
+    display: flex; gap: 0; border: 1px solid var(--navy-border); border-radius: 5px; overflow: hidden;
+    margin-left: 1rem;
+  }
+  .lang-toggle button {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 0.75rem; font-weight: 600;
+    padding: 0.35rem 0.65rem; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif; letter-spacing: 0.05em;
+  }
+  .lang-toggle button.active { background: var(--teal); color: var(--navy); }
+  .lang-toggle button:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 100px 2rem 80px;
+    background: linear-gradient(160deg, #0c1526 0%, #0a0f1e 60%, #0d1a2e 100%);
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(74,184,193,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(74,184,193,0.3);
+    background: rgba(74,184,193,0.07);
+    color: var(--teal); font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 20px; margin-bottom: 1.8rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300; color: var(--text-bright);
+    line-height: 1.2; margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span { color: var(--teal); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 640px; margin: 0 auto 2rem;
+    line-height: 1.75;
+  }
+  .hero-meta {
+    display: flex; align-items: center; justify-content: center; gap: 2rem;
+    flex-wrap: wrap; margin-top: 2rem;
+  }
+  .hero-meta-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; color: var(--text-muted);
+  }
+  .hero-meta-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  .hero-heart {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    opacity: 0.04; font-size: 16rem; pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    max-width: 900px; margin: 2.5rem auto;
+    padding: 1.2rem 1.8rem;
+    background: rgba(212,136,42,0.08);
+    border: 1px solid rgba(212,136,42,0.35);
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+  }
+  .disclaimer-inner { display: flex; align-items: flex-start; gap: 0.9rem; }
+  .disclaimer-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .disclaimer p { font-size: 0.9rem; color: #c8a060; line-height: 1.65; }
+  .disclaimer strong { color: var(--amber); font-weight: 600; }
+
+  /* ── QUICK NAV ── */
+  .quick-nav { max-width: 1100px; margin: 0 auto 5rem; padding: 0 1.5rem; }
+  .quick-nav-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .qnav-card {
+    display: block; text-decoration: none;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .qnav-card:hover {
+    border-color: var(--teal);
+    background: rgba(74,184,193,0.06);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .qnav-icon { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
+  .qnav-num { font-size: 0.65rem; color: var(--teal); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .qnav-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  .content-wrap { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .section-block {
+    margin-bottom: 6rem;
+    scroll-margin-top: 80px;
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--teal); font-weight: 500;
+    letter-spacing: 0.08em; opacity: 0.8;
+    white-space: nowrap;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400; color: var(--text-bright); line-height: 1.25;
+  }
+  .section-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  /* body text */
+  .prose p { font-size: 0.97rem; color: var(--text); margin-bottom: 1.1rem; line-height: 1.8; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--text-bright); font-weight: 600; }
+
+  /* stat band */
+  .stat-band {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat-item {
+    flex: 1 1 160px;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--teal); line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* defect cards */
+  .defect-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .defect-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .defect-card:hover { border-color: var(--teal); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+  .defect-card .dc-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .defect-card .dc-abbr {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500;
+    color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .defect-card .dc-name { font-size: 1rem; font-weight: 600; color: var(--text-bright); margin-bottom: 0.7rem; }
+  .defect-card .dc-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+  .defect-card .dc-freq {
+    display: inline-block; margin-top: 0.9rem;
+    font-size: 0.73rem; background: var(--teal-dim); color: var(--teal);
+    padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(74,184,193,0.2);
+  }
+
+  /* accent colors per card */
+  .dc-vsd { border-top: 3px solid var(--teal); }
+  .dc-asd { border-top: 3px solid var(--blue-soft); }
+  .dc-tof { border-top: 3px solid var(--purple-soft); }
+  .dc-tga { border-top: 3px solid var(--red-soft); }
+  .dc-coa { border-top: 3px solid var(--gold); }
+
+  /* info boxes */
+  .info-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    margin: 1.5rem 0;
+  }
+  .info-box-title {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 0.8rem;
+  }
+  .info-box ul { list-style: none; }
+  .info-box ul li {
+    font-size: 0.9rem; color: var(--text);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; gap: 0.7rem; align-items: flex-start;
+    line-height: 1.65;
+  }
+  .info-box ul li:last-child { border-bottom: none; }
+  .info-box ul li::before { content: '›'; color: var(--teal); font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+  /* test cards */
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .test-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px; padding: 1.3rem;
+    transition: border-color 0.2s;
+  }
+  .test-card:hover { border-color: rgba(201,168,76,0.4); }
+  .test-card .tc-name { font-size: 0.95rem; font-weight: 600; color: var(--gold); margin-bottom: 0.6rem; }
+  .test-card .tc-full { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.7rem; font-style: italic; }
+  .test-card .tc-desc { font-size: 0.85rem; color: var(--text); line-height: 1.65; }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 2rem; margin: 1.5rem 0; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--navy-border); }
+  .tl-item { position: relative; margin-bottom: 1.8rem; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -2rem; top: 4px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--teal);
+    z-index: 1;
+  }
+  .tl-item.done .tl-dot { background: var(--teal); }
+  .tl-time { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal); font-weight: 500; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+  .tl-heading { font-size: 0.97rem; font-weight: 600; color: var(--text-bright); margin-bottom: 0.4rem; }
+  .tl-body { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* monitor explainer */
+  .monitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .monitor-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px; padding: 1.2rem;
+  }
+  .monitor-card .mc-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
+  .monitor-card .mc-full { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.6rem; }
+  .monitor-card .mc-desc { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+
+  /* questions */
+  .q-stage { margin-bottom: 2.5rem; }
+  .q-stage-title {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid rgba(212,136,42,0.2);
+  }
+  .q-list { list-style: none; }
+  .q-list li {
+    font-size: 0.92rem; color: var(--text);
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    line-height: 1.65; transition: background 0.15s;
+    border-radius: 6px;
+  }
+  .q-list li:hover { background: rgba(255,255,255,0.03); }
+  .q-list li .q-num {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal);
+    font-weight: 500; flex-shrink: 0; margin-top: 0.2rem; min-width: 1.4rem;
+  }
+
+  /* section divider */
+  .section-divider { border: none; border-top: 1px solid var(--navy-border); margin: 5rem 0 0; max-width: 900px; margin-left: auto; margin-right: auto; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--navy-border);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--gold); margin-bottom: 0.6rem; }
+  .footer-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--teal); text-decoration: none; font-size: 0.85rem; font-weight: 500; margin-top: 1.2rem; transition: color 0.2s; }
+  .footer-back:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.78rem; color: var(--text-muted); margin-top: 1.5rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav { padding: 0 1rem; }
+    .logo { font-size: 1rem; }
+    .nav-links a { font-size: 0.72rem; padding: 0.35rem 0.55rem; }
+    .nav-links { gap: 0.1rem; }
+    .hero { padding: 70px 1.2rem 60px; }
+    .hero-heart { display: none; }
+    .content-wrap { padding: 0 1rem; }
+    .quick-nav { padding: 0 1rem; }
+    .disclaimer { margin: 2rem 1rem; }
+    .defect-grid { grid-template-columns: 1fr; }
+    .test-grid { grid-template-columns: 1fr; }
+    .monitor-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    .nav-links .hide-sm { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<nav>
+  <a href="index.html" class="logo" style="text-decoration:none;">Dr. George Akhobadze</a>
+  <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+    <div class="nav-links">
+      <a href="index.html" id="nav-academy" class="hide-sm">Academy</a>
+      <a href="neonatal.html" id="nav-neonatal" class="hide-sm">Neonatal Guide</a>
+      <a href="heart.html" id="nav-heart" class="active">Heart Guide</a>
+      <a href="patient-library.html" id="nav-library" class="hide-sm">Patient Library</a>
+      <a href="academy.html" class="btn-join" id="nav-join">Join Academy</a>
+    </div>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-ka" onclick="setLang('ka')">ქა</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="hero-heart">♥</div>
+  <div class="hero-badge" id="hero-badge">Pediatric Cardiology · Parent Resource</div>
+  <h1 id="hero-title">Congenital Heart Disease:<br><span id="hero-title-span">A Parent's Guide</span></h1>
+  <p class="hero-sub" id="hero-sub">Written by Dr. George Akhobadze — pediatric anesthesiologist with 14 years of experience in congenital heart surgery and pediatric intensive care. This guide translates complex medical information into clear, compassionate language for families navigating a CHD diagnosis.</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item"><span class="dot"></span><span id="hero-meta1">14 Years Clinical Experience</span></span>
+    <span class="hero-meta-item"><span class="dot"></span><span id="hero-meta2">Congenital Heart Surgery Unit</span></span>
+    <span class="hero-meta-item"><span class="dot"></span><span id="hero-meta3">Pediatric ICU Specialist</span></span>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DISCLAIMER ══════════════════════════ -->
+<div style="max-width:900px;margin:2.5rem auto 0;padding:0 1.5rem;">
+  <div class="disclaimer">
+    <div class="disclaimer-inner">
+      <span class="disclaimer-icon">⚠</span>
+      <p><strong id="disc-label">Educational Use Only — </strong><span id="disc-text">This guide is for educational purposes only. Always follow the advice of your child's cardiologist, cardiac surgeon, and medical team. Every child's heart condition is unique — this information does not replace personalised medical guidance.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ QUICK NAV ══════════════════════════ -->
+<div class="quick-nav" style="margin-top:3rem;">
+  <div class="quick-nav-grid">
+    <a class="qnav-card" href="#sec1">
+      <span class="qnav-icon">🫀</span>
+      <div class="qnav-num" id="qn1-num">Section 01</div>
+      <div class="qnav-label" id="qn1">What is CHD</div>
+    </a>
+    <a class="qnav-card" href="#sec2">
+      <span class="qnav-icon">🔬</span>
+      <div class="qnav-num" id="qn2-num">Section 02</div>
+      <div class="qnav-label" id="qn2">Most Common Defects</div>
+    </a>
+    <a class="qnav-card" href="#sec3">
+      <span class="qnav-icon">📋</span>
+      <div class="qnav-num" id="qn3-num">Section 03</div>
+      <div class="qnav-label" id="qn3">Diagnosis Explained</div>
+    </a>
+    <a class="qnav-card" href="#sec4">
+      <span class="qnav-icon">🏥</span>
+      <div class="qnav-num" id="qn4-num">Section 04</div>
+      <div class="qnav-label" id="qn4">Before Surgery</div>
+    </a>
+    <a class="qnav-card" href="#sec5">
+      <span class="qnav-icon">💊</span>
+      <div class="qnav-num" id="qn5-num">Section 05</div>
+      <div class="qnav-label" id="qn5">After Surgery</div>
+    </a>
+    <a class="qnav-card" href="#sec6">
+      <span class="qnav-icon">💬</span>
+      <div class="qnav-num" id="qn6-num">Section 06</div>
+      <div class="qnav-label" id="qn6">Questions to Ask</div>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════ SECTION 1 ══════════════════════════ -->
+<div class="content-wrap">
+
+  <div class="section-block" id="sec1">
+    <div class="section-header">
+      <span class="section-num" id="s1-num">01 /</span>
+      <span class="section-icon">🫀</span>
+      <h2 class="section-title" id="s1-title">What is Congenital Heart Disease?</h2>
+    </div>
+    <div class="prose">
+      <p id="s1-p1">Congenital heart disease (CHD) refers to structural problems with the heart that are present from birth. The word "congenital" simply means "present at birth" — it does not mean the condition was caused by anything the parents did or did not do during pregnancy.</p>
+      <p id="s1-p2">The heart begins forming in the first few weeks of pregnancy. During this rapid, complex development, the chambers, valves, and blood vessels must grow and connect in a very precise way. When this process doesn't follow the expected path, a structural difference results — this is a congenital heart defect.</p>
+      <p id="s1-p3">Most CHDs affect how blood flows through the heart and out to the lungs and body. Some cause too much blood to go to the lungs. Others cause too little. Some mix oxygen-rich and oxygen-poor blood. Understanding which type your child has is the first step toward understanding their treatment.</p>
+    </div>
+    <div class="stat-band">
+      <div class="stat-item">
+        <div class="stat-num" id="stat1-num">1 in 100</div>
+        <div class="stat-label" id="stat1-lbl">births affected by CHD</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="stat2-num">40,000+</div>
+        <div class="stat-label" id="stat2-lbl">babies born with CHD yearly in the US alone</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="stat3-num">95%</div>
+        <div class="stat-label" id="stat3-lbl">of children now reach adulthood with modern care</div>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-title" id="s1-types-title">Types of CHD — Overview</div>
+      <ul>
+        <li id="s1-t1">Holes in the heart — openings between chambers that should be closed (VSD, ASD)</li>
+        <li id="s1-t2">Valve problems — valves that are too narrow, leaking, or missing</li>
+        <li id="s1-t3">Vessel abnormalities — arteries or veins connected the wrong way or in the wrong place</li>
+        <li id="s1-t4">Complex defects — combinations involving multiple structures at once</li>
+        <li id="s1-t5">Cyanotic defects — defects that cause the blood to carry less oxygen, leading to bluish skin (cyanosis)</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p id="s1-p4"><strong>Important:</strong> Having CHD does not mean your child is fragile or cannot live a full life. With the extraordinary advances in pediatric cardiac surgery over the past three decades, the vast majority of children born with even complex heart defects go on to lead active, healthy lives.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════ SECTION 2 ══════════════════════════ -->
+  <div class="section-block" id="sec2" style="margin-top:5rem;">
+    <div class="section-header">
+      <span class="section-num" id="s2-num">02 /</span>
+      <span class="section-icon">🔬</span>
+      <h2 class="section-title" id="s2-title">The Most Common Defects</h2>
+    </div>
+    <div class="prose">
+      <p id="s2-intro">There are over 40 recognised types of congenital heart defect. Below are the five most common, explained in plain language for parents. Each one has a very different impact on the heart, and each is managed differently.</p>
+    </div>
+    <div class="defect-grid">
+
+      <div class="defect-card dc-vsd">
+        <div class="dc-icon">🕳</div>
+        <div class="dc-abbr">VSD</div>
+        <div class="dc-name" id="vsd-name">Ventricular Septal Defect</div>
+        <div class="dc-desc" id="vsd-desc">A hole in the wall (septum) between the heart's two lower chambers (ventricles). Blood leaks through the hole, making the heart work harder. Small VSDs often close on their own. Larger ones may need surgery or a catheter-based closure procedure.</div>
+        <span class="dc-freq" id="vsd-freq">Most common — ~30% of CHDs</span>
+      </div>
+
+      <div class="defect-card dc-asd">
+        <div class="dc-icon">🫧</div>
+        <div class="dc-abbr">ASD</div>
+        <div class="dc-name" id="asd-name">Atrial Septal Defect</div>
+        <div class="dc-desc" id="asd-desc">A hole between the two upper chambers (atria). This allows oxygenated blood to mix with de-oxygenated blood, forcing the heart to work inefficiently. Many are detected only in childhood or adulthood. Small ones can close spontaneously; larger ones need repair.</div>
+        <span class="dc-freq" id="asd-freq">~10% of CHDs</span>
+      </div>
+
+      <div class="defect-card dc-tof">
+        <div class="dc-icon">🔴</div>
+        <div class="dc-abbr">ToF</div>
+        <div class="dc-name" id="tof-name">Tetralogy of Fallot</div>
+        <div class="dc-desc" id="tof-desc">A combination of four heart abnormalities occurring together: a VSD, a narrowed pulmonary valve, a thickened right ventricle wall, and an aorta positioned over the VSD. It causes low oxygen levels and was historically a cause of "blue baby" syndrome. Corrective surgery is highly effective.</div>
+        <span class="dc-freq" id="tof-freq">~10% of CHDs · cyanotic type</span>
+      </div>
+
+      <div class="defect-card dc-tga">
+        <div class="dc-icon">🔄</div>
+        <div class="dc-abbr">TGA</div>
+        <div class="dc-name" id="tga-name">Transposition of the Great Arteries</div>
+        <div class="dc-desc" id="tga-desc">The two main arteries leaving the heart — the aorta and pulmonary artery — are switched. This means blood circulates in two separate loops and almost no oxygen reaches the body. It is a surgical emergency that requires repair in the first days or weeks of life. With surgery, outcomes are excellent.</div>
+        <span class="dc-freq" id="tga-freq">~5% of CHDs · critical type</span>
+      </div>
+
+      <div class="defect-card dc-coa">
+        <div class="dc-icon">🩺</div>
+        <div class="dc-abbr">CoA</div>
+        <div class="dc-name" id="coa-name">Coarctation of the Aorta</div>
+        <div class="dc-desc" id="coa-desc">A narrowing of the aorta — the main artery that carries blood from the heart to the rest of the body. The narrowing forces the heart to pump much harder to push blood through. It can cause high blood pressure in the arms and weakness in the legs. Treatment is by surgery or balloon dilation via catheter.</div>
+        <span class="dc-freq" id="coa-freq">~8% of CHDs</span>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════ SECTION 3 ══════════════════════════ -->
+  <div class="section-block" id="sec3" style="margin-top:5rem;">
+    <div class="section-header">
+      <span class="section-num" id="s3-num">03 /</span>
+      <span class="section-icon">📋</span>
+      <h2 class="section-title" id="s3-title">Understanding Your Child's Diagnosis</h2>
+    </div>
+    <div class="prose">
+      <p id="s3-p1">After your child is suspected of having a heart defect, their team will use one or more imaging and diagnostic tests to understand the anatomy of the heart. Here is what the most common tests involve and what they can tell doctors.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="tc-name">ECHO</div>
+        <div class="tc-full" id="echo-full">Echocardiogram</div>
+        <div class="tc-desc" id="echo-desc">An ultrasound of the heart. Safe, painless, and uses sound waves — no radiation. It shows the structure of the heart in real time: chamber sizes, how valves open and close, and blood flow direction. It is the most important tool for diagnosing CHD. Can be done even in the womb (fetal echo) from 18–20 weeks.</div>
+      </div>
+      <div class="test-card">
+        <div class="tc-name">Cardiac Cath</div>
+        <div class="tc-full" id="cath-full">Cardiac Catheterisation</div>
+        <div class="tc-desc" id="cath-desc">A thin, flexible tube (catheter) is inserted into a blood vessel and guided to the heart. It measures precise pressures inside the heart chambers and allows doctors to see detailed blood flow patterns. It can also be used to treat certain defects — for example, closing a hole or widening a narrowed vessel — without open surgery.</div>
+      </div>
+      <div class="test-card">
+        <div class="tc-name">Cardiac MRI</div>
+        <div class="tc-full" id="mri-full">Magnetic Resonance Imaging</div>
+        <div class="tc-desc" id="mri-desc">Uses magnetic fields and radio waves to create detailed 3D images of the heart and large vessels. No radiation. Particularly useful for measuring exact volumes and function when ECHO images are limited. Often used in follow-up care for complex defects repaired in infancy. Younger children may need sedation to stay still.</div>
+      </div>
+      <div class="test-card">
+        <div class="tc-name">CXR</div>
+        <div class="tc-full" id="cxr-full">Chest X-Ray</div>
+        <div class="tc-desc" id="cxr-desc">A simple X-ray of the chest to assess heart size and shape, and to look at the lungs. Often the first test done. It can show whether the heart is enlarged or if the lungs are receiving too much or too little blood flow.</div>
+      </div>
+      <div class="test-card">
+        <div class="tc-name">ECG / EKG</div>
+        <div class="tc-full" id="ecg-full">Electrocardiogram</div>
+        <div class="tc-desc" id="ecg-desc">Records the electrical activity of the heart using electrodes placed on the skin. Completely painless. Shows heart rate and rhythm, and can reveal if chambers are under strain. Does not show anatomy but is an important part of the full assessment.</div>
+      </div>
+      <div class="test-card">
+        <div class="tc-name">Pulse Ox</div>
+        <div class="tc-full" id="pox-full">Pulse Oximetry</div>
+        <div class="tc-desc" id="pox-desc">A small clip placed on a finger or toe that measures the oxygen level in the blood. Quick, painless, and non-invasive. A reading significantly below 95% can be the first sign that a baby has a heart defect requiring attention.</div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:1.8rem;">
+      <div class="info-box-title" id="echo-report-title">How to Read Your Echo Report</div>
+      <ul>
+        <li id="echo-r1">The report will describe each structure: the four chambers, four valves, and the major vessels</li>
+        <li id="echo-r2">"Mild/moderate/severe" describes how significant a problem is — not an emergency score</li>
+        <li id="echo-r3">Ejection fraction (EF) measures pumping strength — normal is typically 55–70%</li>
+        <li id="echo-r4">"Trivial" or "trace" findings are almost always clinically insignificant</li>
+        <li id="echo-r5">Ask your cardiologist to go through the report with you line by line — this is your right as a parent</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════ SECTION 4 ══════════════════════════ -->
+  <div class="section-block" id="sec4" style="margin-top:5rem;">
+    <div class="section-header">
+      <span class="section-num" id="s4-num">04 /</span>
+      <span class="section-icon">🏥</span>
+      <h2 class="section-title" id="s4-title">Before Surgery</h2>
+    </div>
+    <div class="prose">
+      <p id="s4-p1">Learning your child needs heart surgery is one of the most frightening moments a parent can experience. Understanding what to expect at each stage can help reduce anxiety and help you feel prepared — for yourself and for your child.</p>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title" id="prepare-title">How to Prepare Your Child (and Yourself)</div>
+      <ul>
+        <li id="prep1">Use age-appropriate language — tell young children the doctor will "fix their heart so it works better"</li>
+        <li id="prep2">Bring familiar comfort items: a blanket, stuffed animal, or favourite toy</li>
+        <li id="prep3">Follow fasting instructions exactly — this is critical for anaesthesia safety</li>
+        <li id="prep4">Prepare a list of all current medications, including over-the-counter items and supplements</li>
+        <li id="prep5">Arrange practical support at home for siblings and pets — surgery and ICU stay may be 7–14 days</li>
+        <li id="prep6">Ask the hospital about family accommodation options near the ICU</li>
+        <li id="prep7">It is completely normal and healthy to feel overwhelmed — ask for a social worker or family support coordinator</li>
+      </ul>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text-bright);margin:2rem 0 1rem;" id="surg-day-title">The Day of Surgery — What to Expect</h3>
+
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="tl1-time">Early morning</div>
+        <div class="tl-heading" id="tl1-head">Admission and preparation</div>
+        <div class="tl-body" id="tl1-body">Your child will be admitted, weight and vitals checked, consent forms signed. A nurse will place an IV and may give a mild sedative to help your child relax before entering the operating theatre.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="tl2-time">Anaesthesia induction</div>
+        <div class="tl-heading" id="tl2-head">Going to sleep</div>
+        <div class="tl-body" id="tl2-body">The anaesthesiologist (often me, or a colleague) will administer anaesthetic — usually by breathing a gentle gas or through the IV. Your child will be asleep within seconds and feel nothing. One parent is sometimes permitted to the threshold of the room.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="tl3-time">During surgery</div>
+        <div class="tl-heading" id="tl3-head">The operation</div>
+        <div class="tl-body" id="tl3-body">Most open-heart surgeries use cardiopulmonary bypass — a heart-lung machine that temporarily takes over the work of the heart and lungs. The surgeon works on the still heart. Duration varies greatly: 2–8 hours depending on complexity. The team will update you periodically.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="tl4-time">Post-surgery</div>
+        <div class="tl-heading" id="tl4-head">Recovery room → ICU</div>
+        <div class="tl-body" id="tl4-body">Your child will go directly to the Pediatric ICU (PICU). They will be sedated, on a breathing machine (ventilator), and have multiple lines and tubes. This is expected and temporary. You will be able to see them as soon as they are settled.</div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:2rem;">
+      <div class="info-box-title" id="pre-q-title">Questions to Ask the Surgical Team Before the Operation</div>
+      <ul>
+        <li id="preq1">What exactly will be repaired or reconstructed during this surgery?</li>
+        <li id="preq2">Will my child need cardiopulmonary bypass, and for how long?</li>
+        <li id="preq3">What are the main risks specific to my child's anatomy and condition?</li>
+        <li id="preq4">How many times has your team performed this specific procedure this year?</li>
+        <li id="preq5">What is the plan if complications arise during surgery?</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════ SECTION 5 ══════════════════════════ -->
+  <div class="section-block" id="sec5" style="margin-top:5rem;">
+    <div class="section-header">
+      <span class="section-num" id="s5-num">05 /</span>
+      <span class="section-icon">💊</span>
+      <h2 class="section-title" id="s5-title">After Surgery: The ICU and Recovery</h2>
+    </div>
+    <div class="prose">
+      <p id="s5-p1">The first time you see your child in the ICU after heart surgery can be shocking — tubes, monitors, machines. I have sat with hundreds of families in this moment. Please know: almost everything you see is temporary, expected, and a sign that your child is being carefully watched.</p>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text-bright);margin:1.8rem 0 1rem;" id="tubes-title">Tubes and Monitors — What They Are</h3>
+    <div class="monitor-grid">
+      <div class="monitor-card">
+        <div class="mc-label">ETT / Vent</div>
+        <div class="mc-full" id="vent-full">Endotracheal Tube / Ventilator</div>
+        <div class="mc-desc" id="vent-desc">A breathing tube through the mouth connected to a machine that breathes for your child. Used while still sedated or if the lungs need support. Most children are extubated (tube removed) within 12–48 hours of surgery.</div>
+      </div>
+      <div class="monitor-card">
+        <div class="mc-label">Chest Drain</div>
+        <div class="mc-full" id="drain-full">Chest / Mediastinal Tube</div>
+        <div class="mc-desc" id="drain-desc">Thin tubes through the chest wall draining any fluid or blood from around the heart and lungs. They prevent dangerous accumulation. Usually removed on day 2–4 when drainage reduces.</div>
+      </div>
+      <div class="monitor-card">
+        <div class="mc-label">Art Line</div>
+        <div class="mc-full" id="art-full">Arterial Line</div>
+        <div class="mc-desc" id="art-desc">A thin catheter in an artery (usually wrist) that continuously measures blood pressure and allows blood draws without needle sticks. A normal part of ICU monitoring after cardiac surgery.</div>
+      </div>
+      <div class="monitor-card">
+        <div class="mc-label">CVP Line</div>
+        <div class="mc-full" id="cvp-full">Central Venous Catheter</div>
+        <div class="mc-desc" id="cvp-desc">A line into a large vein, often in the neck or groin. Delivers medications and fluids directly to the central circulation. Also measures pressures inside the right side of the heart.</div>
+      </div>
+      <div class="monitor-card">
+        <div class="mc-label">Pacing Wires</div>
+        <div class="mc-full" id="pace-full">Temporary Pacing Wires</div>
+        <div class="mc-desc" id="pace-desc">Thin wires attached to the outside of the heart during surgery and brought through the skin. They allow the team to electrically pace the heart if needed. Removed before discharge when no longer required.</div>
+      </div>
+      <div class="monitor-card">
+        <div class="mc-label">Foley Cath</div>
+        <div class="mc-full" id="foley-full">Urinary Catheter</div>
+        <div class="mc-desc" id="foley-desc">Measures urine output precisely, which is an important indicator of kidney function and fluid balance. Removed as soon as the child is awake and mobile enough to use a bedpan or toilet.</div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:2rem;">
+      <div class="info-box-title" id="pain-title">Pain Management After Cardiac Surgery</div>
+      <ul>
+        <li id="pain1">Your child will receive around-the-clock pain medication — they will not be left in pain</li>
+        <li id="pain2">Opioids (like morphine or fentanyl) are used safely in the first 24–48 hours for severe pain</li>
+        <li id="pain3">Regular paracetamol / acetaminophen is a backbone of pain control at all ages</li>
+        <li id="pain4">Older children can use a PCA — a button they press themselves to receive safe, measured doses</li>
+        <li id="pain5">Tell the nurse immediately if your child seems distressed or in pain — advocates matter</li>
+      </ul>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text-bright);margin:2rem 0 1rem;" id="recovery-title">Recovery Timeline</h3>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="rec1-time">Day 0–1 (Post-op)</div>
+        <div class="tl-heading" id="rec1-head">ICU: Sedated and ventilated</div>
+        <div class="tl-body" id="rec1-body">Your child remains sedated on the ventilator. Vital signs are monitored continuously. The focus is on stabilising heart function, blood pressure, and fluid balance. This is the most intensive phase of care.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="rec2-time">Day 1–3</div>
+        <div class="tl-heading" id="rec2-head">Waking up, breathing tube removed</div>
+        <div class="tl-body" id="rec2-body">Most children are extubated within 24–48 hours. Sedation is reduced and your child begins to wake up. This can be a distressing time for parents — they may seem confused, uncomfortable, or try to pull at tubes. This is normal.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="rec3-time">Day 3–5</div>
+        <div class="tl-heading" id="rec3-head">Drains removed, first steps</div>
+        <div class="tl-body" id="rec3-body">Chest drains and most monitoring lines are removed. Oral medications begin. Older children begin sitting up, then standing with physio support. The body begins healing from the inside — the chest wire heals over 6–8 weeks.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="rec4-time">Day 5–10</div>
+        <div class="tl-heading" id="rec4-head">Step-down ward</div>
+        <div class="tl-body" id="rec4-body">Transfer from ICU to a cardiac ward. Less monitoring, more independence. Feeds improve. Many children become surprisingly playful again. This is a significant milestone for families.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time" id="rec5-time">Day 7–14</div>
+        <div class="tl-heading" id="rec5-head">Discharge home</div>
+        <div class="tl-body" id="rec5-body">Most children are discharged with a clear home care plan, medication schedule, follow-up appointments, and wound care instructions. You will be taught what to watch for and when to call the team.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════ SECTION 6 ══════════════════════════ -->
+  <div class="section-block" id="sec6" style="margin-top:5rem;">
+    <div class="section-header">
+      <span class="section-num" id="s6-num">06 /</span>
+      <span class="section-icon">💬</span>
+      <h2 class="section-title" id="s6-title">15 Questions to Ask Your Doctor</h2>
+    </div>
+    <div class="prose">
+      <p id="s6-intro">These questions are drawn from the conversations I have witnessed — and participated in — with families over 14 years. A great medical team welcomes these questions. Write them down and bring this list to every appointment.</p>
+    </div>
+
+    <div class="q-stage">
+      <div class="q-stage-title" id="qs-diag">At Diagnosis</div>
+      <ol class="q-list">
+        <li><span class="q-num">01</span><span id="q1">Exactly which part or parts of my child's heart are affected, and can you show me on a diagram?</span></li>
+        <li><span class="q-num">02</span><span id="q2">Is this a condition that will need one surgery, multiple surgeries, or can it be managed with medication?</span></li>
+        <li><span class="q-num">03</span><span id="q3">How urgently does this need to be treated — days, weeks, or can we take more time to plan?</span></li>
+        <li><span class="q-num">04</span><span id="q4">Are there any activity restrictions I need to follow right now while we plan treatment?</span></li>
+        <li><span class="q-num">05</span><span id="q5">Should I seek a second opinion, and are you comfortable with me doing so?</span></li>
+      </ol>
+    </div>
+
+    <div class="q-stage">
+      <div class="q-stage-title" id="qs-preop">Before Surgery (Pre-operative)</div>
+      <ol class="q-list" start="6">
+        <li><span class="q-num">06</span><span id="q6">What is the name of the specific surgical procedure being planned, and what exactly does it do?</span></li>
+        <li><span class="q-num">07</span><span id="q7">Who will be the surgeon, and how many times have they performed this specific operation?</span></li>
+        <li><span class="q-num">08</span><span id="q8">What are the realistic risks and potential complications for my child — including short-term and long-term?</span></li>
+        <li><span class="q-num">09</span><span id="q9">What happens if we choose not to proceed with surgery — what is the natural history of the untreated condition?</span></li>
+        <li><span class="q-num">10</span><span id="q10">What should I tell my child about what is going to happen, and are there child life specialists to help?</span></li>
+      </ol>
+    </div>
+
+    <div class="q-stage">
+      <div class="q-stage-title" id="qs-postop">After Surgery (Post-operative & Follow-up)</div>
+      <ol class="q-list" start="11">
+        <li><span class="q-num">11</span><span id="q11">When can my child return to normal activities — school, sports, play?</span></li>
+        <li><span class="q-num">12</span><span id="q12">Will my child need to take medications long-term, and what are the side effects I should watch for?</span></li>
+        <li><span class="q-num">13</span><span id="q13">What are the specific signs of complications at home that should make me call the hospital or go to emergency?</span></li>
+        <li><span class="q-num">14</span><span id="q14">How often will my child need follow-up appointments and for how long — is this lifelong?</span></li>
+        <li><span class="q-num">15</span><span id="q15">As my child grows into a teenager and adult, what will they need to know about managing their own heart health?</span></li>
+      </ol>
+    </div>
+
+    <div class="disclaimer" style="margin-top:1.5rem;">
+      <div class="disclaimer-inner">
+        <span class="disclaimer-icon">💙</span>
+        <p id="closing-note">From a doctor who has stood in that operating theatre, and sat with your families in waiting rooms at 3 a.m.: you are not alone. Ask every question. Advocate for your child. And trust that the team around your child's bed wants the same outcome you do — a long, full, beautiful life for your little one.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer>
+  <div class="footer-logo">Dr. George Akhobadze</div>
+  <p style="font-size:0.82rem;color:var(--text-muted);max-width:500px;margin:0.5rem auto 0;" id="footer-sub">Pediatric Anesthesiologist · Congenital Heart Surgery · Pediatric ICU</p>
+  <br>
+  <a href="index.html" class="footer-back">    <span>←</span>
+    <span id="footer-back-text">Back to Homepage</span>
+  </a>
+  <p class="footer-copy" id="footer-copy">© 2025 Dr. George Akhobadze. This content is for educational purposes only.</p>
+</footer>
+
+<!-- ══════════════════════════ TRANSLATIONS ══════════════════════════ -->
+<script>
+const translations = {
+  en: {
+    'nav-academy': 'Academy',
+    'nav-neonatal': 'Neonatal Guide',
+    'nav-heart': 'Heart Guide',
+    'nav-library': 'Patient Library',
+    'nav-join': 'Join Academy',
+    'hero-badge': 'Pediatric Cardiology · Parent Resource',
+    'hero-title': 'Congenital Heart Disease:',
+    'hero-title-span': "A Parent's Guide",
+    'hero-sub': 'Written by Dr. George Akhobadze — pediatric anesthesiologist with 14 years of experience in congenital heart surgery and pediatric intensive care. This guide translates complex medical information into clear, compassionate language for families navigating a CHD diagnosis.',
+    'hero-meta1': '14 Years Clinical Experience',
+    'hero-meta2': 'Congenital Heart Surgery Unit',
+    'hero-meta3': 'Pediatric ICU Specialist',
+    'disc-label': 'Educational Use Only — ',
+    'disc-text': 'This guide is for educational purposes only. Always follow the advice of your child\'s cardiologist, cardiac surgeon, and medical team. Every child\'s heart condition is unique — this information does not replace personalised medical guidance.',
+    'qn1-num': 'Section 01', 'qn1': 'What is CHD',
+    'qn2-num': 'Section 02', 'qn2': 'Most Common Defects',
+    'qn3-num': 'Section 03', 'qn3': 'Diagnosis Explained',
+    'qn4-num': 'Section 04', 'qn4': 'Before Surgery',
+    'qn5-num': 'Section 05', 'qn5': 'After Surgery',
+    'qn6-num': 'Section 06', 'qn6': 'Questions to Ask',
+    's1-num': '01 /', 's1-title': 'What is Congenital Heart Disease?',
+    's1-p1': 'Congenital heart disease (CHD) refers to structural problems with the heart that are present from birth. The word "congenital" simply means "present at birth" — it does not mean the condition was caused by anything the parents did or did not do during pregnancy.',
+    's1-p2': 'The heart begins forming in the first few weeks of pregnancy. During this rapid, complex development, the chambers, valves, and blood vessels must grow and connect in a very precise way. When this process doesn\'t follow the expected path, a structural difference results — this is a congenital heart defect.',
+    's1-p3': 'Most CHDs affect how blood flows through the heart and out to the lungs and body. Some cause too much blood to go to the lungs. Others cause too little. Some mix oxygen-rich and oxygen-poor blood. Understanding which type your child has is the first step toward understanding their treatment.',
+    'stat1-num': '1 in 100', 'stat1-lbl': 'births affected by CHD',
+    'stat2-num': '40,000+', 'stat2-lbl': 'babies born with CHD yearly in the US alone',
+    'stat3-num': '95%', 'stat3-lbl': 'of children now reach adulthood with modern care',
+    's1-types-title': 'Types of CHD — Overview',
+    's1-t1': 'Holes in the heart — openings between chambers that should be closed (VSD, ASD)',
+    's1-t2': 'Valve problems — valves that are too narrow, leaking, or missing',
+    's1-t3': 'Vessel abnormalities — arteries or veins connected the wrong way or in the wrong place',
+    's1-t4': 'Complex defects — combinations involving multiple structures at once',
+    's1-t5': 'Cyanotic defects — defects that cause the blood to carry less oxygen, leading to bluish skin (cyanosis)',
+    's1-p4': 'Important: Having CHD does not mean your child is fragile or cannot live a full life. With the extraordinary advances in pediatric cardiac surgery over the past three decades, the vast majority of children born with even complex heart defects go on to lead active, healthy lives.',
+    's2-num': '02 /', 's2-title': 'The Most Common Defects',
+    's2-intro': 'There are over 40 recognised types of congenital heart defect. Below are the five most common, explained in plain language for parents. Each one has a very different impact on the heart, and each is managed differently.',
+    'vsd-name': 'Ventricular Septal Defect',
+    'vsd-desc': 'A hole in the wall (septum) between the heart\'s two lower chambers (ventricles). Blood leaks through the hole, making the heart work harder. Small VSDs often close on their own. Larger ones may need surgery or a catheter-based closure procedure.',
+    'vsd-freq': 'Most common — ~30% of CHDs',
+    'asd-name': 'Atrial Septal Defect',
+    'asd-desc': 'A hole between the two upper chambers (atria). This allows oxygenated blood to mix with de-oxygenated blood, forcing the heart to work inefficiently. Many are detected only in childhood or adulthood. Small ones can close spontaneously; larger ones need repair.',
+    'asd-freq': '~10% of CHDs',
+    'tof-name': 'Tetralogy of Fallot',
+    'tof-desc': 'A combination of four heart abnormalities occurring together: a VSD, a narrowed pulmonary valve, a thickened right ventricle wall, and an aorta positioned over the VSD. It causes low oxygen levels and was historically a cause of "blue baby" syndrome. Corrective surgery is highly effective.',
+    'tof-freq': '~10% of CHDs · cyanotic type',
+    'tga-name': 'Transposition of the Great Arteries',
+    'tga-desc': 'The two main arteries leaving the heart — the aorta and pulmonary artery — are switched. This means blood circulates in two separate loops and almost no oxygen reaches the body. It is a surgical emergency that requires repair in the first days or weeks of life. With surgery, outcomes are excellent.',
+    'tga-freq': '~5% of CHDs · critical type',
+    'coa-name': 'Coarctation of the Aorta',
+    'coa-desc': 'A narrowing of the aorta — the main artery that carries blood from the heart to the rest of the body. The narrowing forces the heart to pump much harder to push blood through. It can cause high blood pressure in the arms and weakness in the legs. Treatment is by surgery or balloon dilation via catheter.',
+    'coa-freq': '~8% of CHDs',
+    's3-num': '03 /', 's3-title': "Understanding Your Child's Diagnosis",
+    's3-p1': 'After your child is suspected of having a heart defect, their team will use one or more imaging and diagnostic tests to understand the anatomy of the heart. Here is what the most common tests involve and what they can tell doctors.',
+    'echo-full': 'Echocardiogram',
+    'echo-desc': 'An ultrasound of the heart. Safe, painless, and uses sound waves — no radiation. It shows the structure of the heart in real time: chamber sizes, how valves open and close, and blood flow direction. It is the most important tool for diagnosing CHD. Can be done even in the womb (fetal echo) from 18–20 weeks.',
+    'cath-full': 'Cardiac Catheterisation',
+    'cath-desc': 'A thin, flexible tube (catheter) is inserted into a blood vessel and guided to the heart. It measures precise pressures inside the heart chambers and allows doctors to see detailed blood flow patterns. It can also be used to treat certain defects — for example, closing a hole or widening a narrowed vessel — without open surgery.',
+    'mri-full': 'Magnetic Resonance Imaging',
+    'mri-desc': 'Uses magnetic fields and radio waves to create detailed 3D images of the heart and large vessels. No radiation. Particularly useful for measuring exact volumes and function when ECHO images are limited. Often used in follow-up care for complex defects repaired in infancy. Younger children may need sedation to stay still.',
+    'cxr-full': 'Chest X-Ray',
+    'cxr-desc': 'A simple X-ray of the chest to assess heart size and shape, and to look at the lungs. Often the first test done. It can show whether the heart is enlarged or if the lungs are receiving too much or too little blood flow.',
+    'ecg-full': 'Electrocardiogram',
+    'ecg-desc': 'Records the electrical activity of the heart using electrodes placed on the skin. Completely painless. Shows heart rate and rhythm, and can reveal if chambers are under strain. Does not show anatomy but is an important part of the full assessment.',
+    'pox-full': 'Pulse Oximetry',
+    'pox-desc': 'A small clip placed on a finger or toe that measures the oxygen level in the blood. Quick, painless, and non-invasive. A reading significantly below 95% can be the first sign that a baby has a heart defect requiring attention.',
+    'echo-report-title': 'How to Read Your Echo Report',
+    'echo-r1': 'The report will describe each structure: the four chambers, four valves, and the major vessels',
+    'echo-r2': '"Mild/moderate/severe" describes how significant a problem is — not an emergency score',
+    'echo-r3': 'Ejection fraction (EF) measures pumping strength — normal is typically 55–70%',
+    'echo-r4': '"Trivial" or "trace" findings are almost always clinically insignificant',
+    'echo-r5': 'Ask your cardiologist to go through the report with you line by line — this is your right as a parent',
+    's4-num': '04 /', 's4-title': 'Before Surgery',
+    's4-p1': 'Learning your child needs heart surgery is one of the most frightening moments a parent can experience. Understanding what to expect at each stage can help reduce anxiety and help you feel prepared — for yourself and for your child.',
+    'prepare-title': 'How to Prepare Your Child (and Yourself)',
+    'prep1': 'Use age-appropriate language — tell young children the doctor will "fix their heart so it works better"',
+    'prep2': 'Bring familiar comfort items: a blanket, stuffed animal, or favourite toy',
+    'prep3': 'Follow fasting instructions exactly — this is critical for anaesthesia safety',
+    'prep4': 'Prepare a list of all current medications, including over-the-counter items and supplements',
+    'prep5': 'Arrange practical support at home for siblings and pets — surgery and ICU stay may be 7–14 days',
+    'prep6': 'Ask the hospital about family accommodation options near the ICU',
+    'prep7': 'It is completely normal and healthy to feel overwhelmed — ask for a social worker or family support coordinator',
+    'surg-day-title': 'The Day of Surgery — What to Expect',
+    'tl1-time': 'Early morning', 'tl1-head': 'Admission and preparation',
+    'tl1-body': 'Your child will be admitted, weight and vitals checked, consent forms signed. A nurse will place an IV and may give a mild sedative to help your child relax before entering the operating theatre.',
+    'tl2-time': 'Anaesthesia induction', 'tl2-head': 'Going to sleep',
+    'tl2-body': 'The anaesthesiologist (often me, or a colleague) will administer anaesthetic — usually by breathing a gentle gas or through the IV. Your child will be asleep within seconds and feel nothing. One parent is sometimes permitted to the threshold of the room.',
+    'tl3-time': 'During surgery', 'tl3-head': 'The operation',
+    'tl3-body': 'Most open-heart surgeries use cardiopulmonary bypass — a heart-lung machine that temporarily takes over the work of the heart and lungs. The surgeon works on the still heart. Duration varies greatly: 2–8 hours depending on complexity. The team will update you periodically.',
+    'tl4-time': 'Post-surgery', 'tl4-head': 'Recovery room → ICU',
+    'tl4-body': 'Your child will go directly to the Pediatric ICU (PICU). They will be sedated, on a breathing machine (ventilator), and have multiple lines and tubes. This is expected and temporary. You will be able to see them as soon as they are settled.',
+    'pre-q-title': 'Questions to Ask the Surgical Team Before the Operation',
+    'preq1': 'What exactly will be repaired or reconstructed during this surgery?',
+    'preq2': 'Will my child need cardiopulmonary bypass, and for how long?',
+    'preq3': 'What are the main risks specific to my child\'s anatomy and condition?',
+    'preq4': 'How many times has your team performed this specific procedure this year?',
+    'preq5': 'What is the plan if complications arise during surgery?',
+    's5-num': '05 /', 's5-title': 'After Surgery: The ICU and Recovery',
+    's5-p1': 'The first time you see your child in the ICU after heart surgery can be shocking — tubes, monitors, machines. I have sat with hundreds of families in this moment. Please know: almost everything you see is temporary, expected, and a sign that your child is being carefully watched.',
+    'tubes-title': 'Tubes and Monitors — What They Are',
+    'vent-full': 'Endotracheal Tube / Ventilator',
+    'vent-desc': 'A breathing tube through the mouth connected to a machine that breathes for your child. Used while still sedated or if the lungs need support. Most children are extubated (tube removed) within 12–48 hours of surgery.',
+    'drain-full': 'Chest / Mediastinal Tube',
+    'drain-desc': 'Thin tubes through the chest wall draining any fluid or blood from around the heart and lungs. They prevent dangerous accumulation. Usually removed on day 2–4 when drainage reduces.',
+    'art-full': 'Arterial Line',
+    'art-desc': 'A thin catheter in an artery (usually wrist) that continuously measures blood pressure and allows blood draws without needle sticks. A normal part of ICU monitoring after cardiac surgery.',
+    'cvp-full': 'Central Venous Catheter',
+    'cvp-desc': 'A line into a large vein, often in the neck or groin. Delivers medications and fluids directly to the central circulation. Also measures pressures inside the right side of the heart.',
+    'pace-full': 'Temporary Pacing Wires',
+    'pace-desc': 'Thin wires attached to the outside of the heart during surgery and brought through the skin. They allow the team to electrically pace the heart if needed. Removed before discharge when no longer required.',
+    'foley-full': 'Urinary Catheter',
+    'foley-desc': 'Measures urine output precisely, which is an important indicator of kidney function and fluid balance. Removed as soon as the child is awake and mobile enough to use a bedpan or toilet.',
+    'pain-title': 'Pain Management After Cardiac Surgery',
+    'pain1': 'Your child will receive around-the-clock pain medication — they will not be left in pain',
+    'pain2': 'Opioids (like morphine or fentanyl) are used safely in the first 24–48 hours for severe pain',
+    'pain3': 'Regular paracetamol / acetaminophen is a backbone of pain control at all ages',
+    'pain4': 'Older children can use a PCA — a button they press themselves to receive safe, measured doses',
+    'pain5': 'Tell the nurse immediately if your child seems distressed or in pain — advocates matter',
+    'recovery-title': 'Recovery Timeline',
+    'rec1-time': 'Day 0–1 (Post-op)', 'rec1-head': 'ICU: Sedated and ventilated',
+    'rec1-body': 'Your child remains sedated on the ventilator. Vital signs are monitored continuously. The focus is on stabilising heart function, blood pressure, and fluid balance. This is the most intensive phase of care.',
+    'rec2-time': 'Day 1–3', 'rec2-head': 'Waking up, breathing tube removed',
+    'rec2-body': 'Most children are extubated within 24–48 hours. Sedation is reduced and your child begins to wake up. This can be a distressing time for parents — they may seem confused, uncomfortable, or try to pull at tubes. This is normal.',
+    'rec3-time': 'Day 3–5', 'rec3-head': 'Drains removed, first steps',
+    'rec3-body': 'Chest drains and most monitoring lines are removed. Oral medications begin. Older children begin sitting up, then standing with physio support. The body begins healing from the inside — the chest wire heals over 6–8 weeks.',
+    'rec4-time': 'Day 5–10', 'rec4-head': 'Step-down ward',
+    'rec4-body': 'Transfer from ICU to a cardiac ward. Less monitoring, more independence. Feeds improve. Many children become surprisingly playful again. This is a significant milestone for families.',
+    'rec5-time': 'Day 7–14', 'rec5-head': 'Discharge home',
+    'rec5-body': 'Most children are discharged with a clear home care plan, medication schedule, follow-up appointments, and wound care instructions. You will be taught what to watch for and when to call the team.',
+    's6-num': '06 /', 's6-title': '15 Questions to Ask Your Doctor',
+    's6-intro': 'These questions are drawn from the conversations I have witnessed — and participated in — with families over 14 years. A great medical team welcomes these questions. Write them down and bring this list to every appointment.',
+    'qs-diag': 'At Diagnosis',
+    'q1': 'Exactly which part or parts of my child\'s heart are affected, and can you show me on a diagram?',
+    'q2': 'Is this a condition that will need one surgery, multiple surgeries, or can it be managed with medication?',
+    'q3': 'How urgently does this need to be treated — days, weeks, or can we take more time to plan?',
+    'q4': 'Are there any activity restrictions I need to follow right now while we plan treatment?',
+    'q5': 'Should I seek a second opinion, and are you comfortable with me doing so?',
+    'qs-preop': 'Before Surgery (Pre-operative)',
+    'q6': 'What is the name of the specific surgical procedure being planned, and what exactly does it do?',
+    'q7': 'Who will be the surgeon, and how many times have they performed this specific operation?',
+    'q8': 'What are the realistic risks and potential complications for my child — including short-term and long-term?',
+    'q9': 'What happens if we choose not to proceed with surgery — what is the natural history of the untreated condition?',
+    'q10': 'What should I tell my child about what is going to happen, and are there child life specialists to help?',
+    'qs-postop': 'After Surgery (Post-operative & Follow-up)',
+    'q11': 'When can my child return to normal activities — school, sports, play?',
+    'q12': 'Will my child need to take medications long-term, and what are the side effects I should watch for?',
+    'q13': 'What are the specific signs of complications at home that should make me call the hospital or go to emergency?',
+    'q14': 'How often will my child need follow-up appointments and for how long — is this lifelong?',
+    'q15': 'As my child grows into a teenager and adult, what will they need to know about managing their own heart health?',
+    'closing-note': 'From a doctor who has stood in that operating theatre, and sat with your families in waiting rooms at 3 a.m.: you are not alone. Ask every question. Advocate for your child. And trust that the team around your child\'s bed wants the same outcome you do — a long, full, beautiful life for your little one.',
+    'footer-sub': 'Pediatric Anesthesiologist · Congenital Heart Surgery · Pediatric ICU',
+    'footer-back-text': 'Back to Homepage',
+    'footer-copy': '© 2025 Dr. George Akhobadze. This content is for educational purposes only.'
+  },
+
+  ka: {
+    'nav-academy': 'აკადემია',
+    'nav-neonatal': 'ნეონატალური სახელმძღვანელო',
+    'nav-heart': 'გულის სახელმძღვანელო',
+    'nav-library': 'პაციენტის ბიბლიოთეკა',
+    'nav-join': 'შემოგვიერთდი',
+    'hero-badge': 'პედიატრიული კარდიოლოგია · რესურსი მშობლებისთვის',
+    'hero-title': 'თანდაყოლილი გულის დაავადება:',
+    'hero-title-span': 'სახელმძღვანელო მშობლებისთვის',
+    'hero-sub': 'დაწერილია დოქტორ გიორგი ახობაძის მიერ — პედიატრიული ანესთეზიოლოგი 14 წლიანი გამოცდილებით თანდაყოლილი გულის ქირურგიასა და პედიატრიულ ინტენსიური მოვლის განყოფილებაში. ეს სახელმძღვანელო კომპლექსურ სამედიცინო ინფორმაციას გარდაქმნის გასაგებ, თანამგრძნობ ენად.',
+    'hero-meta1': '14 წლიანი კლინიკური გამოცდილება',
+    'hero-meta2': 'თანდაყოლილი გულის ქირურგიის განყოფილება',
+    'hero-meta3': 'პედიატრიული PICU სპეციალისტი',
+    'disc-label': 'მხოლოდ საგანმანათლებლო მიზნებისთვის — ',
+    'disc-text': 'ეს სახელმძღვანელო მხოლოდ საგანმანათლებლო მიზნებს ემსახურება. ყოველთვის მიჰყევით თქვენი შვილის კარდიოლოგის, კარდიოქირურგისა და სამედიცინო გუნდის რჩევებს. ყველა ბავშვის გულის მდგომარეობა უნიკალურია — ეს ინფორმაცია არ ცვლის პერსონალიზებულ სამედიცინო კონსულტაციას.',
+    'qn1-num': 'განყოფილება 01', 'qn1': 'რა არის თანდაყოლილი გულის დაავადება',
+    'qn2-num': 'განყოფილება 02', 'qn2': 'ყველაზე გავრცელებული დეფექტები',
+    'qn3-num': 'განყოფილება 03', 'qn3': 'დიაგნოზი განმარტებულია',
+    'qn4-num': 'განყოფილება 04', 'qn4': 'ოპერაციამდე',
+    'qn5-num': 'განყოფილება 05', 'qn5': 'ოპერაციის შემდეგ',
+    'qn6-num': 'განყოფილება 06', 'qn6': 'შეკითხვები ექიმისთვის',
+    's1-num': '01 /', 's1-title': 'რა არის თანდაყოლილი გულის დაავადება?',
+    's1-p1': 'თანდაყოლილი გულის დაავადება (CHD) ნიშნავს გულის სტრუქტურულ პრობლემებს, რომლებიც დაბადებიდანვე არსებობს. სიტყვა "თანდაყოლილი" უბრალოდ ნიშნავს "დაბადებიდანვე არსებულს" — ეს არ ნიშნავს, რომ ეს მდგომარეობა გამოწვეული იყო მშობლების ქმედებებით ან უმოქმედობით ორსულობის დროს.',
+    's1-p2': 'გული ორსულობის პირველ კვირებში იწყებს ფორმირებას. ამ სწრაფი, კომპლექსური განვითარების პროცესში, კამერებს, სარქველებს და სისხლძარღვებს ზუსტი გზით უნდა გაიზარდონ და დაუკავშირდნენ ერთმანეთს. როდესაც ეს პროცესი მოსალოდნელ გზას არ მიჰყვება, სტრუქტურული განსხვავება ჩნდება — ეს არის თანდაყოლილი გულის დეფექტი.',
+    's1-p3': 'CHD-ების უმეტესობა გავლენას ახდენს სისხლის მიმოქცევაზე გულის გავლით, ფილტვებსა და სხეულში. ზოგიერთი ფილტვებში სისხლის ძალიან ბევრ შეყვანას იწვევს. სხვები — ძალიან ცოტას. ზოგი ჟანგბადით მდიდარ და ჟანგბადით ღარიბ სისხლს ურევს.',
+    'stat1-num': '1 100-ზე', 'stat1-lbl': 'დაბადება CHD-ით არის დაზარალებული',
+    'stat2-num': '40,000+', 'stat2-lbl': 'ბავშვი იბადება CHD-ით ყოველწლიურად მხოლოდ აშშ-ში',
+    'stat3-num': '95%', 'stat3-lbl': 'ბავშვები ახლა სრულწლოვანებამდე აღწევენ თანამედროვე მოვლით',
+    's1-types-title': 'CHD-ის ტიპები — მიმოხილვა',
+    's1-t1': 'ხვრელები გულში — გახსნილობები კამერებს შორის, რომლებიც დახურული უნდა ყოფილიყო (VSD, ASD)',
+    's1-t2': 'სარქველების პრობლემები — ძალიან ვიწრო, გამჟღავნებული ან გამოვარდნილი სარქველები',
+    's1-t3': 'სისხლძარღვთა ანომალიები — არტერიები ან ვენები, რომლებიც არასწორ ადგილას ან არასწორ მიმართულებით არის შეერთებული',
+    's1-t4': 'კომპლექსური დეფექტები — კომბინაციები, რომლებიც ერთდროულად მრავალ სტრუქტურას მოიცავს',
+    's1-t5': 'ციანოზური დეფექტები — სისხლში ჟანგბადის შემცირებას იწვევს, კანი ლურჯ ელფერს იღებს (ციანოზი)',
+    's1-p4': 'მნიშვნელოვანია: CHD-ის არსებობა არ ნიშნავს, რომ თქვენი შვილი მოწყვლადია ან ვერ შეძლებს სავსე ცხოვრებას. ბოლო სამი ათწლეულის განმავლობაში პედიატრიული კარდიოქირურგიაში განხორციელებული ფენომენალური მიღწევების წყალობით, კომპლექსური გულის დეფექტებითაც კი დაბადებული ბავშვების დიდი უმეტესობა აქტიურ, ჯანსაღ ცხოვრებას ეწევა.',
+    's2-num': '02 /', 's2-title': 'ყველაზე გავრცელებული დეფექტები',
+    's2-intro': 'არსებობს 40-ზე მეტი სახის თანდაყოლილი გულის დეფექტი. ქვემოთ ხუთი ყველაზე გავრცელებულია, განმარტებული მშობლებისათვის მარტივ ენაზე.',
+    'vsd-name': 'პარკუჭთაშორისი ძგიდის დეფექტი',
+    'vsd-desc': 'ხვრელი კედელში (ძგიდეში) გულის ორ ქვედა კამერას (პარკუჭებს) შორის. სისხლი ხვრელის გავლით გადის, გულს უფრო მეტი ძალის გაწევა უწევს. მცირე VSD-ები ხშირად თავისთავად იხურება. უფრო დიდები შეიძლება საჭიროებდეს ოპერაციას.',
+    'vsd-freq': 'ყველაზე გავრცელებული — ~30% CHD-ებიდან',
+    'asd-name': 'წინაგულთაშორისი ძგიდის დეფექტი',
+    'asd-desc': 'ხვრელი ორ ზედა კამერას (წინაგულებს) შორის. ეს ჟანგბადიანი სისხლის ჟანგბადის გარეშე სისხლთან შერევის საშუალებას იძლევა, გულს არაეფექტურ რეჟიმში მუშაობა უწევს. ბევრი მათგანი მხოლოდ ბავშვობაში ან სრულწლოვანებაში ვლინდება.',
+    'asd-freq': '~10% CHD-ებიდან',
+    'tof-name': 'ფალოს ტეტრადა',
+    'tof-desc': 'ოთხი გულის ანომალიის კომბინაცია ერთდროულად: VSD, ვიწრო ფილტვის სარქველი, გასქელებული მარჯვენა პარკუჭის კედელი და მთავარი არტერია VSD-ს ზემოთ. ლურჯი ბავშვის სინდრომის ისტორიული მიზეზი. კორექტული ქირურგია ძალიან ეფექტურია.',
+    'tof-freq': '~10% CHD-ებიდან · ციანოზური ტიპი',
+    'tga-name': 'მაგისტრალური სისხლძარღვების ტრანსპოზიცია',
+    'tga-desc': 'გულიდან გამომავალი ორი მთავარი არტერია — აორტა და ფილტვის არტერია — გადაცვლილია. ეს ნიშნავს, რომ სისხლი ორ ცალკეულ მარყუჟში მოძრაობს და სხეულს თითქმის ჟანგბადი არ მიეწოდება. ეს ქირურგიული გადაუდებელი მდგომარეობაა. ოპერაციით შედეგები შესანიშნავია.',
+    'tga-freq': '~5% CHD-ებიდან · კრიტიკული ტიპი',
+    'coa-name': 'აორტის კოარქტაცია',
+    'coa-desc': 'აორტის — გულიდან სხეულამდე სისხლის მატარებელი მთავარი არტერიის — შევიწროება. შევიწროება გულს სისხლის ბიძგვისათვის გაცილებით მეტი ძალის გაწევა უწევს. შეიძლება გამოიწვიოს მაღალი წნევა ხელებში და სისუსტე ფეხებში.',
+    'coa-freq': '~8% CHD-ებიდან',
+    's3-num': '03 /', 's3-title': 'თქვენი შვილის დიაგნოზის გაგება',
+    's3-p1': 'მას შემდეგ, რაც თქვენს შვილს გულის დეფექტი ეჭვობა, გუნდი გამოიყენებს ერთ ან რამდენიმე სახის გამოსახვის ტესტს გულის ანატომიის გასაგებად. ქვემოთ მოცემულია ყველაზე გავრცელებული ტესტები.',
+    'echo-full': 'ექოკარდიოგრამა',
+    'echo-desc': 'გულის ულტრაბგერა. უსაფრთხო, უმტკივნეულო, იყენებს ბგერითი ტალღებს — რადიაცია არ გამოიყენება. ის გულის სტრუქტურას რეალურ დროში გვიჩვენებს: კამერების ზომებს, სარქველების მოქმედებასა და სისხლის ნაკადის მიმართულებას.',
+    'cath-full': 'გულის კათეტერიზაცია',
+    'cath-desc': 'თხელი, მოქნილი მილი (კათეტერი) შეჰყავთ სისხლძარღვში და გულამდე ახელმძღვანელებენ. ზომავს ზუსტ წნევებს გულის კამერებში და ექიმებს საშუალებას აძლევს სისხლის ნაკადის დეტალური სურათი ნახოს. ასევე გამოიყენება ღია ოპერაციის გარეშე ზოგიერთი დეფექტის სამკურნალოდ.',
+    'mri-full': 'მაგნიტურ-რეზონანსული ტომოგრაფია',
+    'mri-desc': 'იყენებს მაგნიტურ ველებს და რადიოტალღებს გულისა და მსხვილი სისხლძარღვების დეტალური 3D სურათების შესაქმნელად. რადიაცია არ გამოიყენება. განსაკუთრებით სასარგებლოა ზუსტი მოცულობების გასაზომად.',
+    'cxr-full': 'გულ-მკერდის რენტგენი',
+    'cxr-desc': 'მარტივი რენტგენი გულ-მკერდის შესაფასებლად. ხშირად პირველი ჩატარებული ტესტია. შეიძლება აჩვენოს გულის გადიდება ან ფილტვებში სისხლის ნაკადის სიჭარბე ან სიმწირე.',
+    'ecg-full': 'ელექტროკარდიოგრამა',
+    'ecg-desc': 'იწერს გულის ელექტრულ აქტივობას კანზე მოთავსებული ელექტროდების საშუალებით. სრულიად უმტკივნეულო. გვიჩვენებს გულისცემის სიხშირეს და რიტმს.',
+    'pox-full': 'პულსოქსიმეტრია',
+    'pox-desc': 'მცირე სამაგრი თითზე, რომელიც სისხლში ჟანგბადის დონეს ზომავს. სწრაფი, უმტკივნეულო. 95%-ზე მნიშვნელოვნად დაბალი მაჩვენებელი შეიძლება ბავშვის გულის პრობლემის პირველი ნიშანი იყოს.',
+    'echo-report-title': 'ექოს ანგარიშის კითხვა',
+    'echo-r1': 'ანგარიში აღწერს თითოეულ სტრუქტურას: ოთხ კამერას, ოთხ სარქველს და მთავარ სისხლძარღვებს',
+    'echo-r2': '"მსუბუქი/ზომიერი/მძიმე" აღწერს პრობლემის სიმძიმეს — ეს გადაუდებელი ქულა არ არის',
+    'echo-r3': 'განდევნის ფრაქცია (EF) ზომავს ტუმბვის სიმძლავრეს — ნორმა ჩვეულებრივ 55–70%-ია',
+    'echo-r4': '"უმნიშვნელო" ან "კვალი" მონაცემები თითქმის ყოველთვის კლინიკურად უმნიშვნელოა',
+    'echo-r5': 'სთხოვეთ კარდიოლოგს ანგარიში ხაზ-ხაზ გაიარონ თქვენთან ერთად — ეს თქვენი მშობლური უფლებაა',
+    's4-num': '04 /', 's4-title': 'ოპერაციამდე',
+    's4-p1': 'ინფორმაციის მიღება, რომ შვილს გულის ოპერაცია სჭირდება, ერთ-ერთი ყველაზე შემაშინებელი მომენტია მშობლისთვის. თითოეულ ეტაპზე მოლოდინის გაგება შეიძლება შფოთვის შემცირებასა და მომზადებაში დაეხმაროს.',
+    'prepare-title': 'შვილის (და საკუთარი თავის) მომზადება',
+    'prep1': 'გამოიყენეთ ასაკთან შესაფერი ენა — პატარა ბავშვებს უთხარით, ექიმი "გულს შეაკეთებს, რომ უკეთ იმუშაოს"',
+    'prep2': 'წაიღეთ ნაცნობი სასიამოვნო ნივთები: საბანი, ნაყოფი ცხოველი ან საყვარელი სათამაშო',
+    'prep3': 'ზუსტად დაიცავით შიმშილობის ინსტრუქციები — ეს გადამწყვეტია ანესთეზიის უსაფრთხოებისთვის',
+    'prep4': 'მოამზადეთ ყველა მიმდინარე მედიკამენტის სია, მათ შორის ურეცეპტო პრეპარატები',
+    'prep5': 'მოაწყვეთ პრაქტიკული მხარდაჭერა სახლში და-ძმისა და შინაური ცხოველებისთვის — ოპერაცია და PICU-ს ყოფნა 7–14 დღე შეიძლება გაგრძელდეს',
+    'prep6': 'ჰოსპიტალს ჰკითხეთ PICU-ს მახლობლად ოჯახისთვის განსახლების შესახებ',
+    'prep7': 'სრულიად ნორმალური და ჯანსაღია გადატვირთულობის შეგრძნება — სოციალური მუშაკი ან ოჯახის მხარდამჭერი კოორდინატორი მოითხოვეთ',
+    'surg-day-title': 'ოპერაციის დღე — რას ელოდოთ',
+    'tl1-time': 'ადრე დილით', 'tl1-head': 'მიღება და მომზადება',
+    'tl1-body': 'შვილი მიიღება, გადაამოწმება წონა და სასიცოცხლო ფუნქციები, ხელი მოეწერება თანხმობის ფორმებს. მედდა IV-ს ჩასვამს და შეიძლება მსუბუქი დამამშვიდებელი მისცეს ოპერაციულ ოთახში შესვლამდე.',
+    'tl2-time': 'ანესთეზიის ინდუქცია', 'tl2-head': 'ძილში ჩაძინება',
+    'tl2-body': 'ანესთეზიოლოგი (ხშირად მე ან კოლეგა) ანესთეტიკს მიაწვდის — ჩვეულებრივ რბილი გაზის ჩასუნთქვით ან IV-ის მეშვეობით. ბავშვი წამებში ჩაიძინებს და არაფერს იგრძნობს.',
+    'tl3-time': 'ოპერაციის დროს', 'tl3-head': 'ოპერაცია',
+    'tl3-body': 'ღია გულის ოპერაციების უმეტესობა იყენებს კარდიოპულმონარულ შუნტს — გულ-ფილტვის მანქანას, რომელიც დროებით გულ-ფილტვის ფუნქციას ითავსებს. ქირურგი მუშაობს გაჩერებულ გულზე. ხანგრძლივობა 2–8 საათია სიმძიმის მიხედვით.',
+    'tl4-time': 'ოპერაციის შემდეგ', 'tl4-head': 'გამოსვლის პალატა → PICU',
+    'tl4-body': 'შვილი პირდაპირ პედიატრიულ PICU-ში გადაიყვანება. ის დაიძინებს, სასუნთქ აპარატზე იქნება, რამდენიმე ხაზი და მილი ექნება. ეს მოსალოდნელი და დროებითია.',
+    'pre-q-title': 'შეკითხვები ქირურგიული გუნდისთვის ოპერაციამდე',
+    'preq1': 'ზუსტად რა განკეთდება ამ ოპერაციის დროს?',
+    'preq2': 'შვილს დასჭირდება კარდიოპულმონარული შუნტი და რამდენი ხნით?',
+    'preq3': 'რა არის მთავარი რისკები ჩემი შვილის ანატომიასა და მდგომარეობასთან დაკავშირებით?',
+    'preq4': 'რამდენჯერ შეასრულა თქვენმა გუნდმა ეს კონკრეტული პროცედურა ამ წელს?',
+    'preq5': 'რა არის გეგმა, თუ ოპერაციის დროს გართულებები წარმოიქმნება?',
+    's5-num': '05 /', 's5-title': 'ოპერაციის შემდეგ: PICU და გამოჯანმრთელება',
+    's5-p1': 'PICU-ში ოპერაციის შემდეგ შვილის პირველად დანახვა შოკირებელი შეიძლება იყოს — მილები, მონიტორები, მანქანები. მე ამ მომენტში ასობით ოჯახთან ვჯდომილვარ. გთხოვთ გახსოვდეთ: თქვენ ნახული თითქმის ყველაფერი დროებითი, მოსალოდნელი და ნიშანია, რომ შვილი ყურადღებით გამოკვლეულია.',
+    'tubes-title': 'მილები და მონიტორები — რა არის ეს',
+    'vent-full': 'ენდოტრაქეალური მილი / ვენტილატორი',
+    'vent-desc': 'სასუნთქი მილი პირით, რომელიც მანქანასთანაა შეერთებული. გამოიყენება სანამ ჯერ კიდევ დამჟავებულია ან ფილტვებს მხარდაჭერა სჭირდება. ბავშვების უმეტესობას მილი 12–48 საათის განმავლობაში ამოეღება.',
+    'drain-full': 'გულ-მკერდის / მედიასტინალური მილი',
+    'drain-desc': 'თხელი მილები გულ-მკერდის კედლის გავლით, გულ-ფილტვის გარშემო სითხის ან სისხლის გამოსაწოვად. ჩვეულებრივ 2–4 დღეს ამოიღებენ.',
+    'art-full': 'არტერიული ხაზი',
+    'art-desc': 'თხელი კათეტერი არტერიაში (ჩვეულებრივ მაჯის), რომელიც მუდმივად ზომავს სისხლის წნევას. PICU-ს მონიტორინგის ნორმალური ნაწილი.',
+    'cvp-full': 'ცენტრალური ვენური კათეტერი',
+    'cvp-desc': 'ხაზი მსხვილ ვენაში, ხშირად კისრის ან საზარდულის მიდამოში. მედიკამენტებსა და სითხეებს პირდაპირ ცენტრალურ მიმოქცევაში მიაწვდის.',
+    'pace-full': 'დროებითი პეისინგის მავთულები',
+    'pace-desc': 'თხელი მავთულები, ოპერაციის დროს გულის გარეთა მხარეზე მიმაგრებული. საჭიროებისამებრ გულის ელექტრული პეისინგის საშუალებას იძლევა. გაწერამდე ამოიღება.',
+    'foley-full': 'საშარდე კათეტერი',
+    'foley-desc': 'ზომავს შარდის გამოყოფას ზუსტად, რაც თირკმელის ფუნქციის მნიშვნელოვანი მაჩვენებელია. ბავშვის გაღვიძებისთანავე ამოიღება.',
+    'pain-title': 'ტკივილის მართვა კარდიულ ოპერაციის შემდეგ',
+    'pain1': 'შვილი მიიღებს ტკივილგამაყუჩებელ წამლებს გამუდმებით — ის ტკივილში არ დარჩება',
+    'pain2': 'ოპიოიდები (მორფინი ან ფენტანილი) პირველ 24–48 საათში მძიმე ტკივილისთვის უსაფრთხოდ გამოიყენება',
+    'pain3': 'რეგულარული პარაცეტამოლი/აცეტამინოფენი ნებისმიერ ასაკში ტკივილის კონტროლის ბაზისია',
+    'pain4': 'უფროსი ბავშვები PCA-ს გამოყენება შეძლებენ — ღილაკი, რომელსაც თვითონ დააჭერენ',
+    'pain5': 'მედდას დაუყოვნებლივ ეუბნებით, თუ შვილი ტკივილით ჩანს — ადვოკატობა მნიშვნელოვანია',
+    'recovery-title': 'გამოჯანმრთელების განრიგი',
+    'rec1-time': 'დღე 0–1 (პოსტოპ.)', 'rec1-head': 'PICU: სედაციაში და ვენტილატორზე',
+    'rec1-body': 'შვილი ვენტილატორზე სედაციაში რჩება. სასიცოცხლო ფუნქციები მუდმივად კონტროლდება. ყურადღება გულის ფუნქციის, სისხლის წნევისა და სითხის ბალანსის სტაბილიზაციაზეა.',
+    'rec2-time': 'დღე 1–3', 'rec2-head': 'გაღვიძება, სასუნთქი მილის ამოღება',
+    'rec2-body': 'ბავშვების უმეტესობა 24–48 საათის განმავლობაში ექსტუბირდება. სედაცია მცირდება, შვილი იღვიძებს. ეს შეიძლება განსაცდელი დრო იყოს მშობლებისთვის — ისინი დაბნეული ან უხერხული ჩანდნენ.',
+    'rec3-time': 'დღე 3–5', 'rec3-head': 'დრენაჟის ამოღება, პირველი ნაბიჯები',
+    'rec3-body': 'გულ-მკერდის დრენაჟი და მონიტორინგის ხაზების უმეტესობა ამოიღება. პირიდან მედიკამენტები იწყება. უფრო ასაკოვანი ბავშვები ჯდომას, შემდეგ ფიზიოთერაპევტის მხარდაჭერით დგომას იწყებენ.',
+    'rec4-time': 'დღე 5–10', 'rec4-head': 'სტეპ-დაუნ განყოფილება',
+    'rec4-body': 'PICU-დან კარდიოლოგიის განყოფილებაში გადაყვანა. ნაკლები მონიტორინგი, მეტი დამოუკიდებლობა. კვება უმჯობესდება. ბევრი ბავშვი გასაკვირად კვლავ მხიარული ხდება.',
+    'rec5-time': 'დღე 7–14', 'rec5-head': 'გაწერა სახლში',
+    'rec5-body': 'ბავშვების უმეტესობა გაიწერება გარკვეული სახლის მოვლის გეგმით, მედიკამენტების განრიგით, შემდგომი ვიზიტებით და ჭრილობის მოვლის ინსტრუქციებით.',
+    's6-num': '06 /', 's6-title': '15 შეკითხვა ექიმისთვის',
+    's6-intro': 'ეს შეკითხვები მომდინარეობს საუბრებიდან, რომლებიც 14 წლის განმავლობაში ოჯახებთან ვაწარმოე. შესანიშნავი სამედიცინო გუნდი ამ შეკითხვებს სიამოვნებით ეგებება. ჩაწერეთ და ყველა ვიზიტზე ეს სია თან წაიღეთ.',
+    'qs-diag': 'დიაგნოზის დადებისას',
+    'q1': 'ზუსტად ჩემი შვილის გულის რომელი ნაწილი ან ნაწილებია დაზარალებული და შეგიძლიათ დიაგრამაზე მიჩვენოთ?',
+    'q2': 'ეს ისეთი მდგომარეობაა, რომელიც ერთ ოპერაციას, რამდენიმე ოპერაციას საჭიროებს, თუ მედიკამენტებით მართვა შეიძლება?',
+    'q3': 'რამდენად სასწრაფოდ უნდა მოხდეს მკურნალობა — დღეებში, კვირებში, ან უფრო გვიან შეიძლება?',
+    'q4': 'არის თუ არა შეზღუდვები, რომლებსაც ახლა, მკურნალობის დაგეგმვისას, უნდა ვიცავდე?',
+    'q5': 'მეორე მოსაზრება უნდა მოვიძიო, და კომფორტული ხართ ამასთან?',
+    'qs-preop': 'ოპერაციამდე (პრეოპერაციული)',
+    'q6': 'რა ჰქვია დაგეგმილ კონკრეტულ ქირურგიულ პროცედურას და ზუსტად რას აკეთებს ის?',
+    'q7': 'ვინ იქნება ქირურგი და რამდენჯერ ჩაუტარებია მას ეს კონკრეტული ოპერაცია?',
+    'q8': 'რა არის ჩემი შვილის რეალური რისკები და შესაძლო გართულებები — მოკლე და გრძელვადიანი?',
+    'q9': 'რა მოხდება, თუ ოპერაციაზე გადახდას გადავწყვეტთ — რა არის სამკურნალო სისტემის ბუნებრივი ისტორია?',
+    'q10': 'რა უნდა ვუთხრა შვილს იმის შესახებ, რაც მოხდება, და ბავშვთა ცხოვრებაში სპეციალისტები ხელმისაწვდომია?',
+    'qs-postop': 'ოპერაციის შემდეგ (პოსტოპერაციული და შემდგომი)',
+    'q11': 'როდის შეძლებს ჩემი შვილი ნორმალურ საქმიანობაში დაბრუნებას — სკოლა, სპორტი, თამაში?',
+    'q12': 'შვილს გრძელვადიანად მოუწევს მედიკამენტების მიღება და რა გვერდითი ეფექტები უნდა ვიცავდე?',
+    'q13': 'რა არის გართულებების კონკრეტული ნიშნები სახლში, რომლებიც ჰოსპიტალის დარეკვაზე ან გადაუდებელ მდგომარეობაში წასვლაზე უნდა მიმიტანონ?',
+    'q14': 'რამდენად ხშირად სჭირდება ჩემს შვილს შემდგომი ვიზიტები და რამდენი ხნის განმავლობაში — სიცოცხლის ბოლომდე?',
+    'q15': 'მოზარდობასა და სრულ ასაკში რომ გაიზრდება, რა უნდა იცოდეს საკუთარი გულის ჯანმრთელობის მართვის შესახებ?',
+    'closing-note': 'ექიმისგან, რომელმაც იმ ოპერაციულ ოთახში იდგა და ოჯახებთან ღამის 3 საათზე მოლოდინში ეგო: თქვენ მარტო არ ხართ. ყველა შეკითხვა დასვით. ადვოკატობა გაუწიეთ შვილს. და ენდეთ, რომ შვილის საწოლის ირგვლივ გუნდი სურს იგივე შედეგი, რაც თქვენ — გრძელი, სავსე, ლამაზი სიცოცხლე თქვენი პატარასათვის.',
+    'footer-sub': 'პედიატრიული ანესთეზიოლოგი · თანდაყოლილი გულის ქირურგია · პედიატრიული PICU',
+    'footer-back-text': 'მთავარ გვერდზე დაბრუნება',
+    'footer-copy': '© 2025 დოქტორი გიორგი ახობაძე. ეს შინაარსი მხოლოდ საგანმანათლებლო მიზნებისთვისაა.'
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ka').classList.toggle('active', lang === 'ka');
+  const t = translations[lang];
+  for (const id in t) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = t[id];
+  }
+  document.documentElement.lang = lang === 'ka' ? 'ka' : 'en';
+}
+
+// Load saved language
+const _sv = localStorage.getItem("lang");
+if (_sv === "ka") setLang("ka");
+</script>
+</body>
+</html>

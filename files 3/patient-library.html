@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Library — Dr. George Akhobadze</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-card: #1a3355;
+    --navy-border: #1e3560;
+    --navy-hover: #1a3355;
+    --amber: #f59e0b;
+    --amber-light: #fcd34d;
+    --amber-bg: rgba(245,158,11,0.08);
+    --amber-border: rgba(245,158,11,0.3);
+    --teal: #0ea5e9;
+    --teal-soft: rgba(14,165,233,0.12);
+    --white: #f8fafc;
+    --muted: #94a3b8;
+    --soft: #cbd5e1;
+    --red: #ef4444;
+    --green: #10b981;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --orange: #f97316;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    gap: 1rem;
+  }
+  .logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--amber), #d97706);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .logo-sub {
+    font-size: 0.65rem;
+    color: var(--amber);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); background: var(--navy-hover); }
+  .nav-links a.active { color: var(--amber); }
+  .btn-join {
+    background: linear-gradient(135deg, var(--amber), #d97706);
+    color: var(--navy) !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 8px !important;
+    transition: opacity 0.2s, transform 0.2s !important;
+  }
+  .btn-join:hover { opacity: 0.9; transform: translateY(-1px); background: none !important; }
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    background: var(--navy-border);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    border: none;
+    background: transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .lang-btn.active { background: var(--amber); color: var(--navy); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+  .mobile-menu {
+    display: none;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--navy-border);
+    padding: 1rem 2rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .mobile-menu a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--navy-border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a.active { color: var(--amber); }
+  .mobile-menu a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(180deg, #0f1829 0%, var(--navy) 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal-soft);
+    border: 1px solid rgba(14,165,233,0.25);
+    color: var(--teal);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem 2rem; }
+  .disclaimer {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-left: 4px solid var(--amber);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-top: -0.5rem;
+  }
+  .disclaimer-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .disclaimer-text { font-size: 0.82rem; color: #fcd34d; line-height: 1.6; }
+  .disclaimer-text strong { font-weight: 600; }
+
+  /* ── MAIN CONTENT ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  /* ── SEARCH ── */
+  .search-wrap { margin-bottom: 1.75rem; position: relative; }
+  .search-input {
+    width: 100%;
+    padding: 0.9rem 1rem 0.9rem 3rem;
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 12px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .search-input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,158,11,0.1); }
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  /* ── FILTERS ── */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .filter-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--navy-border);
+    background: var(--navy-card);
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--amber); color: var(--amber); }
+  .filter-btn.active { background: var(--amber); border-color: var(--amber); color: var(--navy); font-weight: 600; }
+
+  /* ── ARTICLES GRID ── */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .article-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+  .article-card:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-icu { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+  .badge-surgery { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+  .badge-pediatrics { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+  .badge-medications { background: rgba(14,165,233,0.12); color: #38bdf8; border: 1px solid rgba(14,165,233,0.2); }
+  .badge-general { background: rgba(249,115,22,0.12); color: #fb923c; border: 1px solid rgba(249,115,22,0.2); }
+
+  .reading-time {
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+  }
+
+  .btn-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    color: var(--amber);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .btn-read-more:hover { background: var(--amber-bg); border-color: var(--amber); }
+  .btn-read-more .arrow { transition: transform 0.2s; }
+  .btn-read-more.expanded .arrow { transform: rotate(180deg); }
+
+  /* ── EXPANDED ARTICLE ── */
+  .article-full {
+    display: none;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--navy-border);
+  }
+  .article-full.open { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  .article-full h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--amber);
+    margin: 1.1rem 0 0.5rem;
+  }
+  .article-full h3:first-child { margin-top: 0; }
+  .article-full p {
+    font-size: 0.855rem;
+    color: var(--soft);
+    line-height: 1.75;
+    margin-bottom: 0.6rem;
+  }
+  .article-full ul {
+    margin: 0.5rem 0 0.8rem 1.2rem;
+    color: var(--soft);
+    font-size: 0.855rem;
+    line-height: 1.75;
+  }
+  .article-full ul li { margin-bottom: 0.25rem; }
+  .article-note {
+    background: var(--teal-soft);
+    border-left: 3px solid var(--teal);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    color: #7dd3fc;
+    line-height: 1.65;
+    margin-top: 1rem;
+  }
+
+  /* ── NO RESULTS ── */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted);
+    grid-column: 1/-1;
+  }
+  .no-results svg { margin-bottom: 1rem; opacity: 0.3; }
+  .no-results p { font-size: 0.95rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--navy-border);
+    padding: 2rem;
+    text-align: center;
+  }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  footer p { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+  footer a { color: var(--amber); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu.open { display: flex; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+    .main { padding: 1.5rem 1.25rem 4rem; }
+    .disclaimer-wrap { padding: 0 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚕</div>
+      <div class="logo-text">
+        Dr. George Akhobadze
+        <span class="logo-sub" id="nav-tagline">Pediatric Anesthesiology & Critical Care</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" id="nav-academy">Academy</a></li>
+      <li><a href="neonatal.html" id="nav-neonatal">Neonatal Guide</a></li>
+      <li><a href="heart.html" id="nav-heart">Heart Guide</a></li>
+      <li><a href="patient-library.html" class="active" id="nav-library">Patient Library</a></li>
+      <li><a href="academy.html" class="btn-join" id="nav-join">Join Academy</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ka')">GE</button>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" id="m-academy">Academy</a>
+  <a href="neonatal.html" id="m-neonatal">Neonatal Guide</a>
+  <a href="heart.html" id="m-heart">Heart Guide</a>
+  <a href="#" class="active" id="m-library">Patient Library</a>
+  <a href="academy.html" id="m-join" style="color:var(--amber);font-weight:600;">Join Academy</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge" id="hero-badge">📚 Medical Resource Library</div>
+  <h1 id="hero-title"><span>Patient</span> Library</h1>
+  <p id="hero-sub">Clear medical information written by a specialist — for patients and families, not doctors</p>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-wrap">
+  <div class="disclaimer">
+    <span class="disclaimer-icon">⚠️</span>
+    <p class="disclaimer-text" id="disclaimer-text">
+      <strong>Important Notice:</strong> The information in this library is for educational purposes only and does not replace professional medical advice. Always consult your doctor or healthcare team about your specific situation. In an emergency, call your local emergency services immediately.
+    </p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." oninput="filterArticles()" />
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters" id="filterButtons">
+    <button class="filter-btn active" onclick="setFilter('all', this)" id="f-all">All Articles</button>
+    <button class="filter-btn" onclick="setFilter('icu', this)" id="f-icu">ICU &amp; Critical Care</button>
+    <button class="filter-btn" onclick="setFilter('surgery', this)" id="f-surgery">Surgery</button>
+    <button class="filter-btn" onclick="setFilter('pediatrics', this)" id="f-pediatrics">Pediatrics</button>
+    <button class="filter-btn" onclick="setFilter('medications', this)" id="f-medications">Medications</button>
+    <button class="filter-btn" onclick="setFilter('general', this)" id="f-general">General Health</button>
+  </div>
+
+  <!-- ARTICLES -->
+  <div class="articles-grid" id="articlesGrid">
+
+    <!-- 1 -->
+    <div class="article-card" data-category="icu" data-en-title="What Happens in the ICU" data-en-desc="A clear, honest guide to understanding the Intensive Care Unit — what it looks like, who is there, and what your loved one is going through." data-ka-title="რა ხდება რეანიმაციაში" data-ka-desc="გასაგები სახელმძღვანელო — რას წარმოადგენს ინტენსიური თერაპიის განყოფილება, ვინ მუშაობს იქ და რა ხდება თქვენი ახლობლის მკურნალობისას.">
+      <div class="card-header">
+        <span class="badge badge-icu" id="badge-1">🏥 ICU &amp; Critical Care</span>
+        <span class="reading-time">⏱ 6 min</span>
+      </div>
+      <div class="card-title" id="title-1">What Happens in the ICU</div>
+      <div class="card-desc" id="desc-1">A clear, honest guide to understanding the Intensive Care Unit — what it looks like, who is there, and what your loved one is going through.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-1')" id="btn-1">
+        <span id="btn-1-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-1">
+        <h3 id="a1h1">What is the ICU?</h3>
+        <p id="a1p1">The Intensive Care Unit — often called the ICU, or in Georgian hospitals the "Reanimatsia" — is a special part of the hospital designed for patients who need constant, close monitoring. Every patient has their own space with specialized equipment and a dedicated team watching over them around the clock.</p>
+        <h3 id="a1h2">What does it look like?</h3>
+        <p id="a1p2">It can feel overwhelming at first. You may see monitors with lines and numbers, tubes, IV drips, and machines making beeping sounds. This is all normal. Each device serves a purpose: the monitor shows the heart rate and oxygen levels, the IV delivers fluids and medications, and ventilators (breathing machines) help some patients breathe.</p>
+        <h3 id="a1h3">Who works in the ICU?</h3>
+        <p id="a1p3">A team of specialists cares for every patient: ICU doctors (intensivists), specialized nurses, respiratory therapists, pharmacists, and physiotherapists. They work together and communicate constantly. You may not always speak to the same person — but the team always knows what is happening with your loved one.</p>
+        <h3 id="a1h4">Can I visit?</h3>
+        <p id="a1p4">Most ICUs allow family visits, though times may be limited. Ask the nurses about the visiting schedule. Even if your loved one seems unconscious or sedated, talking to them gently can be comforting — research suggests patients can often hear even when they cannot respond.</p>
+        <div class="article-note" id="a1note">💙 It is completely normal to feel frightened visiting the ICU for the first time. Ask questions freely — the team wants you to understand what is happening.</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="article-card" data-category="surgery" data-en-title="Understanding Anesthesia" data-en-desc="What anesthesia actually does to your body, the different types, and what to expect before, during, and after being put to sleep for a procedure." data-ka-title="ანესთეზიის გაგება" data-ka-desc="რას აკეთებს ანესთეზია თქვენს სხეულში, სხვადასხვა სახეობები და რის მოლოდინი გქონდეთ პროცედურამდე, მის განმავლობაში და შემდეგ.">
+      <div class="card-header">
+        <span class="badge badge-surgery" id="badge-2">🔬 Surgery</span>
+        <span class="reading-time">⏱ 7 min</span>
+      </div>
+      <div class="card-title" id="title-2">Understanding Anesthesia</div>
+      <div class="card-desc" id="desc-2">What anesthesia actually does to your body, the different types, and what to expect before, during, and after being put to sleep for a procedure.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-2')" id="btn-2">
+        <span id="btn-2-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-2">
+        <h3 id="a2h1">What is anesthesia?</h3>
+        <p id="a2p1">Anesthesia is medication that prevents you from feeling pain during a procedure. It is carefully calculated and administered by an anesthesiologist — a doctor who specializes entirely in keeping you safe and comfortable throughout surgery.</p>
+        <h3 id="a2h2">Types of anesthesia</h3>
+        <ul id="a2ul">
+          <li><strong>General anesthesia</strong> — you are completely unconscious and feel nothing. Used for major surgeries.</li>
+          <li><strong>Regional anesthesia</strong> — numbs a large area of your body (like an epidural). You may be awake but feel no pain.</li>
+          <li><strong>Local anesthesia</strong> — numbs a small area only. Used for minor procedures.</li>
+          <li><strong>Sedation</strong> — makes you relaxed and drowsy but not fully unconscious. Also called "twilight sleep."</li>
+        </ul>
+        <h3 id="a2h3">Will I wake up during surgery?</h3>
+        <p id="a2p3">This fear is very common but extremely rare. Modern anesthesia monitoring is sophisticated. Your anesthesiologist continuously monitors your level of unconsciousness and adjusts medication throughout the operation.</p>
+        <h3 id="a2h4">What to expect when you wake up</h3>
+        <p id="a2p4">You will wake up in a recovery room. You may feel groggy, cold, or slightly confused — this is normal. Nausea is common but manageable with medication. The nursing team will monitor you closely until you are stable and ready to move.</p>
+        <div class="article-note" id="a2note">💙 Always tell your anesthesiologist about all medications you take, allergies, and previous reactions to anesthesia. This information is critical for your safety.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="article-card" data-category="surgery" data-en-title="Before Your Child's Surgery" data-en-desc="Practical guidance to help parents and children prepare emotionally and physically for an upcoming surgical procedure." data-ka-title="თქვენი ბავშვის ოპერაციამდე" data-ka-desc="პრაქტიკული რჩევები მშობლებს და ბავშვებს ემოციური და ფიზიკური მომზადებისთვის მომავალი ქირურგიული პროცედურის წინ.">
+      <div class="card-header">
+        <span class="badge badge-surgery" id="badge-3">🔬 Surgery</span>
+        <span class="reading-time">⏱ 5 min</span>
+      </div>
+      <div class="card-title" id="title-3">Before Your Child's Surgery</div>
+      <div class="card-desc" id="desc-3">Practical guidance to help parents and children prepare emotionally and physically for an upcoming surgical procedure.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-3')" id="btn-3">
+        <span id="btn-3-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-3">
+        <h3 id="a3h1">Fasting rules ("nil by mouth")</h3>
+        <p id="a3p1">Your child's stomach must be empty before anesthesia to prevent complications. The team will give you specific fasting times — typically no solid food for 6 hours and no clear fluids for 2 hours before surgery. Follow these exactly. Do not give any food or drink without checking with the surgical team first.</p>
+        <h3 id="a3h2">Talking to your child</h3>
+        <p id="a3p2">Children are perceptive and anxious. Age-appropriate honesty is always better than false promises. You might say: "The doctors will give you special medicine that makes you fall into a deep sleep, and when you wake up, the operation will already be finished." Avoid saying "you won't feel anything" or "it won't hurt at all" — focus on "the doctors will make sure you are comfortable."</p>
+        <h3 id="a3h3">On the day</h3>
+        <ul id="a3ul">
+          <li>Bring a comfort item — a favourite toy or blanket is usually allowed in the anaesthesia room.</li>
+          <li>Dress your child in comfortable, easy-to-remove clothing.</li>
+          <li>Ask if a parent can be present during anaesthetic induction — many hospitals allow this.</li>
+          <li>Tell the team about any recent illness, even a cold.</li>
+        </ul>
+        <div class="article-note" id="a3note">💙 Your calm demeanour is the most powerful thing you can give your child. Children look to parents for emotional cues. If you are visibly anxious, your child will be too. Take a deep breath — the team is here to take care of both of you.</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="article-card" data-category="surgery" data-en-title="Pain Management After Surgery" data-en-desc="Why pain control matters after surgery, how it works, and what you can do to help the process. Pain is not something you must simply endure." data-ka-title="ტკივილის მართვა ოპერაციის შემდეგ" data-ka-desc="რატომ არის ტკივილის კონტროლი მნიშვნელოვანი ოპერაციის შემდეგ, როგორ მუშაობს და რა შეგიძლიათ გააკეთოთ პროცესის გასაადვილებლად.">
+      <div class="card-header">
+        <span class="badge badge-surgery" id="badge-4">🔬 Surgery</span>
+        <span class="reading-time">⏱ 6 min</span>
+      </div>
+      <div class="card-title" id="title-4">Pain Management After Surgery</div>
+      <div class="card-desc" id="desc-4">Why pain control matters after surgery, how it works, and what you can do to help the process. Pain is not something you must simply endure.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-4')" id="btn-4">
+        <span id="btn-4-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-4">
+        <h3 id="a4h1">Why controlling pain matters</h3>
+        <p id="a4p1">Poorly controlled pain is not just uncomfortable — it slows recovery. Pain causes stress hormones to rise, makes breathing shallower (which can cause chest infections), discourages movement, and disrupts sleep. Good pain control helps you recover faster and reduces complications.</p>
+        <h3 id="a4h2">Types of pain relief used</h3>
+        <ul id="a4ul">
+          <li><strong>Paracetamol / Acetaminophen</strong> — safe, effective baseline pain relief given regularly.</li>
+          <li><strong>Anti-inflammatories (NSAIDs)</strong> — like ibuprofen. Reduce swelling and pain, but not suitable for everyone.</li>
+          <li><strong>Opioids</strong> — stronger medications like morphine for severe pain. Given carefully and tapered as you improve.</li>
+          <li><strong>Nerve blocks</strong> — injections that numb specific areas for hours or days after surgery.</li>
+        </ul>
+        <h3 id="a4h3">How to communicate your pain</h3>
+        <p id="a4p3">Use the 0–10 pain scale. 0 means no pain, 10 is the worst you can imagine. A pain score of 4 or above should always be reported to the nurse — do not wait. The team's goal is to keep you comfortable, not to minimise medication use at the expense of your wellbeing.</p>
+        <div class="article-note" id="a4note">💙 Asking for pain relief is not weakness. Uncontrolled pain is a medical problem. Your recovery depends on staying comfortable enough to breathe deeply, move, and sleep.</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="article-card" data-category="icu" data-en-title="What is Mechanical Ventilation?" data-en-desc="Breathing machines can be frightening to see. This article explains simply what a ventilator does and why your loved one might need one." data-ka-title="რა არის მექანიკური ვენტილაცია?" data-ka-desc="სუნთქვის აპარატი შეიძლება საშინლად გამოიყურებოდეს. ეს სტატია მარტივად ხსნის, რას აკეთებს ვენტილატორი.">
+      <div class="card-header">
+        <span class="badge badge-icu" id="badge-5">🏥 ICU &amp; Critical Care</span>
+        <span class="reading-time">⏱ 7 min</span>
+      </div>
+      <div class="card-title" id="title-5">What is Mechanical Ventilation?</div>
+      <div class="card-desc" id="desc-5">Breathing machines can be frightening to see. This article explains simply what a ventilator does and why your loved one might need one.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-5')" id="btn-5">
+        <span id="btn-5-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-5">
+        <h3 id="a5h1">What does a ventilator do?</h3>
+        <p id="a5p1">A ventilator is a machine that breathes for the patient — or helps them breathe — when they cannot do so adequately on their own. It delivers carefully measured amounts of oxygen with every breath, maintains the correct pressure in the lungs, and removes carbon dioxide.</p>
+        <h3 id="a5h2">Why might someone need a ventilator?</h3>
+        <ul id="a5ul">
+          <li>After major surgery, when the body needs support while recovering from anesthesia.</li>
+          <li>During a serious infection (sepsis, pneumonia) that affects the lungs.</li>
+          <li>After a brain injury or severe neurological event.</li>
+          <li>When the heart is not pumping strongly enough to support breathing.</li>
+        </ul>
+        <h3 id="a5h3">Is it painful?</h3>
+        <p id="a5p3">Being on a ventilator requires a tube in the throat (endotracheal tube). This is uncomfortable, so patients are given sedation and pain relief to keep them comfortable. The team constantly adjusts these medications. When the patient improves enough, the tube is removed — a process called "extubation."</p>
+        <h3 id="a5h4">When will the ventilator be removed?</h3>
+        <p id="a5p4">Every day, the ICU team assesses whether the patient is ready to breathe independently. They perform a "breathing trial" — briefly reducing ventilator support — and monitor how the patient copes. When ready, the tube is removed. Most patients feel significant relief afterwards.</p>
+        <div class="article-note" id="a5note">💙 Being on a ventilator does not mean the situation is hopeless. It means the body is receiving the support it needs to heal. Many thousands of people are successfully weaned from ventilators every day.</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="article-card" data-category="surgery" data-en-title="Understanding Your Child's Heart Surgery" data-en-desc="Heart surgery in children is complex and emotional. This guide explains the basics — from why it is needed to what the recovery journey looks like." data-ka-title="თქვენი ბავშვის გულის ოპერაციის გაგება" data-ka-desc="ბავშვებში გულის ქირურგია რთული და ემოციური პროცესია. ეს სახელმძღვანელო ხსნის საფუძვლებს — რატომ საჭიროა და რეაბილიტაციის პერსპექტივა.">
+      <div class="card-header">
+        <span class="badge badge-surgery" id="badge-6">🔬 Surgery</span>
+        <span class="reading-time">⏱ 8 min</span>
+      </div>
+      <div class="card-title" id="title-6">Understanding Your Child's Heart Surgery</div>
+      <div class="card-desc" id="desc-6">Heart surgery in children is complex and emotional. This guide explains the basics — from why it is needed to what the recovery journey looks like.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-6')" id="btn-6">
+        <span id="btn-6-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-6">
+        <h3 id="a6h1">Why do children need heart surgery?</h3>
+        <p id="a6p1">Most children who undergo heart surgery have a congenital heart defect — a structural problem that was present at birth. These range from small holes between heart chambers to more complex abnormalities in valves or major blood vessels. Surgery corrects or repairs the defect so the heart can function more normally.</p>
+        <h3 id="a6h2">What is the bypass machine?</h3>
+        <p id="a6p2">For many heart surgeries, doctors use a cardiopulmonary bypass (heart-lung) machine. This device temporarily takes over the work of the heart and lungs — pumping blood and adding oxygen — while the surgeon operates on a still, bloodless field. It sounds frightening but is a well-established, safe technique used for decades.</p>
+        <h3 id="a6h3">What happens in the ICU after surgery?</h3>
+        <p id="a6p3">Your child will go directly to the pediatric ICU (PICU) after surgery. They will have drains, IV lines, a breathing tube, and monitoring wires attached. This is expected — it is not a sign that something went wrong. The team will gradually remove these lines and tubes as your child stabilises and improves, usually over 24–72 hours for the breathing tube.</p>
+        <h3 id="a6h4">Long-term outlook</h3>
+        <p id="a6p4">The vast majority of children who undergo heart surgery go on to live full, active lives. Many need follow-up care and monitoring throughout childhood. Your cardiologist will guide you on any restrictions and when normal activities can resume.</p>
+        <div class="article-note" id="a6note">💙 Your child's surgical and ICU team has dedicated their careers to exactly this situation. Ask every question you have — no question is too small when it is your child.</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="article-card" data-category="pediatrics" data-en-title="Fever in Children — When to Worry" data-en-desc="Fever is the body's natural defence. Learn when a temperature is normal, when it needs attention, and the warning signs that require urgent care." data-ka-title="ბავშვებში ტემპერატურა — როდის ვწუხდეთ" data-ka-desc="ცხელება სხეულის ბუნებრივი თავდაცვაა. გაიგეთ, როდის არის ნორმალური, როდის სჭირდება ყურადღება და რა ნიშნები მოითხოვს გადაუდებელ დახმარებას.">
+      <div class="card-header">
+        <span class="badge badge-pediatrics" id="badge-7">👶 Pediatrics</span>
+        <span class="reading-time">⏱ 5 min</span>
+      </div>
+      <div class="card-title" id="title-7">Fever in Children — When to Worry</div>
+      <div class="card-desc" id="desc-7">Fever is the body's natural defence. Learn when a temperature is normal, when it needs attention, and the warning signs that require urgent care.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-7')" id="btn-7">
+        <span id="btn-7-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-7">
+        <h3 id="a7h1">What counts as a fever?</h3>
+        <p id="a7p1">A temperature above 38°C (100.4°F) is considered a fever. Fever itself is not a disease — it is a sign that the body's immune system is working. Most fevers in children are caused by viral infections and resolve on their own within 3–5 days.</p>
+        <h3 id="a7h2">General guidance by age</h3>
+        <ul id="a7ul">
+          <li><strong>Under 3 months:</strong> Any fever above 38°C needs urgent medical assessment. Newborns cannot fight infection effectively and fever can be serious.</li>
+          <li><strong>3–6 months:</strong> Seek advice if temperature is above 39°C or child seems unwell.</li>
+          <li><strong>Over 6 months:</strong> Manage at home if child is drinking, reasonably alert, and has no alarming signs.</li>
+        </ul>
+        <h3 id="a7h3">Warning signs — seek immediate help</h3>
+        <ul id="a7ul2">
+          <li>A rash that does not fade when pressed (glass test)</li>
+          <li>Stiff neck or severe headache</li>
+          <li>Seizure (fit)</li>
+          <li>Difficulty breathing</li>
+          <li>Child is limp, unresponsive, or unusually difficult to wake</li>
+          <li>Fever lasting more than 5 days</li>
+        </ul>
+        <div class="article-note" id="a7note">💙 Paracetamol or ibuprofen help the child feel better — but the goal is comfort, not to normalise the temperature number. If your gut tells you something is wrong beyond a simple fever, trust that instinct and seek help.</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="article-card" data-category="general" data-en-title="Understanding Blood Test Results" data-en-desc="Lab results can look confusing. This guide breaks down the most common blood tests and what the numbers actually mean in plain language." data-ka-title="სისხლის ანალიზის შედეგების გაგება" data-ka-desc="ლაბორატორიული შედეგები შეიძლება გაუგებარი ჩანდეს. ეს სახელმძღვანელო ხსნის ყველაზე გავრცელებულ სისხლის ტესტებს მარტივ ენაზე.">
+      <div class="card-header">
+        <span class="badge badge-general" id="badge-8">💊 General Health</span>
+        <span class="reading-time">⏱ 7 min</span>
+      </div>
+      <div class="card-title" id="title-8">Understanding Blood Test Results</div>
+      <div class="card-desc" id="desc-8">Lab results can look confusing. This guide breaks down the most common blood tests and what the numbers actually mean in plain language.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-8')" id="btn-8">
+        <span id="btn-8-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-8">
+        <h3 id="a8h1">The Full Blood Count (FBC)</h3>
+        <p id="a8p1">This is the most commonly ordered blood test. It counts the different cells in your blood: red blood cells (carry oxygen), white blood cells (fight infection), and platelets (help blood clot). A low red blood cell count means anaemia. A high white cell count often signals infection or inflammation.</p>
+        <h3 id="a8h2">CRP — C-Reactive Protein</h3>
+        <p id="a8p2">CRP is a marker of inflammation. A high CRP means the body is fighting something — an infection, injury, or inflammatory condition. Doctors watch CRP over time; as it falls, it usually means treatment is working.</p>
+        <h3 id="a8h3">Electrolytes</h3>
+        <p id="a8p3">Sodium, potassium, calcium, and magnesium are electrolytes — minerals that carry electrical charges vital for every cell to function. Imbalances can cause muscle weakness, heart rhythm problems, and confusion. IV fluids in hospital are carefully formulated to correct these.</p>
+        <h3 id="a8h4">Kidney and liver tests</h3>
+        <p id="a8p4">Creatinine and urea show how well your kidneys are working. ALT, AST, and bilirubin show liver function. These are routinely checked in hospital to ensure organs are tolerating medications and the illness itself.</p>
+        <div class="article-note" id="a8note">💙 Numbers slightly outside the reference range are not always cause for alarm — reference ranges are based on averages across populations. Your doctor interprets results in the context of your whole clinical picture.</div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="article-card" data-category="general" data-en-title="What is an Echocardiogram?" data-en-desc="An echo is an ultrasound of the heart. Understand what to expect during the test and what the doctors are looking for." data-ka-title="რა არის ექოკარდიოგრაფია?" data-ka-desc="ექო არის გულის ულტრაბგერა. გაიგეთ, რის მოლოდინი გქონდეთ ტესტის დროს და რასაც ეძებენ ექიმები.">
+      <div class="card-header">
+        <span class="badge badge-general" id="badge-9">💊 General Health</span>
+        <span class="reading-time">⏱ 5 min</span>
+      </div>
+      <div class="card-title" id="title-9">What is an Echocardiogram?</div>
+      <div class="card-desc" id="desc-9">An echo is an ultrasound of the heart. Understand what to expect during the test and what the doctors are looking for.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-9')" id="btn-9">
+        <span id="btn-9-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-9">
+        <h3 id="a9h1">What is an echo?</h3>
+        <p id="a9p1">An echocardiogram — commonly called an "echo" — uses ultrasound waves to create a moving picture of the heart. It is completely painless, uses no radiation, and typically takes 30–45 minutes. A gel is applied to the chest and a probe is moved across the skin to capture images.</p>
+        <h3 id="a9h2">What can an echo show?</h3>
+        <ul id="a9ul">
+          <li>The size and shape of the heart chambers</li>
+          <li>How well the heart muscle is contracting (pumping function)</li>
+          <li>The condition of the four heart valves</li>
+          <li>Blood flow patterns within the heart</li>
+          <li>Congenital heart defects</li>
+          <li>Fluid around the heart (pericardial effusion)</li>
+        </ul>
+        <h3 id="a9h3">Types of echo</h3>
+        <p id="a9p3">A <strong>transthoracic echo (TTE)</strong> is the standard test, performed over the chest wall. A <strong>transoesophageal echo (TOE/TEE)</strong> involves a probe passed down the throat under sedation — this gives clearer images and is used when more detail is needed or in surgery.</p>
+        <div class="article-note" id="a9note">💙 The echocardiogram is one of the most informative non-invasive tests available in cardiology. Results are interpreted by a specialist cardiologist and always shared in the context of your full medical history.</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="article-card" data-category="medications" data-en-title="Medications in the ICU Explained" data-en-desc="ICU patients often receive many medications simultaneously. Here is a plain-language guide to the most common ones and why they are used." data-ka-title="რეანიმაციაში გამოყენებული მედიკამენტები" data-ka-desc="რეანიმაციის პაციენტები ხშირად ერთდროულად იღებენ ბევრ მედიკამენტს. ეს სახელმძღვანელო ხსნის ყველაზე გავრცელებულებს მარტივ ენაზე.">
+      <div class="card-header">
+        <span class="badge badge-medications" id="badge-10">💉 Medications</span>
+        <span class="reading-time">⏱ 8 min</span>
+      </div>
+      <div class="card-title" id="title-10">Medications in the ICU Explained</div>
+      <div class="card-desc" id="desc-10">ICU patients often receive many medications simultaneously. Here is a plain-language guide to the most common ones and why they are used.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-10')" id="btn-10">
+        <span id="btn-10-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-10">
+        <h3 id="a10h1">Sedation and analgesia</h3>
+        <p id="a10p1">Patients on ventilators are given sedatives (like propofol or midazolam) to keep them comfortable and prevent distress. Alongside these, opioid pain relievers (like fentanyl or morphine) control pain. Every day, the team aims to use the minimum dose needed — "light sedation" is associated with faster recovery.</p>
+        <h3 id="a10h2">Vasopressors</h3>
+        <p id="a10p2">These are medications that constrict blood vessels to maintain blood pressure when the circulation is failing. Noradrenaline (norepinephrine) is the most commonly used. You may see these running via a precise syringe pump — even tiny changes in dose can significantly affect blood pressure.</p>
+        <h3 id="a10h3">Antibiotics</h3>
+        <p id="a10p3">Infections in the ICU are life-threatening. Broad-spectrum antibiotics are started early and sometimes given intravenously around the clock. The team regularly reviews whether the current antibiotics are the right choice based on blood culture results.</p>
+        <h3 id="a10h4">Blood thinners (anticoagulants)</h3>
+        <p id="a10p4">Patients who are immobile risk blood clots forming in the legs (deep vein thrombosis) or lungs (pulmonary embolism). Low-dose heparin injections — or special compression stockings — help prevent this.</p>
+        <div class="article-note" id="a10note">💙 The apparent number of drips and infusions can be alarming. Each one is carefully prescribed and monitored. Feel free to ask the nurse what each medication is for — they expect these questions.</div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="article-card" data-category="surgery" data-en-title="Recovery After Major Surgery" data-en-desc="What to realistically expect in the days and weeks after a major operation — milestones, setbacks, and how to support healing." data-ka-title="მთავარი ოპერაციის შემდეგ გამოჯანმრთელება" data-ka-desc="რის მოლოდინი გქონდეთ ოპერაციის შემდეგ დღეებსა და კვირებში — ეტაპები, შეფერხებები და როგორ დავეხმაროთ განკურნებას.">
+      <div class="card-header">
+        <span class="badge badge-surgery" id="badge-11">🔬 Surgery</span>
+        <span class="reading-time">⏱ 7 min</span>
+      </div>
+      <div class="card-title" id="title-11">Recovery After Major Surgery</div>
+      <div class="card-desc" id="desc-11">What to realistically expect in the days and weeks after a major operation — milestones, setbacks, and how to support healing.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-11')" id="btn-11">
+        <span id="btn-11-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-11">
+        <h3 id="a11h1">The first 24 hours</h3>
+        <p id="a11p1">The first day after major surgery is about stabilisation. You will likely be in the ICU or a high-dependency unit. Pain will be managed; nurses will monitor vital signs frequently. You may have a urinary catheter, drains, and several IV lines. This is normal and expected.</p>
+        <h3 id="a11h2">Early mobilisation</h3>
+        <p id="a11p2">Getting up and moving — even just sitting in a chair — as soon as medically safe is one of the most important things for recovery. Early movement reduces the risk of pneumonia, blood clots, and muscle wasting. It may feel difficult or painful, but the physiotherapy team will support you.</p>
+        <h3 id="a11h3">Eating and drinking</h3>
+        <p id="a11p3">Nutrition is medicine after surgery. The team will aim to restart eating and drinking as soon as the gut is working. For some surgeries this is within hours; for others it may take a few days. Good nutrition is essential for wound healing, immune function, and energy.</p>
+        <h3 id="a11h4">Emotional recovery</h3>
+        <p id="a11p4">Major surgery affects the mind as well as the body. Feeling emotional, anxious, low, or confused in the days after surgery is common. Some patients experience "ICU delirium" — temporary confusion caused by medications, sleep deprivation, and the stress of critical illness. This typically resolves as recovery progresses.</p>
+        <div class="article-note" id="a11note">💙 Recovery is rarely a straight line. There will be good days and harder days. Progress is measured in trends, not individual moments. Be patient with yourself or your loved one — the body is doing extraordinary work.</div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="article-card" data-category="general" data-en-title="Understanding Your Diagnosis" data-en-desc="Being given a new diagnosis is overwhelming. Here are practical steps to take, questions to ask your doctor, and how to find reliable information." data-ka-title="თქვენი დიაგნოზის გაგება" data-ka-desc="ახალი დიაგნოზის მიღება რთულია. მოცემულია პრაქტიკული ნაბიჯები, ექიმისთვის დასასმელი კითხვები და სად ვეძიოთ სანდო ინფორმაცია.">
+      <div class="card-header">
+        <span class="badge badge-general" id="badge-12">💊 General Health</span>
+        <span class="reading-time">⏱ 5 min</span>
+      </div>
+      <div class="card-title" id="title-12">Understanding Your Diagnosis</div>
+      <div class="card-desc" id="desc-12">Being given a new diagnosis is overwhelming. Here are practical steps to take, questions to ask your doctor, and how to find reliable information.</div>
+      <button class="btn-read-more" onclick="toggleArticle(this, 'full-12')" id="btn-12">
+        <span id="btn-12-label">Read More</span> <span class="arrow">▼</span>
+      </button>
+      <div class="article-full" id="full-12">
+        <h3 id="a12h1">It's okay not to understand everything immediately</h3>
+        <p id="a12p1">Receiving a significant diagnosis is one of the most stressful events in life. Shock and information overload mean you may not absorb everything in the first conversation. This is completely normal. Always feel free to ask your doctor to repeat or rephrase — and ask if you can record the conversation or bring someone with you.</p>
+        <h3 id="a12h2">Key questions to ask your doctor</h3>
+        <ul id="a12ul">
+          <li>What exactly is this condition, in simple terms?</li>
+          <li>What caused it, or is the cause unknown?</li>
+          <li>What are my treatment options?</li>
+          <li>What happens if I choose not to treat it?</li>
+          <li>What is the likely outlook with treatment?</li>
+          <li>Will this affect my daily life, work, or family?</li>
+          <li>Who else should be involved in my care?</li>
+        </ul>
+        <h3 id="a12h3">Finding reliable information</h3>
+        <p id="a12p3">The internet contains vast amounts of medical misinformation. Stick to established, peer-reviewed sources: national health services (NHS, CDC, WHO), major hospital patient education portals, or ask your medical team to recommend reading material. Avoid forum posts or social media health "influencers" as a primary source.</p>
+        <div class="article-note" id="a12note">💙 You are not just a patient — you are an active participant in your care. The more you understand your diagnosis, the better you can advocate for yourself and make decisions that align with your values and life.</div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- NO RESULTS -->
+  <div class="no-results" id="noResults">
+    <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-4.35-4.35m0 0A7 7 0 105.65 5.65a7 7 0 0011 11z"/></svg>
+    <p id="no-results-text">No articles match your search. Try different keywords.</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p id="footer-copy">© 2024 Dr. George Akhobadze — Pediatric Anesthesiology &amp; Critical Care</p>
+    <p style="margin-top:0.4rem;" id="footer-links"><a href="index.html" id="footer-home">← Back to Homepage</a> &nbsp;·&nbsp; <span id="footer-disclaimer-short">Content for educational purposes only. Not a substitute for medical advice.</span></p>
+  </div>
+</footer>
+
+<script>
+// ── LANGUAGE DATA ──
+const lang = {
+  en: {
+    'nav-tagline': 'Pediatric Anesthesiology & Critical Care',
+    'nav-academy': 'Academy',
+    'nav-neonatal': 'Neonatal Guide',
+    'nav-heart': 'Heart Guide',
+    'nav-library': 'Patient Library',
+    'nav-join': 'Join Academy',
+    'm-academy': 'Academy',
+    'm-neonatal': 'Neonatal Guide',
+    'm-heart': 'Heart Guide',
+    'm-library': 'Patient Library',
+    'm-join': 'Join Academy',
+    'hero-badge': '📚 Medical Resource Library',
+    'hero-title': '<span>Patient</span> Library',
+    'hero-sub': 'Clear medical information written by a specialist — for patients and families, not doctors',
+    'disclaimer-text': '<strong>Important Notice:</strong> The information in this library is for educational purposes only and does not replace professional medical advice. Always consult your doctor or healthcare team about your specific situation. In an emergency, call your local emergency services immediately.',
+    'searchInput': { placeholder: 'Search articles...' },
+    'f-all': 'All Articles',
+    'f-icu': 'ICU & Critical Care',
+    'f-surgery': 'Surgery',
+    'f-pediatrics': 'Pediatrics',
+    'f-medications': 'Medications',
+    'f-general': 'General Health',
+    'btn-1-label': 'Read More', 'btn-2-label': 'Read More', 'btn-3-label': 'Read More',
+    'btn-4-label': 'Read More', 'btn-5-label': 'Read More', 'btn-6-label': 'Read More',
+    'btn-7-label': 'Read More', 'btn-8-label': 'Read More', 'btn-9-label': 'Read More',
+    'btn-10-label': 'Read More', 'btn-11-label': 'Read More', 'btn-12-label': 'Read More',
+    'badge-1': '🏥 ICU & Critical Care', 'badge-5': '🏥 ICU & Critical Care',
+    'badge-2': '🔬 Surgery', 'badge-3': '🔬 Surgery', 'badge-4': '🔬 Surgery',
+    'badge-6': '🔬 Surgery', 'badge-11': '🔬 Surgery',
+    'badge-7': '👶 Pediatrics',
+    'badge-10': '💉 Medications',
+    'badge-8': '💊 General Health', 'badge-9': '💊 General Health', 'badge-12': '💊 General Health',
+    'no-results-text': 'No articles match your search. Try different keywords.',
+    'footer-copy': '© 2024 Dr. George Akhobadze — Pediatric Anesthesiology & Critical Care',
+    'footer-home': '← Back to Homepage',
+    'footer-disclaimer-short': 'Content for educational purposes only. Not a substitute for medical advice.',
+    // titles & descs
+    'title-1': 'What Happens in the ICU', 'desc-1': 'A clear, honest guide to understanding the Intensive Care Unit — what it looks like, who is there, and what your loved one is going through.',
+    'title-2': 'Understanding Anesthesia', 'desc-2': 'What anesthesia actually does to your body, the different types, and what to expect before, during, and after being put to sleep for a procedure.',
+    'title-3': "Before Your Child's Surgery", 'desc-3': 'Practical guidance to help parents and children prepare emotionally and physically for an upcoming surgical procedure.',
+    'title-4': 'Pain Management After Surgery', 'desc-4': 'Why pain control matters after surgery, how it works, and what you can do to help the process. Pain is not something you must simply endure.',
+    'title-5': 'What is Mechanical Ventilation?', 'desc-5': 'Breathing machines can be frightening to see. This article explains simply what a ventilator does and why your loved one might need one.',
+    'title-6': "Understanding Your Child's Heart Surgery", 'desc-6': 'Heart surgery in children is complex and emotional. This guide explains the basics — from why it is needed to what the recovery journey looks like.',
+    'title-7': 'Fever in Children — When to Worry', 'desc-7': "Fever is the body's natural defence. Learn when a temperature is normal, when it needs attention, and the warning signs that require urgent care.",
+    'title-8': 'Understanding Blood Test Results', 'desc-8': 'Lab results can look confusing. This guide breaks down the most common blood tests and what the numbers actually mean in plain language.',
+    'title-9': 'What is an Echocardiogram?', 'desc-9': 'An echo is an ultrasound of the heart. Understand what to expect during the test and what the doctors are looking for.',
+    'title-10': 'Medications in the ICU Explained', 'desc-10': 'ICU patients often receive many medications simultaneously. Here is a plain-language guide to the most common ones and why they are used.',
+    'title-11': 'Recovery After Major Surgery', 'desc-11': 'What to realistically expect in the days and weeks after a major operation — milestones, setbacks, and how to support healing.',
+    'title-12': 'Understanding Your Diagnosis', 'desc-12': 'Being given a new diagnosis is overwhelming. Here are practical steps to take, questions to ask your doctor, and how to find reliable information.',
+    // article content
+    'a1h1': 'What is the ICU?', 'a1p1': "The Intensive Care Unit — often called the ICU, or in Georgian hospitals the \"Reanimatsia\" — is a special part of the hospital designed for patients who need constant, close monitoring. Every patient has their own space with specialized equipment and a dedicated team watching over them around the clock.",
+    'a1h2': 'What does it look like?', 'a1p2': "It can feel overwhelming at first. You may see monitors with lines and numbers, tubes, IV drips, and machines making beeping sounds. This is all normal. Each device serves a purpose: the monitor shows the heart rate and oxygen levels, the IV delivers fluids and medications, and ventilators (breathing machines) help some patients breathe.",
+    'a1h3': 'Who works in the ICU?', 'a1p3': "A team of specialists cares for every patient: ICU doctors (intensivists), specialized nurses, respiratory therapists, pharmacists, and physiotherapists. They work together and communicate constantly. You may not always speak to the same person — but the team always knows what is happening with your loved one.",
+    'a1h4': 'Can I visit?', 'a1p4': "Most ICUs allow family visits, though times may be limited. Ask the nurses about the visiting schedule. Even if your loved one seems unconscious or sedated, talking to them gently can be comforting — research suggests patients can often hear even when they cannot respond.",
+    'a1note': "💙 It is completely normal to feel frightened visiting the ICU for the first time. Ask questions freely — the team wants you to understand what is happening.",
+    'a2h1': 'What is anesthesia?', 'a2p1': "Anesthesia is medication that prevents you from feeling pain during a procedure. It is carefully calculated and administered by an anesthesiologist — a doctor who specializes entirely in keeping you safe and comfortable throughout surgery.",
+    'a2h2': 'Types of anesthesia',
+    'a2h3': 'Will I wake up during surgery?', 'a2p3': "This fear is very common but extremely rare. Modern anesthesia monitoring is sophisticated. Your anesthesiologist continuously monitors your level of unconsciousness and adjusts medication throughout the operation.",
+    'a2h4': 'What to expect when you wake up', 'a2p4': "You will wake up in a recovery room. You may feel groggy, cold, or slightly confused — this is normal. Nausea is common but manageable with medication. The nursing team will monitor you closely until you are stable and ready to move.",
+    'a2note': "💙 Always tell your anesthesiologist about all medications you take, allergies, and previous reactions to anesthesia. This information is critical for your safety.",
+    'a3h1': 'Fasting rules ("nil by mouth")', 'a3p1': "Your child's stomach must be empty before anesthesia to prevent complications. The team will give you specific fasting times — typically no solid food for 6 hours and no clear fluids for 2 hours before surgery. Follow these exactly. Do not give any food or drink without checking with the surgical team first.",
+    'a3h2': 'Talking to your child', 'a3p2': "Children are perceptive and anxious. Age-appropriate honesty is always better than false promises. You might say: \"The doctors will give you special medicine that makes you fall into a deep sleep, and when you wake up, the operation will already be finished.\" Avoid saying \"you won't feel anything\" or \"it won't hurt at all\" — focus on \"the doctors will make sure you are comfortable.\"",
+    'a3h3': 'On the day',
+    'a3note': "💙 Your calm demeanour is the most powerful thing you can give your child. Children look to parents for emotional cues. If you are visibly anxious, your child will be too. Take a deep breath — the team is here to take care of both of you.",
+    'a4h1': 'Why controlling pain matters', 'a4p1': "Poorly controlled pain is not just uncomfortable — it slows recovery. Pain causes stress hormones to rise, makes breathing shallower (which can cause chest infections), discourages movement, and disrupts sleep. Good pain control helps you recover faster and reduces complications.",
+    'a4h2': 'Types of pain relief used',
+    'a4h3': 'How to communicate your pain', 'a4p3': "Use the 0–10 pain scale. 0 means no pain, 10 is the worst you can imagine. A pain score of 4 or above should always be reported to the nurse — do not wait. The team's goal is to keep you comfortable, not to minimise medication use at the expense of your wellbeing.",
+    'a4note': "💙 Asking for pain relief is not weakness. Uncontrolled pain is a medical problem. Your recovery depends on staying comfortable enough to breathe deeply, move, and sleep.",
+    'a5h1': 'What does a ventilator do?', 'a5p1': "A ventilator is a machine that breathes for the patient — or helps them breathe — when they cannot do so adequately on their own. It delivers carefully measured amounts of oxygen with every breath, maintains the correct pressure in the lungs, and removes carbon dioxide.",
+    'a5h2': 'Why might someone need a ventilator?',
+    'a5h3': 'Is it painful?', 'a5p3': "Being on a ventilator requires a tube in the throat (endotracheal tube). This is uncomfortable, so patients are given sedation and pain relief to keep them comfortable. The team constantly adjusts these medications. When the patient improves enough, the tube is removed — a process called \"extubation.\"",
+    'a5h4': 'When will the ventilator be removed?', 'a5p4': "Every day, the ICU team assesses whether the patient is ready to breathe independently. They perform a \"breathing trial\" — briefly reducing ventilator support — and monitor how the patient copes. When ready, the tube is removed. Most patients feel significant relief afterwards.",
+    'a5note': "💙 Being on a ventilator does not mean the situation is hopeless. It means the body is receiving the support it needs to heal. Many thousands of people are successfully weaned from ventilators every day.",
+    'a6h1': 'Why do children need heart surgery?', 'a6p1': "Most children who undergo heart surgery have a congenital heart defect — a structural problem that was present at birth. These range from small holes between heart chambers to more complex abnormalities in valves or major blood vessels. Surgery corrects or repairs the defect so the heart can function more normally.",
+    'a6h2': 'What is the bypass machine?', 'a6p2': "For many heart surgeries, doctors use a cardiopulmonary bypass (heart-lung) machine. This device temporarily takes over the work of the heart and lungs — pumping blood and adding oxygen — while the surgeon operates on a still, bloodless field. It sounds frightening but is a well-established, safe technique used for decades.",
+    'a6h3': 'What happens in the ICU after surgery?', 'a6p3': "Your child will go directly to the pediatric ICU (PICU) after surgery. They will have drains, IV lines, a breathing tube, and monitoring wires attached. This is expected — it is not a sign that something went wrong. The team will gradually remove these lines and tubes as your child stabilises and improves, usually over 24–72 hours for the breathing tube.",
+    'a6h4': 'Long-term outlook', 'a6p4': "The vast majority of children who undergo heart surgery go on to live full, active lives. Many need follow-up care and monitoring throughout childhood. Your cardiologist will guide you on any restrictions and when normal activities can resume.",
+    'a6note': "💙 Your child's surgical and ICU team has dedicated their careers to exactly this situation. Ask every question you have — no question is too small when it is your child.",
+    'a7h1': 'What counts as a fever?', 'a7p1': "A temperature above 38°C (100.4°F) is considered a fever. Fever itself is not a disease — it is a sign that the body's immune system is working. Most fevers in children are caused by viral infections and resolve on their own within 3–5 days.",
+    'a7h2': 'General guidance by age',
+    'a7h3': 'Warning signs — seek immediate help',
+    'a7note': "💙 Paracetamol or ibuprofen help the child feel better — but the goal is comfort, not to normalise the temperature number. If your gut tells you something is wrong beyond a simple fever, trust that instinct and seek help.",
+    'a8h1': 'The Full Blood Count (FBC)', 'a8p1': "This is the most commonly ordered blood test. It counts the different cells in your blood: red blood cells (carry oxygen), white blood cells (fight infection), and platelets (help blood clot). A low red blood cell count means anaemia. A high white cell count often signals infection or inflammation.",
+    'a8h2': 'CRP — C-Reactive Protein', 'a8p2': "CRP is a marker of inflammation. A high CRP means the body is fighting something — an infection, injury, or inflammatory condition. Doctors watch CRP over time; as it falls, it usually means treatment is working.",
+    'a8h3': 'Electrolytes', 'a8p3': "Sodium, potassium, calcium, and magnesium are electrolytes — minerals that carry electrical charges vital for every cell to function. Imbalances can cause muscle weakness, heart rhythm problems, and confusion. IV fluids in hospital are carefully formulated to correct these.",
+    'a8h4': 'Kidney and liver tests', 'a8p4': "Creatinine and urea show how well your kidneys are working. ALT, AST, and bilirubin show liver function. These are routinely checked in hospital to ensure organs are tolerating medications and the illness itself.",
+    'a8note': "💙 Numbers slightly outside the reference range are not always cause for alarm — reference ranges are based on averages across populations. Your doctor interprets results in the context of your whole clinical picture.",
+    'a9h1': 'What is an echo?', 'a9p1': "An echocardiogram — commonly called an \"echo\" — uses ultrasound waves to create a moving picture of the heart. It is completely painless, uses no radiation, and typically takes 30–45 minutes. A gel is applied to the chest and a probe is moved across the skin to capture images.",
+    'a9h2': 'What can an echo show?',
+    'a9h3': 'Types of echo', 'a9p3': "A transthoracic echo (TTE) is the standard test, performed over the chest wall. A transoesophageal echo (TOE/TEE) involves a probe passed down the throat under sedation — this gives clearer images and is used when more detail is needed or in surgery.",
+    'a9note': "💙 The echocardiogram is one of the most informative non-invasive tests available in cardiology. Results are interpreted by a specialist cardiologist and always shared in the context of your full medical history.",
+    'a10h1': 'Sedation and analgesia', 'a10p1': "Patients on ventilators are given sedatives (like propofol or midazolam) to keep them comfortable and prevent distress. Alongside these, opioid pain relievers (like fentanyl or morphine) control pain. Every day, the team aims to use the minimum dose needed — \"light sedation\" is associated with faster recovery.",
+    'a10h2': 'Vasopressors', 'a10p2': "These are medications that constrict blood vessels to maintain blood pressure when the circulation is failing. Noradrenaline (norepinephrine) is the most commonly used. You may see these running via a precise syringe pump — even tiny changes in dose can significantly affect blood pressure.",
+    'a10h3': 'Antibiotics', 'a10p3': "Infections in the ICU are life-threatening. Broad-spectrum antibiotics are started early and sometimes given intravenously around the clock. The team regularly reviews whether the current antibiotics are the right choice based on blood culture results.",
+    'a10h4': 'Blood thinners (anticoagulants)', 'a10p4': "Patients who are immobile risk blood clots forming in the legs (deep vein thrombosis) or lungs (pulmonary embolism). Low-dose heparin injections — or special compression stockings — help prevent this.",
+    'a10note': "💙 The apparent number of drips and infusions can be alarming. Each one is carefully prescribed and monitored. Feel free to ask the nurse what each medication is for — they expect these questions.",
+    'a11h1': 'The first 24 hours', 'a11p1': "The first day after major surgery is about stabilisation. You will likely be in the ICU or a high-dependency unit. Pain will be managed; nurses will monitor vital signs frequently. You may have a urinary catheter, drains, and several IV lines. This is normal and expected.",
+    'a11h2': 'Early mobilisation', 'a11p2': "Getting up and moving — even just sitting in a chair — as soon as medically safe is one of the most important things for recovery. Early movement reduces the risk of pneumonia, blood clots, and muscle wasting. It may feel difficult or painful, but the physiotherapy team will support you.",
+    'a11h3': 'Eating and drinking', 'a11p3': "Nutrition is medicine after surgery. The team will aim to restart eating and drinking as soon as the gut is working. For some surgeries this is within hours; for others it may take a few days. Good nutrition is essential for wound healing, immune function, and energy.",
+    'a11h4': 'Emotional recovery', 'a11p4': "Major surgery affects the mind as well as the body. Feeling emotional, anxious, low, or confused in the days after surgery is common. Some patients experience \"ICU delirium\" — temporary confusion caused by medications, sleep deprivation, and the stress of critical illness. This typically resolves as recovery progresses.",
+    'a11note': "💙 Recovery is rarely a straight line. There will be good days and harder days. Progress is measured in trends, not individual moments. Be patient with yourself or your loved one — the body is doing extraordinary work.",
+    'a12h1': "It's okay not to understand everything immediately", 'a12p1': "Receiving a significant diagnosis is one of the most stressful events in life. Shock and information overload mean you may not absorb everything in the first conversation. This is completely normal. Always feel free to ask your doctor to repeat or rephrase — and ask if you can record the conversation or bring someone with you.",
+    'a12h2': 'Key questions to ask your doctor',
+    'a12h3': 'Finding reliable information', 'a12p3': "The internet contains vast amounts of medical misinformation. Stick to established, peer-reviewed sources: national health services (NHS, CDC, WHO), major hospital patient education portals, or ask your medical team to recommend reading material. Avoid forum posts or social media health \"influencers\" as a primary source.",
+    'a12note': "💙 You are not just a patient — you are an active participant in your care. The more you understand your diagnosis, the better you can advocate for yourself and make decisions that align with your values and life.",
+  },
+  ka: {
+    'nav-tagline': 'პედიატრიული ანესთეზიოლოგია და ინტენსიური თერაპია',
+    'nav-academy': 'აკადემია',
+    'nav-neonatal': 'ნეონატალური სახელმძღვანელო',
+    'nav-heart': 'გულის სახელმძღვანელო',
+    'nav-library': 'პაციენტის ბიბლიოთეკა',
+    'nav-join': 'გაწევრიანება',
+    'm-academy': 'აკადემია',
+    'm-neonatal': 'ნეონატალური სახელმძღვანელო',
+    'm-heart': 'გულის სახელმძღვანელო',
+    'm-library': 'პაციენტის ბიბლიოთეკა',
+    'm-join': 'გაწევრიანება',
+    'hero-badge': '📚 სამედიცინო საცნობარო ბიბლიოთეკა',
+    'hero-title': '<span>პაციენტის</span> ბიბლიოთეკა',
+    'hero-sub': 'სპეციალისტის მიერ დაწერილი გასაგები სამედიცინო ინფორმაცია — პაციენტებისა და ოჯახებისთვის, არა ექიმებისთვის',
+    'disclaimer-text': '<strong>მნიშვნელოვანი შენიშვნა:</strong> ამ ბიბლიოთეკის ინფორმაცია მხოლოდ საგანმანათლებლო მიზნებისთვისაა და არ ცვლის პროფესიული სამედიცინო რჩევას. ყოველთვის მიმართეთ თქვენს ექიმს ან სამკურნალო გუნდს კონკრეტული მდგომარეობის შესახებ. გადაუდებელ შემთხვევაში დაუყოვნებლივ დარეკეთ სასწრაფო სამედიცინო დახმარებაში.',
+    'searchInput': { placeholder: 'მოძებნეთ სტატიები...' },
+    'f-all': 'ყველა სტატია',
+    'f-icu': 'რეანიმაცია',
+    'f-surgery': 'ქირურგია',
+    'f-pediatrics': 'პედიატრია',
+    'f-medications': 'მედიკამენტები',
+    'f-general': 'ზოგადი ჯანმრთელობა',
+    'btn-1-label': 'სრულად წაკითხვა', 'btn-2-label': 'სრულად წაკითხვა', 'btn-3-label': 'სრულად წაკითხვა',
+    'btn-4-label': 'სრულად წაკითხვა', 'btn-5-label': 'სრულად წაკითხვა', 'btn-6-label': 'სრულად წაკითხვა',
+    'btn-7-label': 'სრულად წაკითხვა', 'btn-8-label': 'სრულად წაკითხვა', 'btn-9-label': 'სრულად წაკითხვა',
+    'btn-10-label': 'სრულად წაკითხვა', 'btn-11-label': 'სრულად წაკითხვა', 'btn-12-label': 'სრულად წაკითხვა',
+    'badge-1': '🏥 რეანიმაცია', 'badge-5': '🏥 რეანიმაცია',
+    'badge-2': '🔬 ქირურგია', 'badge-3': '🔬 ქირურგია', 'badge-4': '🔬 ქირურგია',
+    'badge-6': '🔬 ქირურგია', 'badge-11': '🔬 ქირურგია',
+    'badge-7': '👶 პედიატრია',
+    'badge-10': '💉 მედიკამენტები',
+    'badge-8': '💊 ზოგადი ჯანმრთელობა', 'badge-9': '💊 ზოგადი ჯანმრთელობა', 'badge-12': '💊 ზოგადი ჯანმრთელობა',
+    'no-results-text': 'ძიება შედეგს არ იძლევა. სცადეთ სხვა საკვანძო სიტყვები.',
+    'footer-copy': '© 2024 ექიმი გიორგი ახობაძე — პედიატრიული ანესთეზიოლოგია და ინტენსიური თერაპია',
+    'footer-home': '← მთავარ გვერდზე დაბრუნება',
+    'footer-disclaimer-short': 'კონტენტი მხოლოდ საგანმანათლებლო მიზნებისთვის. არ ცვლის სამედიცინო კონსულტაციას.',
+    'title-1': 'რა ხდება რეანიმაციაში', 'desc-1': 'გასაგები სახელმძღვანელო — რას წარმოადგენს ინტენსიური თერაპიის განყოფილება, ვინ მუშაობს იქ და რა ხდება თქვენი ახლობლის მკურნალობისას.',
+    'title-2': 'ანესთეზიის გაგება', 'desc-2': 'რას აკეთებს ანესთეზია თქვენს სხეულში, სხვადასხვა სახეობები და რის მოლოდინი გქონდეთ პროცედურამდე, მის განმავლობაში და შემდეგ.',
+    'title-3': 'თქვენი ბავშვის ოპერაციამდე', 'desc-3': 'პრაქტიკული რჩევები მშობლებს და ბავშვებს ემოციური და ფიზიკური მომზადებისთვის მომავალი ქირურგიული პროცედურის წინ.',
+    'title-4': 'ტკივილის მართვა ოპერაციის შემდეგ', 'desc-4': 'რატომ არის ტკივილის კონტროლი მნიშვნელოვანი ოპერაციის შემდეგ, როგორ მუშაობს და რა შეგიძლიათ გააკეთოთ პროცესის გასაადვილებლად.',
+    'title-5': 'რა არის მექანიკური ვენტილაცია?', 'desc-5': 'სუნთქვის აპარატი შეიძლება საშინლად გამოიყურებოდეს. ეს სტატია მარტივად ხსნის, რას აკეთებს ვენტილატორი და რატომ შეიძლება დასჭირდეს თქვენს ახლობელს.',
+    'title-6': 'თქვენი ბავშვის გულის ოპერაციის გაგება', 'desc-6': 'ბავშვებში გულის ქირურგია რთული და ემოციური პროცესია. ეს სახელმძღვანელო ხსნის საფუძვლებს — რატომ საჭიროა და რეაბილიტაციის პერსპექტივა.',
+    'title-7': 'ბავშვებში ტემპერატურა — როდის ვწუხდეთ', 'desc-7': 'ცხელება სხეულის ბუნებრივი თავდაცვაა. გაიგეთ, როდის არის ნორმალური, როდის სჭირდება ყურადღება და რა ნიშნები მოითხოვს გადაუდებელ დახმარებას.',
+    'title-8': 'სისხლის ანალიზის შედეგების გაგება', 'desc-8': 'ლაბორატორიული შედეგები შეიძლება გაუგებარი ჩანდეს. ეს სახელმძღვანელო ხსნის ყველაზე გავრცელებულ სისხლის ტესტებს მარტივ ენაზე.',
+    'title-9': 'რა არის ექოკარდიოგრაფია?', 'desc-9': 'ექო არის გულის ულტრაბგერა. გაიგეთ, რის მოლოდინი გქონდეთ ტესტის დროს და რასაც ეძებენ ექიმები.',
+    'title-10': 'რეანიმაციაში გამოყენებული მედიკამენტები', 'desc-10': 'რეანიმაციის პაციენტები ხშირად ერთდროულად იღებენ ბევრ მედიკამენტს. ეს სახელმძღვანელო ხსნის ყველაზე გავრცელებულებს მარტივ ენაზე.',
+    'title-11': 'მთავარი ოპერაციის შემდეგ გამოჯანმრთელება', 'desc-11': 'რის მოლოდინი გქონდეთ ოპერაციის შემდეგ დღეებსა და კვირებში — ეტაპები, შეფერხებები და როგორ დავეხმაროთ განკურნებას.',
+    'title-12': 'თქვენი დიაგნოზის გაგება', 'desc-12': 'ახალი დიაგნოზის მიღება რთულია. მოცემულია პრაქტიკული ნაბიჯები, ექიმისთვის დასასმელი კითხვები და სად ვეძიოთ სანდო ინფორმაცია.',
+    'a1h1': 'რა არის რეანიმაცია?', 'a1p1': 'ინტენსიური თერაპიის განყოფილება — ხშირად „რეანიმაცია" — საავადმყოფოს სპეციალური ნაწილია, რომელიც განკუთვნილია პაციენტებისთვის, რომლებიც საჭიროებენ მუდმივ, მჭიდრო მეთვალყურეობას. ყველა პაციენტს აქვს საკუთარი სივრცე სპეციალიზებული მოწყობილობებით და გამოყოფილი გუნდი, რომელიც მას 24 საათის განმავლობაში ამეთვალყურებს.',
+    'a1h2': 'როგორ გამოიყურება?', 'a1p2': 'თავდაპირველად შეიძლება ძალიან დამთრგუნველი ჩანდეს. შეიძლება დაინახოთ მონიტორები ხაზებით და ციფრებით, მილები, ვენური კათეტერები და ჩახჩახი ხმაური. ეს ყველაფერი ნორმალურია. თითოეულ მოწყობილობას თავისი მიზანი აქვს: მონიტორი გვიჩვენებს გულისცემასა და ჟანგბადის დონეს, ვენური კათეტერი აწვდის სითხეს და მედიკამენტებს, ხოლო ვენტილატორები (სუნთქვის მოწყობილობები) ეხმარება ზოგიერთ პაციენტს სუნთქვაში.',
+    'a1h3': 'ვინ მუშაობს რეანიმაციაში?', 'a1p3': 'სპეციალისტების გუნდი ზრუნავს ყოველ პაციენტზე: ინტენსიური თერაპიის ექიმები (ინტენსივისტები), სპეციალიზებული მედდები, რესპირატორული თერაპევტები, ფარმაცევტები და ფიზიოთერაპევტები. ისინი ერთობლივად მუშაობენ და მუდმივად ურთიერთობენ. შეიძლება ყოველ ჯერზე არ ისაუბროთ ერთსა და იმავე ადამიანთან — მაგრამ გუნდი ყოველთვის იცის, რა ხდება თქვენს ახლობელთან.',
+    'a1h4': 'შემიძლია ვიზიტი?', 'a1p4': 'უმეტეს რეანიმაციებში ოჯახის ვიზიტი დაშვებულია, თუმცა დრო შეიძლება შეზღუდული იყოს. მედდებს ჰკითხეთ ვიზიტის განრიგზე. თუნდაც თქვენი ახლობელი გონმიხდილი ან სედაციაში ჩანდეს, მასთან ნაზად საუბარი შეიძლება სასიამოვნო იყოს — კვლევები მიანიშნებს, რომ პაციენტებს ხშირად შეუძლიათ მოსმენა, მაშინაც კი, როდესაც ვერ პასუხობენ.',
+    'a1note': '💙 სრულიად ნორმალურია შიში პირველად რეანიმაციის მონახულებისას. გულდასმით ჰკითხეთ — გუნდი გსურს გაიგოთ, რა ხდება.',
+    'a2h1': 'რა არის ანესთეზია?', 'a2p1': 'ანესთეზია არის მედიკამენტი, რომელიც პროცედურის დროს ტკივილის შეგრძნებას ხელს უშლის. მას ანგარიშობს და ინიშნავს ანესთეზიოლოგი — ექიმი, რომელიც მთლიანად სპეციალიზდება თქვენი უსაფრთხოებისა და კომფორტის უზრუნველყოფაში ოპერაციის განმავლობაში.',
+    'a2h2': 'ანესთეზიის სახეები',
+    'a2h3': 'გამეღვიძება ოპერაციის დროს?', 'a2p3': 'ეს შიში ძალიან გავრცელებულია, მაგრამ უკიდურესად იშვიათია. თანამედროვე ანესთეზიის მონიტორინგი დახვეწილია. ანესთეზიოლოგი მუდმივად ამოწმებს გაუცნობიერებლობის დონეს და ოპერაციის მანძილზე არეგულირებს მედიკამენტებს.',
+    'a2h4': 'გაღვიძებისას რის მოლოდინი გქონდეთ', 'a2p4': 'გაიღვიძებთ სარეაბილიტაციო ოთახში. შეიძლება ძილიანობა, სიცივე ან მსუბუქი არეულობა იგრძნოთ — ეს ნორმალურია. გულისრევა ხშირია, მაგრამ მართვადია მედიკამენტებით. სამედდო გუნდი ყურადღებით დაგაკვირდება სანამ სტაბილური გახდებით.',
+    'a2note': '💙 ყოველთვის უთხარით ანესთეზიოლოგს ყველა მედიკამენტის, ალერგიის და ანესთეზიაზე წინა რეაქციების შესახებ. ეს ინფორმაცია თქვენი უსაფრთხოებისთვის გადამწყვეტია.',
+    'a3h1': 'მარხვის წესები', 'a3p1': 'ანესთეზიამდე ბავშვის კუჭი ცარიელი უნდა იყოს გართულებების თავიდან ასაცილებლად. გუნდი გაგაცნობს კონკრეტულ მარხვის დროს — ჩვეულებრივ მყარი საკვები 6 საათი, სუფთა სითხეები 2 საათი ოპერაციამდე. ზუსტად დაიცავით. ნებისმიერი საკვების ან სასმელის მიცემამდე გუნდს ჰკითხეთ.',
+    'a3h2': 'ბავშვთან საუბარი', 'a3p2': 'ბავშვები მგრძნობიარენი და შეშინებულნი არიან. ასაკის შესაფერისი სიმართლე ყოველთვის სჯობს ყალბ დაპირებებს. შეგიძლიათ თქვათ: „ექიმები მოგცემენ სპეციალურ წამალს, რომელიც ღრმა ძილში ჩაგაძინებს, და როდესაც გაიღვიძებ, ოპერაცია უკვე დამთავრებული იქნება." მოერიდეთ „არაფერს ვერ იგრძნობ" ან „საერთოდ არ გტკივა" — ამის ნაცვლად: „ექიმები დარწმუნდებიან, რომ კომფორტულად ხარ."',
+    'a3h3': 'ოპერაციის დღეს',
+    'a3note': '💙 თქვენი სიმშვიდე ყველაზე ძლიერი საჩუქარია თქვენი ბავშვისთვის. ბავშვები ემოციური სიგნალებისთვის მშობლებს უყურებენ. თუ შეშინებული ჩანხართ, ბავშვიც შეშინდება. ღრმად ჩაისუნთქეთ — გუნდი აქ არის თქვენ ორივეზე სარჩობლად.',
+    'a4h1': 'რატომ არის ტკივილის კონტროლი მნიშვნელოვანი', 'a4p1': 'ცუდად კონტროლირებული ტკივილი მხოლოდ უსიამოვნო არ არის — ის ანელებს გამოჯანმრთელებას. ტკივილი ზრდის სტრეს-ჰორმონებს, სუნთქვას ზედაპირულს ხდის, მოძრაობას ხელს უშლის და ძილს არღვევს. ტკივილის კარგი კონტროლი სწრაფ გამოჯანმრთელებასა და გართულებების შემცირებას ეხმარება.',
+    'a4h2': 'ტკივილგამაყუჩებლების სახეები',
+    'a4h3': 'ტკივილის შეტყობინება', 'a4p3': 'გამოიყენეთ 0–10 ტკივილის სკალა. 0 ნიშნავს ტკივილის არარსებობას, 10 — წარმოსადგენ უმძიმეს ტკივილს. 4 ან მეტი ქულა ყოველთვის უნდა ეცნობოს მედდას — ნუ დაელოდებით. გუნდის მიზანი თქვენი კომფორტია, არა მედიკამენტების მინიმიზაცია თქვენი კეთილდღეობის ხარჯზე.',
+    'a4note': '💙 ტკივილგამაყუჩებლის მოთხოვნა სისუსტე არ არის. კონტროლს მიღმა ტკივილი სამედიცინო პრობლემაა. გამოჯანმრთელება დამოკიდებულია იმაზე, რომ საკმარისად კომფორტულად გრძნობდეთ თავს ღრმა სუნთქვისთვის, მოძრაობისა და ძილისთვის.',
+    'a5h1': 'რას აკეთებს ვენტილატორი?', 'a5p1': 'ვენტილატორი — სუნთქვის მანქანა — ქმნის ან ეხმარება სუნთქვაში, როდესაც პაციენტს ამის საკმარისად შესრულება არ შეუძლია. ყოველ სუნთქვასთან ერთად ის ზუსტი რაოდენობის ჟანგბადს ახვედრის, ფილტვებში სწორ წნევას ინარჩუნებს და ნახშირორჟანგს ათავისუფლებს.',
+    'a5h2': 'რატომ შეიძლება დასჭირდეს ვინმეს ვენტილატორი?',
+    'a5h3': 'მტკივა?', 'a5p3': 'ვენტილატორზე ყოფნა მოითხოვს მილს ყელში (ენდოტრაქეული მილი). ეს არასასიამოვნოა, ამიტომ პაციენტებს ეძლევათ სედაცია და ტკივილგამაყუჩებელი. გუნდი ამ მედიკამენტებს მუდმივად არეგულირებს. საკმარის გაუმჯობესებაზე მილი ამოიღება — ეს პროცესს „ექსტუბაცია" ეწოდება.',
+    'a5h4': 'როდის მოიხსნება ვენტილატორი?', 'a5p4': 'ყოველდღე ICU-ს გუნდი აფასებს, შეუძლია თუ არა პაციენტს დამოუკიდებელ სუნთქვაზე გადასვლა. ატარებენ „სუნთქვის ცდას" — ვენტილატორის მხარდაჭერას მოკლედ ამცირებენ — და ამოწმებენ, როგორ უმკლავდება პაციენტი. მზადყოფნისას მილი ამოიღება.',
+    'a5note': '💙 ვენტილატორზე ყოფნა არ ნიშნავს, რომ მდგომარეობა უიმედოა. ეს ნიშნავს, რომ სხეული იღებს მხარდაჭერას, რომელიც სჭირდება განსაკურნებლად. ათასობით ადამიანი წარმატებით ითიშება ვენტილატორებიდან ყოველდღე.',
+    'a6h1': 'რატომ სჭირდება ბავშვს გულის ოპერაცია?', 'a6p1': 'ბავშვების უმეტესობა, რომლებიც გულის ოპერაციას გადიან, თანდაყოლილი გულის დეფექტი აქვთ — სტრუქტურული პრობლემა, რომელიც დაბადებისთანავე არსებობდა. ეს მდგომარეობები მერყეობს პატარა ხვრელებიდან გულის კამერებს შორის უფრო რთულ დარღვევებამდე სარქვლებსა ან მთავარ სისხლძარღვებში. ოპერაცია ასწორებს ან ამოირებს დეფექტს, რათა გული უფრო ნორმალურად ფუნქციონირებდეს.',
+    'a6h2': 'რა არის bypass-ის მოწყობილობა?', 'a6p2': 'მრავალი გულის ოპერაციისთვის ექიმები იყენებენ კარდიოპულმონარულ bypass-ს (გულ-ფილტვის) მანქანას. ეს მოწყობილობა დროებით გულ-ფილტვის ფუნქციას ითავსებს — სისხლს ტუმბავს და ჟანგბადს ამატებს — სანამ ქირურგი ოპერირებს. ეს ათწლეულობით გამოყენებული, კარგად დამკვიდრებული, უსაფრთხო ტექნიკაა.',
+    'a6h3': 'რა ხდება ოპერაციის შემდეგ რეანიმაციაში?', 'a6p3': 'თქვენი ბავშვი ოპერაციის შემდეგ პირდაპირ საბავშვო ICU-ში (PICU) გადაიყვანება. მას ექნება დრენაჟები, ვენური კათეტერები, სუნთქვის მილი და მონიტორინგის სადენები. ეს მოსალოდნელია — ეს იმის ნიშანი არ არის, რომ რაღაც გაიჭრა. გუნდი თანდათანობით მოხსნის ამ ხაზებს და მილებს, ბავშვის სტაბილიზაციის კვალდაკვალ.',
+    'a6h4': 'გრძელვადიანი პერსპექტივა', 'a6p4': 'ბავშვების უმეტესი ნაწილი, რომლებიც გულის ოპერაციას გადიან, სრულყოფილ, აქტიურ ცხოვრებას განაგრძობს. ბევრს სჭირდება მოვლა და მონიტორინგი ბავშვობის მანძილზე. კარდიოლოგი გაიძღვება ნებისმიერი შეზღუდვის და ნორმალური აქტიობის განახლების დროის შესახებ.',
+    'a6note': '💙 თქვენი ბავშვის ქირურგიული და ICU-ს გუნდი მთელი კარიერა ზუსტად ასეთი სიტუაციისთვის მოანდომა. ჰკითხეთ ყველა კითხვა — არც ერთი კითხვა ძალიან პატარა არ არის, როდესაც საქმე შეხება თქვენს შვილს.',
+    'a7h1': 'რა ითვლება ტემპერატურად?', 'a7p1': '38°C (100.4°F)-ზე მაღალი ტემპერატურა ცხელებად ითვლება. ცხელება თავისთავად დაავადება არ არის — ეს ნიშანია, რომ სხეულის იმუნური სისტემა მუშაობს. ბავშვებში ცხელების უმეტეს შემთხვევას ვირუსული ინფექციები იწვევს და 3–5 დღეში თავისით გადის.',
+    'a7h2': 'ზოგადი სახელმძღვანელო ასაკის მიხედვით',
+    'a7h3': 'გამაფრთხილებელი ნიშნები — გადაუდებელი დახმარება',
+    'a7note': '💙 პარაცეტამოლი ან იბუპროფენი ბავშვს კარგად გრძნობინებს — მაგრამ მიზანი კომფორტია, არა ტემპერატურის ციფრის ნორმალიზება. თუ ინტუიცია გეუბნებათ, რომ რაღაც მეტია მარტივ ცხელებაზე — ენდეთ ამ ინტუიციას და ეძიეთ დახმარება.',
+    'a8h1': 'სრული სისხლის ანალიზი', 'a8p1': 'ეს ყველაზე ხშირად დაკვეთილი სისხლის ტესტია. ის ითვლის სისხლის სხვადასხვა უჯრედებს: წითელ სისხლის უჯრედებს (ატარებენ ჟანგბადს), თეთრ სისხლის უჯრედებს (ებრძვიან ინფექციას) და თრომბოციტებს (ეხმარება სისხლის შედედებაში). დაბალი წითელი სისხლის უჯრედების რაოდენობა ანემიას ნიშნავს. მაღალი თეთრი სისხლის უჯრედი ხშირად ინფექციასა ან ანთებას მიუთითებს.',
+    'a8h2': 'CRP — C-რეაქტიული ცილა', 'a8p2': 'CRP ანთების მარკერია. მაღალი CRP ნიშნავს, რომ სხეული რაღაცას ებრძვის — ინფექციას, ტრავმას ან ანთებით მდგომარეობას. ექიმები CRP-ს დინამიკაში ადევნებენ თვალს; მის დაცემასთან ერთად, ჩვეულებრივ, მკურნალობა მუშაობს.',
+    'a8h3': 'ელექტროლიტები', 'a8p3': 'ნატრიუმი, კალიუმი, კალციუმი და მაგნიუმი ელექტროლიტებია — მინერალები, რომლებიც ელექტრულ მუხტს ატარებენ და ყველა უჯრედის ფუნქციონირებისთვის სასიცოცხლო მნიშვნელობა აქვთ. დისბალანსი შეიძლება გამოიწვიოს კუნთების სისუსტე, გულის რითმის პრობლემები და არეულობა.',
+    'a8h4': 'თირკმლისა და ღვიძლის ტესტები', 'a8p4': 'კრეატინინი და შარდოვანა გვიჩვენებს, რამდენად კარგად მუშაობს თირკმელი. ALT, AST და ბილირუბინი ღვიძლის ფუნქციას ასახავს. ეს ტესტები საავადმყოფოში რუტინულად მოწმდება, რომ ორგანოები ახორციელებენ მედიკამენტებისა და თვით ავადმყოფობის ტოლერანტობას.',
+    'a8note': '💙 საცნობარო დიაპაზონს გარეთ ოდნავ გასული რიცხვები ყოველთვის საგანგაშო არ არის — საცნობარო დიაპაზონები გამოთვლილია პოპულაციის საშუალოებზე. ექიმი შედეგებს განმარტავს თქვენი მთლიანი კლინიკური სურათის კონტექსტში.',
+    'a9h1': 'რა არის ექო?', 'a9p1': 'ექოკარდიოგრამა — ჩვეულებრივ „ექო" — ულტრაბგერითი ტალღებს იყენებს გულის მოძრავი სურათის შესაქმნელად. ეს სრულიად უმტკივნეულოა, გამოსხივებას არ იყენებს და ჩვეულებრივ 30–45 წუთი გრძელდება. გელი ივლება გულ-მკერდაზე და ზონდი კანზე მოძრაობს სურათების გადასაღებად.',
+    'a9h2': 'რას გვიჩვენებს ექო?',
+    'a9h3': 'ექო-ს სახეები', 'a9p3': 'ტრანსთორაკალური ექო (TTE) სტანდარტული ტესტია, ტარდება გულ-მკერდის კედლიდან. ტრანსეზოფაგეური ექო (TOE/TEE) გულისხმობს ზონდის ჩაყვანას ყელის ქვეშ სედაციის ქვეშ — ეს უფრო ნათელ სურათებს იძლევა და გამოიყენება, როდესაც მეტი დეტალია საჭირო ან ოპერაციის დროს.',
+    'a9note': '💙 ექოკარდიოგრამა კარდიოლოგიაში ხელმისაწვდომ ერთ-ერთ ყველაზე ინფორმაციულ არაინვაზიურ ტესტს წარმოადგენს. შედეგებს სპეციალისტი კარდიოლოგი განმარტავს და ყოველთვის გიზიარებთ თქვენი სრული სამედიცინო ისტორიის კონტექსტში.',
+    'a10h1': 'სედაცია და ანალგეზია', 'a10p1': 'ვენტილატორზე მყოფ პაციენტებს ეძლევათ სედატიური საშუალებები (მაგ. პროპოფოლი ან მიდაზოლამი) კომფორტის შენარჩუნებისა და სტრესის თავიდან ასაცილებლად. ამასთან ერთად, ოპიოიდური ტკივილგამაყუჩებლები (მაგ. ფენტანილი ან მორფინი) ტკივილს აკონტროლებს. ყოველდღე გუნდი ესწრაფვის მინიმალური საჭირო დოზის გამოყენებას — „მსუბუქი სედაცია" უფრო სწრაფ გამოჯანმრთელებასთანაა დაკავშირებული.',
+    'a10h2': 'ვაზოპრესორები', 'a10p2': 'ეს მედიკამენტები სისხლძარღვებს ამცირებს სისხლის წნევის შესანარჩუნებლად, როდესაც სისხლის მიმოქცევა ვერ ფუნქციონირებს. ნორადრენალინი (ნორეპინეფრინი) ყველაზე გავრცელებულია. შეიძლება ნახოთ, რომ ისინი ზუსტი შპრიცის ტუმბოს საშუალებით ინიშნება — დოზის უმცირეს ცვლილებასაც კი მნიშვნელოვანი გავლენა შეუძლია სისხლის წნევაზე.',
+    'a10h3': 'ანტიბიოტიკები', 'a10p3': 'ICU-ში ინფექციები სიცოცხლის საფრთხეს ქმნის. ფართო სპექტრის ანტიბიოტიკები ადრე იწყება და ზოგჯერ საათობრივად ეძლევა ვენაში. გუნდი რეგულარულად ამოწმებს, სწორია თუ არა ამჟამინდელი ანტიბიოტიკები, სისხლის კულტურის შედეგების საფუძველზე.',
+    'a10h4': 'სისხლის გამათხელებლები (ანტიკოაგულანტები)', 'a10p4': 'უძრაობაში მყოფ პაციენტებს ემუქრებათ სისხლის შედედების საფრთხე ფეხებში (ღრმა ვენის თრომბოზი) ან ფილტვებში (ფილტვის ემბოლია). ჰეპარინის დაბალ-დოზური ინექციები — ან სპეციალური კომპრესიული წინდები — ამის პრევენციას ეხმარება.',
+    'a10note': '💙 სერუმების და ინფუზიების აშკარა სიმრავლე შეიძლება საშინელი ჩანდეს. ყოველი ინიშნება ზუსტად და კონტროლდება. მედდას გაბედულად ჰკითხეთ, რისთვის არის ყოველი მედიკამენტი — ისინი ამ კითხვებს ელოდებიან.',
+    'a11h1': 'პირველი 24 საათი', 'a11p1': 'მთავარი ოპერაციის შემდეგ პირველი დღე სტაბილიზაციაზეა. სავარაუდოდ იქნებით ICU-ში ან მაღალი დამოკიდებულების განყოფილებაში. ტკივილი მაკონტროლებელი იქნება; მედდები ხშირად გააკეთებენ სასიცოცხლო ნიშნების მონიტორინგს. შეიძლება გქონდეთ შარდის კათეტერი, დრენაჟები და რამდენიმე ვენური ხაზი. ეს ნორმალურია.',
+    'a11h2': 'ადრეული მობილიზაცია', 'a11p2': 'ადგომა და გადაადგილება — თუნდაც სკამზე ჯდომა — სამედიცინოდ შესაძლებლობისთანავე გამოჯანმრთელების ერთ-ერთი ყველაზე მნიშვნელოვანი ნიშანია. ადრეული მოძრაობა ამცირებს პნევმონიის, სისხლის შედედების და კუნთების გამხდრობის რისკს. შეიძლება ძნელი ან მტკივნეული ჩანდეს, მაგრამ ფიზიოთერაპიის გუნდი მხარდაჭერას გაგიწევთ.',
+    'a11h3': 'ჭამა და სმა', 'a11p3': 'კვება ოპერაციის შემდეგ წამალია. გუნდი ისწრაფვის ჭამა-სმის განახლებისკენ, როგორც კი ნაწლავი ამოქმედდება. ზოგიერთი ოპერაციისთვის ეს საათებში ხდება; სხვებისთვის — შეიძლება რამდენიმე დღე დასჭირდეს. კარგი კვება აუცილებელია ჭრილობის შეხორცებისთვის, იმუნური ფუნქციისა და ენერგიისთვის.',
+    'a11h4': 'ემოციური გამოჯანმრთელება', 'a11p4': 'მთავარი ოპერაცია გონებაზეც ისევე მოქმედებს, როგორც სხეულზე. ოპერაციის შემდეგ დღეებში ემოციურობა, შფოთვა, სევდა ან არეულობა ხშირია. ზოგიერთ პაციენტს განიცდის „ICU-ს დელირიუმს" — დროებით დაბნეულობას, მედიკამენტების, ძილის ნაკლებობის და კრიტიკული ავადმყოფობის სტრესის გამო. ეს ჩვეულებრივ გამოჯანმრთელების მიხედვით გადის.',
+    'a11note': '💙 გამოჯანმრთელება იშვიათად პირდაპირი ხაზია. კარგი და სჭარბი დღეები იქნება. პროგრესი ტენდენციებით იზომება, არა ინდივიდუალური მომენტებით. ითმინეთ საკუთარი თავის ან ახლობლის მიმართ — სხეული განსაკუთრებულ სამუშაოს ასრულებს.',
+    'a12h1': 'ნორმალურია, თუ ყველაფერს ვერ გაიგებ მაშინვე', 'a12p1': 'მნიშვნელოვანი დიაგნოზის მიღება ცხოვრების ერთ-ერთი ყველაზე სტრესული მოვლენაა. შოკი და ინფორმაციით გადახნევა ნიშნავს, რომ პირველ საუბარში ყველაფრის ათვისება ვერ მოხერხდება. ეს სრულიად ნორმალურია. ყოველთვის გაბედულად სთხოვეთ ექიმს გამეორება ან გადაფორმულება — და ჰკითხეთ, შეგიძლიათ თუ არა საუბრის ჩაწერა ან ვინმეს თან წაყვანა.',
+    'a12h2': 'ძირითადი კითხვები ექიმისთვის',
+    'a12h3': 'სანდო ინფორმაციის პოვნა', 'a12p3': 'ინტერნეტი მოიცავს სამედიცინო მცდარი ინფორმაციის უდიდეს რაოდენობას. მიმართეთ მყარ, ექსპერტ-შემოწმებულ წყაროებს: ეროვნული ჯანდაცვის სამსახურებს (NHS, CDC, WHO), მსხვილი საავადმყოფოების პაციენტთა განათლების პორტალებს, ან სამედიცინო გუნდს სთხოვეთ სამკითხველო მასალის რეკომენდაცია. მოერიდეთ ფორუმების პოსტებს ან სოციალური მედიის „ინფლუენსერებს" პირველადი წყაროს სახით.',
+    'a12note': '💙 თქვენ მხოლოდ პაციენტი არ ხართ — თქვენი მკურნალობის აქტიური მონაწილე ხართ. რაც უფრო გაიგებთ დიაგნოზს, მით უფრო კარგად შეძლებთ საკუთარი თავის ადვოკატობა და გადაწყვეტილებების მიღება, რომლებიც თქვენს ღირებულებებს ემთხვევა.',
+  }
+};
+
+let currentLang = 'en';
+let currentFilter = 'all';
+
+function setLang(l) {
+  currentLang = l;
+  localStorage.setItem('lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === l));
+  const d = lang[l];
+  for (const [id, val] of Object.entries(d)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (typeof val === 'object' && val.placeholder) {
+      el.placeholder = val.placeholder;
+    } else {
+      el.innerHTML = val;
+    }
+  }
+  // Update search placeholder separately for safety
+  const si = document.getElementById('searchInput');
+  if (si) si.placeholder = l === 'ka' ? 'მოძებნეთ სტატიები...' : 'Search articles...';
+  filterArticles();
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterArticles();
+}
+
+function filterArticles() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('.article-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const cat = card.dataset.category;
+    const titleKey = currentLang === 'ka' ? 'ka' : 'en';
+    const title = (card.dataset[titleKey + 'Title'] || '').toLowerCase();
+    const desc = (card.dataset[titleKey + 'Desc'] || '').toLowerCase();
+    const matchCat = currentFilter === 'all' || cat === currentFilter;
+    const matchSearch = !q || title.includes(q) || desc.includes(q) || cat.includes(q);
+    const show = matchCat && matchSearch;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const nr = document.getElementById('noResults');
+  nr.style.display = visible === 0 ? 'block' : 'none';
+}
+
+function toggleArticle(btn, fullId) {
+  const full = document.getElementById(fullId);
+  const isOpen = full.classList.toggle('open');
+  btn.classList.toggle('expanded', isOpen);
+  const labelId = btn.querySelector('[id]') ? btn.querySelector('[id]').id : null;
+  if (labelId) {
+    const readMore = currentLang === 'ka' ? 'სრულად წაკითხვა' : 'Read More';
+    const close = currentLang === 'ka' ? 'დახურვა' : 'Close';
+    document.getElementById(labelId).textContent = isOpen ? close : readMore;
+  }
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+// Load saved language
+const _plSaved = localStorage.getItem("lang");
+if (_plSaved === "ka") setLang("ka");
+</script>
+</body>
+</html>

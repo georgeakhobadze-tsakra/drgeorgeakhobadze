@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neonatal Care Guide — Dr. George Akhobadze</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Georgian:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: #0a1628;
+  color: #e8eef8;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,22,40,0.97);
+  border-bottom: 1px solid #1e3560;
+  padding: 0 2rem; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-size: 1rem; font-weight: 700; color: #fff; text-decoration: none; }
+.nav-logo span { color: #4e9af1; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+.nav-links a { color: #8ba0c0; text-decoration: none; font-size: .88rem; transition: color .2s; }
+.nav-links a:hover, .nav-links a.cur { color: #fff; }
+.nav-join { background: #4e9af1 !important; color: #0a1628 !important; padding: .4rem 1rem; border-radius: 6px; font-weight: 600; }
+.ltog { display: flex; gap: .25rem; }
+.ltog button {
+  background: transparent; border: 1px solid #1e3560;
+  color: #8ba0c0; padding: .25rem .6rem; border-radius: 4px;
+  font-size: .78rem; cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.ltog button.on { background: #4e9af1; color: #0a1628; border-color: #4e9af1; font-weight: 700; }
+
+.hero { padding: 4rem 2rem 3rem; max-width: 860px; margin: 0 auto; text-align: center; }
+.badge {
+  display: inline-block; font-size: .73rem; letter-spacing: .12em;
+  text-transform: uppercase; color: #4e9af1; border: 1px solid #1e3560;
+  padding: .35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
+}
+.hero h1 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.2; }
+.hero .sub { font-size: 1rem; color: #8ba0c0; max-width: 580px; margin: 0 auto 1.5rem; }
+.apill {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: #0f1f3d; border: 1px solid #1e3560;
+  border-radius: 100px; padding: .4rem 1rem .4rem .5rem;
+  font-size: .82rem; color: #8ba0c0;
+}
+.adot {
+  width: 28px; height: 28px; background: #4e9af1;
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: .68rem; font-weight: 700; color: #0a1628;
+}
+
+.disc { max-width: 860px; margin: 0 auto 2.5rem; padding: 0 2rem; }
+.disc-box {
+  background: rgba(245,200,66,.07); border: 1px solid rgba(245,200,66,.3);
+  border-radius: 12px; padding: 1rem 1.25rem;
+  font-size: .87rem; color: #f5d78a;
+  display: flex; gap: .75rem; align-items: flex-start;
+}
+
+.qnav { max-width: 860px; margin: 0 auto 3rem; padding: 0 2rem; }
+.qlabel { font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; color: #8ba0c0; margin-bottom: .75rem; }
+.qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px,1fr)); gap: .75rem; }
+.qcard {
+  background: #0f1f3d; border: 1px solid #1e3560; border-radius: 12px;
+  padding: .9rem 1rem; text-decoration: none; color: #e8eef8;
+  font-size: .85rem; font-weight: 500; transition: border-color .2s, transform .2s;
+  display: flex; align-items: center; gap: .5rem;
+}
+.qcard:hover { border-color: #4e9af1; transform: translateY(-2px); }
+
+.cnt { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+.sec { margin-bottom: 4rem; scroll-margin-top: 80px; }
+.shead {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid #1e3560;
+}
+.snum {
+  font-size: .72rem; letter-spacing: .1em; color: #4e9af1;
+  background: rgba(78,154,241,.1); border: 1px solid rgba(78,154,241,.25);
+  border-radius: 4px; padding: .2rem .6rem; white-space: nowrap;
+}
+.shead h2 { font-size: clamp(1.3rem,3vw,1.8rem); font-weight: 700; color: #fff; }
+.desc { color: #8ba0c0; font-size: .93rem; margin-bottom: 1rem; }
+
+.cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 1rem; }
+.card { background: #0f1f3d; border: 1px solid #1e3560; border-radius: 12px; padding: 1.25rem; }
+.ci { font-size: 1.6rem; margin-bottom: .5rem; }
+.card h3 { font-size: .93rem; font-weight: 600; color: #fff; margin-bottom: .4rem; }
+.card p { font-size: .83rem; color: #8ba0c0; line-height: 1.6; }
+
+.nvegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.nvc { border-radius: 12px; padding: 1.25rem; }
+.nvc.ok { background: #052e16; border: 1px solid #14532d; }
+.nvc.er { background: #1c0505; border: 1px solid #7f1d1d; }
+.nvt { font-weight: 700; font-size: .83rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
+.nvc.ok .nvt { color: #22c55e; }
+.nvc.er .nvt { color: #ef4444; }
+.nvl { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.nvl li { font-size: .87rem; display: flex; gap: .4rem; line-height: 1.5; }
+.nvc.ok .nvl li::before { content:"✓"; color:#22c55e; flex-shrink:0; }
+.nvc.er .nvl li::before { content:"!"; color:#ef4444; font-weight:700; flex-shrink:0; }
+
+.tw { overflow-x: auto; margin-top: 1rem; border-radius: 12px; border: 1px solid #1e3560; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+th { background: #162847; color: #4e9af1; font-size: .73rem; letter-spacing: .08em; text-transform: uppercase; padding: .75rem 1rem; text-align: left; }
+td { padding: .75rem 1rem; border-top: 1px solid rgba(30,53,96,.5); color: #e8eef8; vertical-align: top; }
+tr:hover td { background: rgba(15,31,61,.5); }
+
+.clist { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-top: 1rem; }
+.clist li {
+  background: #0f1f3d; border: 1px solid #1e3560; border-radius: 8px;
+  padding: .9rem 1.1rem; font-size: .9rem;
+  display: flex; gap: .75rem; align-items: flex-start;
+}
+.clist .ico { font-size: 1.1rem; flex-shrink: 0; margin-top:.15rem; }
+.clist strong { color: #fff; display: block; margin-bottom: .2rem; }
+.clist span.note { font-size: .85rem; color: #8ba0c0; }
+
+.foot { text-align: center; padding: 3rem 2rem; border-top: 1px solid #1e3560; }
+.bhome {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: #4e9af1; color: #0a1628; text-decoration: none;
+  font-weight: 600; font-size: .88rem; padding: .75rem 1.75rem;
+  border-radius: 10px; font-family: inherit;
+}
+.bhome:hover { opacity: .85; }
+.fcopy { margin-top: 1.5rem; font-size: .8rem; color: #8ba0c0; }
+
+#btt {
+  position: fixed; bottom: 2rem; right: 2rem;
+  width: 44px; height: 44px; background: #4e9af1;
+  border: none; border-radius: 10px; color: #0a1628;
+  font-size: 1.2rem; cursor: pointer; display: none;
+  align-items: center; justify-content: center; z-index: 90;
+  font-family: inherit;
+}
+#btt.show { display: flex; }
+
+@media(max-width:640px){
+  .nav-links { display:none; }
+  .nvegrid { grid-template-columns:1fr; }
+  .qgrid { grid-template-columns:1fr 1fr; }
+  .hero,.cnt,.disc,.qnav { padding-left:1.25rem; padding-right:1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. <span>George Akhobadze</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Academy</a></li>
+      <li><a href="neonatal.html" class="cur">Neonatal Guide</a></li>
+      <li><a href="heart.html">Heart Guide</a></li>
+      <li><a href="patient-library.html">Patient Library</a></li>
+      <li><a href="academy.html" class="nav-join">Join Academy</a></li>
+    </ul>
+    <div class="ltog">
+      <button id="ben" class="on" onclick="setL('en')">EN</button>
+      <button id="bka" onclick="setL('ka')">ქარ</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge" id="hbadge">Pediatric ICU · Evidence-Based · Free Resource</div>
+  <h1 id="hh1">Neonatal Care Guide</h1>
+  <p class="sub" id="hsub">Evidence-based guidance for new parents, written by a pediatric ICU specialist with 14 years of neonatal experience.</p>
+  <div class="apill"><div class="adot">GA</div><span id="hauth">Dr. George Akhobadze · Pediatric Anesthesiologist &amp; ICU</span></div>
+</div>
+
+<div class="disc">
+  <div class="disc-box">
+    <span>⚠️</span>
+    <span id="dtext">This guide is for educational purposes only. Always consult your doctor or pediatrician for medical advice about your baby.</span>
+  </div>
+</div>
+
+<div class="qnav">
+  <div class="qlabel" id="qlbl">Jump to section</div>
+  <div class="qgrid">
+    <a href="#s1" class="qcard">🍼 <span id="q1">First 24 Hours</span></a>
+    <a href="#s2" class="qcard">🤱 <span id="q2">Feeding Guide</span></a>
+    <a href="#s3" class="qcard">🚨 <span id="q3">Normal vs Emergency</span></a>
+    <a href="#s4" class="qcard">😴 <span id="q4">Sleep Safety</span></a>
+    <a href="#s5" class="qcard">📈 <span id="q5">Milestones</span></a>
+    <a href="#s6" class="qcard">📞 <span id="q6">Call Doctor When</span></a>
+  </div>
+</div>
+
+<div class="cnt">
+
+  <div class="sec" id="s1">
+    <div class="shead"><span class="snum">01</span><h2 id="t1">First 24 Hours After Birth</h2></div>
+    <p class="desc" id="d1">Your baby has just made the most dramatic journey of their life. Many things that look alarming are completely normal. Here is what to expect.</p>
+    <div class="cgrid">
+      <div class="card"><div class="ci">🧠</div><h3 id="c1t">Head Shape</h3><p id="c1p">Pressure from the birth canal can leave the head slightly cone-shaped. It rounds out within a few days — completely normal.</p></div>
+      <div class="card"><div class="ci">👁️</div><h3 id="c2t">Eyes &amp; Skin</h3><p id="c2p">Puffy eyelids and blotchy skin are normal. Many newborns develop mild jaundice in the first week — usually resolves on its own.</p></div>
+      <div class="card"><div class="ci">🩸</div><h3 id="c3t">Soft Spots</h3><p id="c3p">Two fontanelles on your baby's head are completely normal. The front one closes around 18 months, the back one by 2–3 months.</p></div>
+      <div class="card"><div class="ci">🤗</div><h3 id="c4t">Skin-to-Skin</h3><p id="c4p">Skin-to-skin contact immediately after birth regulates temperature, heart rate, and supports breastfeeding. Start as soon as possible.</p></div>
+      <div class="card"><div class="ci">📋</div><h3 id="c5t">Apgar Score</h3><p id="c5p">Your baby is evaluated at 1 and 5 minutes after birth. Scores 7–10 are normal. A low score means extra help is needed — not permanent damage.</p></div>
+      <div class="card"><div class="ci">🌡️</div><h3 id="c6t">Temperature</h3><p id="c6p">Keep baby warm — normal temp is 36.5–37.5°C. Any fever above 38°C in the first 3 months needs immediate medical attention.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="shead"><span class="snum">02</span><h2 id="t2">Feeding Guide</h2></div>
+    <p class="desc" id="d2">Feeding is the most frequent activity in your newborn's life. Whether you breastfeed or use formula, what matters most is that your baby is fed, growing, and content.</p>
+    <div class="cgrid">
+      <div class="card"><div class="ci">🤱</div><h3 id="f1t">Breastfeeding</h3><p id="f1p">Breast milk provides antibodies formula cannot replicate. Feed on demand — every 2–3 hours, 8–12 times per day in the first weeks.</p></div>
+      <div class="card"><div class="ci">🍼</div><h3 id="f2t">Formula Feeding</h3><p id="f2p">Modern formulas are nutritionally complete. Feed every 3–4 hours. Never dilute formula — follow instructions exactly.</p></div>
+      <div class="card"><div class="ci">✅</div><h3 id="f3t">Eating Enough?</h3><p id="f3p">Signs baby gets enough: 6+ wet diapers/day, steady weight gain after day 4, content after feeding, good skin color.</p></div>
+      <div class="card"><div class="ci">⚠️</div><h3 id="f4t">Feeding Concerns</h3><p id="f4p">Call doctor if: fewer than 6 wet diapers after day 4, no weight gain by 2 weeks, baby too sleepy to feed, or blood in stool.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="shead"><span class="snum">03</span><h2 id="t3">Normal vs. Emergency</h2></div>
+    <p class="desc" id="d3">As a pediatric ICU doctor, the most common parent question is: "Is this normal?" Here is a clear clinical guide.</p>
+    <div class="nvegrid">
+      <div class="nvc ok">
+        <div class="nvt">✓ <span id="nok">Normal — No Concern</span></div>
+        <ul class="nvl" id="nlist">
+          <li>Sneezing frequently</li>
+          <li>Hiccups after feeding</li>
+          <li>Skin peeling in first week</li>
+          <li>Noisy breathing / grunting</li>
+          <li>Crossed eyes occasionally</li>
+          <li>Breast swelling (boys &amp; girls)</li>
+          <li>Soft spot that pulses</li>
+          <li>Black/green stool in first days</li>
+          <li>Startling at sounds</li>
+          <li>Mild jaundice after day 2</li>
+        </ul>
+      </div>
+      <div class="nvc er">
+        <div class="nvt">! <span id="ner">Emergency — Call Doctor Now</span></div>
+        <ul class="nvl" id="elist">
+          <li>Blue lips or fingertips</li>
+          <li>Difficulty breathing / ribs showing</li>
+          <li>Any fever above 38°C under 3 months</li>
+          <li>Won't wake up / very hard to rouse</li>
+          <li>Seizures / convulsions</li>
+          <li>Bulging soft spot</li>
+          <li>Blood in stool or urine</li>
+          <li>Vomiting forcefully (projectile)</li>
+          <li>Yellowing spreading to arms/legs</li>
+          <li>No wet diaper for 8+ hours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="shead"><span class="snum">04</span><h2 id="t4">Sleep Safety</h2></div>
+    <p class="desc" id="d4">Newborns sleep 14–17 hours per day. Safe sleep practices significantly reduce the risk of SIDS (Sudden Infant Death Syndrome).</p>
+    <div class="cgrid">
+      <div class="card"><div class="ci">🔙</div><h3 id="s1t">Always Back to Sleep</h3><p id="s1p">Place baby on their back for every sleep. This is the single most important SIDS prevention measure.</p></div>
+      <div class="card"><div class="ci">🛏️</div><h3 id="s2t">Safe Sleep Surface</h3><p id="s2p">Use a firm, flat mattress. No soft bedding, pillows, bumpers, or toys in the crib. Baby sleeps alone in their own space.</p></div>
+      <div class="card"><div class="ci">🌡️</div><h3 id="s3t">Room Temperature</h3><p id="s3p">Keep room at 18–20°C. Overheating is a SIDS risk. Check the back of baby's neck — if sweaty, too warm.</p></div>
+      <div class="card"><div class="ci">🚭</div><h3 id="s4t">Smoke-Free Zone</h3><p id="s4p">Smoking near a baby triples SIDS risk. No smoking in the home or car, even when baby is not present.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s5">
+    <div class="shead"><span class="snum">05</span><h2 id="t5">Development Milestones</h2></div>
+    <p class="desc" id="d5">Every baby develops at their own pace. These are general guides, not strict deadlines. Discuss any concerns with your pediatrician.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th id="th1">Age</th><th id="th2">Physical</th><th id="th3">Social / Communication</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1 Month</strong></td><td>Lifts head briefly on tummy, jerky arm movements</td><td>Responds to sounds, focuses on faces up to 30cm</td></tr>
+          <tr><td><strong>2 Months</strong></td><td>Holds head more steadily, smoother movements</td><td>Social smile appears, coos and gurgles</td></tr>
+          <tr><td><strong>3 Months</strong></td><td>Pushes up on arms, opens and shuts hands</td><td>Laughs out loud, recognizes familiar faces and voices</td></tr>
+          <tr><td><strong>4 Months</strong></td><td>Holds head steady, bears weight on legs when supported</td><td>Babbles, responds to name, expresses emotions</td></tr>
+          <tr><td><strong>6 Months</strong></td><td>Rolls both ways, sits with support, reaches for objects</td><td>Recognizes strangers, responds to emotions, copies sounds</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec" id="s6">
+    <div class="shead"><span class="snum">06</span><h2 id="t6">When to Call Your Doctor</h2></div>
+    <p class="desc" id="d6">My advice as a pediatric ICU doctor: when in doubt, always call. An unnecessary call is always better than missing something important.</p>
+    <ul class="clist">
+      <li><span class="ico">🌡️</span><div><strong id="cl1t">Any fever above 38°C in baby under 3 months</strong><span class="note" id="cl1n">Requires same-day evaluation — no exceptions.</span></div></li>
+      <li><span class="ico">🍼</span><div><strong id="cl2t">Refuses 2 or more feedings in a row</strong><span class="note" id="cl2n">Especially combined with unusual sleepiness.</span></div></li>
+      <li><span class="ico">💧</span><div><strong id="cl3t">Fewer than 6 wet diapers per day after day 4</strong><span class="note" id="cl3n">May indicate dehydration or poor feeding.</span></div></li>
+      <li><span class="ico">😢</span><div><strong id="cl4t">Inconsolable crying for more than 2 hours</strong><span class="note" id="cl4n">Especially with arching back or pulling up of legs.</span></div></li>
+      <li><span class="ico">🏥</span><div><strong id="cl5t">Any sign from the Emergency list above</strong><span class="note" id="cl5n">Do not wait — call emergency services or go to hospital immediately.</span></div></li>
+      <li><span class="ico">❓</span><div><strong id="cl6t">Something just doesn't seem right</strong><span class="note" id="cl6n">Trust your instincts as a parent. You know your baby. If it feels wrong — call.</span></div></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="foot">
+  <a href="index.html" class="bhome">← <span id="fbtn">Back to Homepage</span></a>
+  <p class="fcopy">© 2026 Dr. George Akhobadze · <span id="fcopy">All rights reserved</span></p>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+var tx = {
+  en: {
+    hbadge:"Pediatric ICU · Evidence-Based · Free Resource",
+    hh1:"Neonatal Care Guide",
+    hsub:"Evidence-based guidance for new parents, written by a pediatric ICU specialist with 14 years of neonatal experience.",
+    hauth:"Dr. George Akhobadze · Pediatric Anesthesiologist & ICU",
+    dtext:"This guide is for educational purposes only. Always consult your doctor or pediatrician for medical advice about your baby.",
+    qlbl:"Jump to section",
+    q1:"First 24 Hours",q2:"Feeding Guide",q3:"Normal vs Emergency",q4:"Sleep Safety",q5:"Milestones",q6:"Call Doctor When",
+    t1:"First 24 Hours After Birth",d1:"Your baby has just made the most dramatic journey of their life. Many things that look alarming are completely normal.",
+    c1t:"Head Shape",c1p:"Pressure from the birth canal can leave the head slightly cone-shaped. It rounds out within a few days — completely normal.",
+    c2t:"Eyes & Skin",c2p:"Puffy eyelids and blotchy skin are normal. Many newborns develop mild jaundice in the first week — usually resolves on its own.",
+    c3t:"Soft Spots",c3p:"Two fontanelles on your baby's head are completely normal. Front closes ~18 months, back by 2–3 months.",
+    c4t:"Skin-to-Skin",c4p:"Skin-to-skin contact after birth regulates temperature, heart rate, and supports breastfeeding. Start as soon as possible.",
+    c5t:"Apgar Score",c5p:"Evaluated at 1 and 5 minutes after birth. Scores 7–10 are normal. Low score means extra help needed — not permanent damage.",
+    c6t:"Temperature",c6p:"Normal temp 36.5–37.5°C. Any fever above 38°C in first 3 months needs immediate medical attention.",
+    t2:"Feeding Guide",d2:"Whether you breastfeed or use formula, what matters most is that your baby is fed, growing, and content.",
+    f1t:"Breastfeeding",f1p:"Feed on demand — every 2–3 hours, 8–12 times per day in the first weeks.",
+    f2t:"Formula Feeding",f2p:"Feed every 3–4 hours. Never dilute formula — follow instructions exactly.",
+    f3t:"Eating Enough?",f3p:"Signs: 6+ wet diapers/day, steady weight gain after day 4, content after feeding, good skin color.",
+    f4t:"Feeding Concerns",f4p:"Call doctor if fewer than 6 wet diapers after day 4, no weight gain by 2 weeks, or baby too sleepy to feed.",
+    t3:"Normal vs. Emergency",d3:"As a pediatric ICU doctor, the most common question is: 'Is this normal?' Here is a clear clinical guide.",
+    nok:"Normal — No Concern",ner:"Emergency — Call Doctor Now",
+    t4:"Sleep Safety",d4:"Newborns sleep 14–17 hours per day. Safe sleep practices significantly reduce SIDS risk.",
+    s1t:"Always Back to Sleep",s1p:"Place baby on their back for every sleep — the single most important SIDS prevention measure.",
+    s2t:"Safe Sleep Surface",s2p:"Firm flat mattress. No soft bedding, pillows, bumpers, or toys in the crib.",
+    s3t:"Room Temperature",s3p:"Keep room 18–20°C. Check back of baby's neck — if sweaty, too warm.",
+    s4t:"Smoke-Free Zone",s4p:"Smoking near a baby triples SIDS risk. No smoking in home or car.",
+    t5:"Development Milestones",d5:"Every baby develops at their own pace. These are general guides, not strict deadlines.",
+    th1:"Age",th2:"Physical",th3:"Social / Communication",
+    t6:"When to Call Your Doctor",d6:"My advice: when in doubt, always call. An unnecessary call is better than missing something important.",
+    cl1t:"Any fever above 38°C in baby under 3 months",cl1n:"Requires same-day evaluation — no exceptions.",
+    cl2t:"Refuses 2 or more feedings in a row",cl2n:"Especially combined with unusual sleepiness.",
+    cl3t:"Fewer than 6 wet diapers per day after day 4",cl3n:"May indicate dehydration or poor feeding.",
+    cl4t:"Inconsolable crying for more than 2 hours",cl4n:"Especially with arching back or pulling up of legs.",
+    cl5t:"Any sign from the Emergency list above",cl5n:"Do not wait — call emergency services or go to hospital immediately.",
+    cl6t:"Something just doesn't seem right",cl6n:"Trust your instincts. You know your baby. If it feels wrong — call.",
+    fbtn:"Back to Homepage",fcopy:"All rights reserved"
+  },
+  ka: {
+    hbadge:"პედიატრიული ICU · მტკიცებულებებზე დაფუძნებული · უფასო",
+    hh1:"ნეონატალური მოვლის გზამკვლევი",
+    hsub:"მტკიცებულებებზე დაფუძნებული სახელმძღვანელო ახალბედა მშობლებისთვის, დაწერილი პედიატრიული ICU სპეციალისტის მიერ.",
+    hauth:"დ-რი გიორგი ახობაძე · პედიატრიული ანესთეზიოლოგი და ICU",
+    dtext:"ეს სახელმძღვანელო მხოლოდ საგანმანათლებლო მიზნებისთვისაა. ყოველთვის მიმართეთ ექიმს თქვენი ბავშვის ჯანმრთელობასთან დაკავშირებით.",
+    qlbl:"გადადი სექციაში",
+    q1:"პირველი 24 საათი",q2:"კვების სახელმძღვანელო",q3:"ნორმა vs გადაუდებელი",q4:"ძილის უსაფრთხოება",q5:"განვითარება",q6:"როდის დარეკოთ",
+    t1:"დაბადების შემდეგ პირველი 24 საათი",d1:"თქვენი ბავშვი ახლახან გაიარა ცხოვრების ყველაზე დრამატული გზა. ბევრი რამ, რაც შემაშფოთებლად გამოიყურება, სრულიად ნორმალურია.",
+    c1t:"თავის ფორმა",c1p:"სამშობიარო არხის წნევამ შეიძლება თავი ოდნავ კონუსურად დატოვოს. რამდენიმე დღეში მომრგვალდება — სრულიად ნორმალურია.",
+    c2t:"თვალები და კანი",c2p:"შეშუპებული ქუთუთოები და ლაქებიანი კანი ნორმალურია. ბევრ ახალშობილს პირველ კვირაში მსუბუქი ჟელტუხა ემართება.",
+    c3t:"ყორნები",c3p:"ბავშვის თავზე ორი ყორანი სრულიად ნორმალურია. წინა — 18 თვეში, უკანა — 2-3 თვეში იხურება.",
+    c4t:"კანი კანთან",c4p:"კანი-კანთან კონტაქტი დაბადებისთანავე არეგულირებს ტემპერატურას, გულისცემას და მხარს უჭერს ძუძუთი კვებას.",
+    c5t:"აპგარის ქულა",c5p:"ბავშვს აფასებენ 1 და 5 წუთის შემდეგ. 7-10 ქულა ნორმალურია. დაბალი ქულა ნიშნავს მხოლოდ დამატებითი დახმარების საჭიროებას.",
+    c6t:"ტემპერატურა",c6p:"ნორმა: 36.5-37.5°C. 38°C-ზე მაღალი ცხელება 3 თვემდე — დაუყოვნებელი სამედიცინო დახმარება.",
+    t2:"კვების სახელმძღვანელო",d2:"მნიშვნელოვანია, რომ ბავშვი იყოს გამოკვებილი, იზრდებოდეს და კმაყოფილი — ძუძუთი თუ ხელოვნური ნარევით.",
+    f1t:"ძუძუთი კვება",f1p:"კვება მოთხოვნისამებრ — ყოველ 2-3 საათში, დღეში 8-12-ჯერ პირველ კვირებში.",
+    f2t:"ხელოვნური კვება",f2p:"კვება ყოველ 3-4 საათში. არასოდეს განზავოთ ნარევი — მკაცრად მიჰყევით ინსტრუქციას.",
+    f3t:"საკმარისად ჭამს?",f3p:"ნიშნები: დღეში 6+ სველი საფენი, სტაბილური წონის მატება მე-4 დღიდან, კმაყოფილება კვების შემდეგ.",
+    f4t:"კვების პრობლემები",f4p:"დაურეკეთ ექიმს: 6-ზე ნაკლები სველი საფენი მე-4 დღის შემდეგ, 2 კვირაში წონა არ იმატებს.",
+    t3:"ნორმა vs გადაუდებელი",d3:"პედიატრიული ICU ექიმის გამოცდილებიდან — მშობლების ყველაზე ხშირი კითხვა: 'ეს ნორმალურია?'",
+    nok:"ნორმა — არ ინერვიულოთ",ner:"გადაუდებელი — დაუყოვნებლივ დარეკეთ",
+    t4:"ძილის უსაფრთხოება",d4:"ახალშობილები დღეში 14-17 საათს სძინავთ. უსაფრთხო ძილის პრაქტიკა ამცირებს SIDS-ის რისკს.",
+    s1t:"ყოველთვის ზურგზე",s1p:"ყოველი ძილისას ბავშვი ზურგზე დააწვინეთ. ეს SIDS-ის პრევენციის ყველაზე მნიშვნელოვანი ზომაა.",
+    s2t:"უსაფრთხო საძინებელი",s2p:"მყარი, ბრტყელი ლეიბი. ბალიშები, რბილი საბნები და სათამაშოები საწოლში — აკრძალულია.",
+    s3t:"ოთახის ტემპერატურა",s3p:"ოთახი: 18-20°C. კისრის უკან შეამოწმეთ — ოფლიანია? ძალიან ცხელა.",
+    s4t:"მოწევის გარეშე",s4p:"ბავშვის სიახლოვეს მოწევა SIDS-ის რისკს სამმჯერ ზრდის. სახლში ან მანქანაში მოწევა — აკრძალულია.",
+    t5:"განვითარების ეტაპები",d5:"ყველა ბავშვი საკუთარი ტემპით ვითარდება. ეს ზოგადი სახელმძღვანელოა, არა მკაცრი ვადები.",
+    th1:"ასაკი",th2:"ფიზიკური",th3:"სოციალური / კომუნიკაცია",
+    t6:"როდის დაურეკოთ ექიმს",d6:"ჩემი რჩევა: ეჭვის შემთხვევაში — ყოველთვის დარეკეთ. ზედმეტი ზარი სჯობს მნიშვნელოვანი სიმპტომის გამოტოვებას.",
+    cl1t:"38°C-ზე მაღალი ცხელება 3 თვემდე ბავშვში",cl1n:"საჭიროებს იმავე დღეს შეფასებას — გამონაკლისი არ არსებობს.",
+    cl2t:"ზედიზედ 2 ან მეტ კვებაზე უარი",cl2n:"განსაკუთრებით ძილიანობასთან ერთად.",
+    cl3t:"მე-4 დღის შემდეგ 6-ზე ნაკლები სველი საფენი დღეში",cl3n:"შეიძლება გაუწყლოების ან ცუდი კვების ნიშანი იყოს.",
+    cl4t:"ვერ ჩასაჩუმებელი ტირილი 2 საათზე მეტი",cl4n:"განსაკუთრებით ზურგის გამოხრასა და ფეხების ზევით ასვლასთან ერთად.",
+    cl5t:"ზემოხსენებული გადაუდებელი სიმპტომებიდან ნებისმიერი",cl5n:"არ დაელოდოთ — დაუყოვნებლივ გამოიძახეთ სასწრაფო.",
+    cl6t:"რაღაც უბრალოდ არ არის კარგი",cl6n:"ენდეთ მშობლის ინსტინქტს. თქვენ იცნობთ თქვენს ბავშვს. თუ არასწორად გეჩვენება — დარეკეთ.",
+    fbtn:"მთავარ გვერდზე დაბრუნება",fcopy:"ყველა უფლება დაცულია"
+  }
+};
+
+function setL(lang) {
+  var t = tx[lang];
+  Object.keys(t).forEach(function(k) {
+    var el = document.getElementById(k);
+    if (el) el.textContent = t[k];
+  });
+  document.getElementById('ben').className = lang==='en' ? 'on' : '';
+  document.getElementById('bka').className = lang==='ka' ? 'on' : '';
+  localStorage.setItem('lang', lang);
+}
+
+var saved = localStorage.getItem('lang');
+setL(saved === 'ka' ? 'ka' : 'en');
+
+window.addEventListener('scroll', function() {
+  document.getElementById('btt').className = window.scrollY > 400 ? 'show' : '';
+});
+</script>
+
+</body>
+</html>
