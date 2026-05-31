@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. George Akhobadze — Pediatric Anesthesiology & Critical Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3355;
+    --accent: #1d6fa4;
+    --accent-bright: #2589c7;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --off-white: #f8f9fb;
+    --muted: #6b7a90;
+    --border: #dde3ed;
+    --text: #1c2b3a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  html[lang="ka"] h1,
+  html[lang="ka"] h2 {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  html[lang="ka"] h1 {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.22;
+  }
+
+  html[lang="ka"] h1 em {
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  html[lang="ka"] h2 {
+    font-size: clamp(22px, 3.5vw, 36px);
+    line-height: 1.28;
+  }
+
+  html[lang="ka"] .profile-name {
+    font-family: 'Noto Sans Georgian', sans-serif;
+  }
+
+  html[lang="ka"] .pillar-title {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  html[lang="ka"] .hero-sub,
+  html[lang="ka"] .profile-bio,
+  html[lang="ka"] .pricing-intro p,
+  html[lang="ka"] .pillars-header p,
+  html[lang="ka"] .footer-brand p {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  /* ── LANG TRANSITION ── */
+  [data-i18n] {
+    transition: opacity 0.18s ease;
+  }
+  body.lang-switching [data-i18n] {
+    opacity: 0;
+  }
+
+  /* ── LANG SWITCHER ── */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 22px;
+    padding: 3px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 5px 13px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .lang-btn:not(.active):hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 0 40px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 38px; height: 38px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .logo-title {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 100%;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.25s ease;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+
+  .btn-join {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    font-size: 12.5px !important;
+    transition: background 0.2s, transform 0.15s !important;
+    white-space: nowrap;
+  }
+
+  .btn-join::after { display: none !important; }
+  .btn-join:hover {
+    background: var(--accent-bright) !important;
+    transform: translateY(-1px);
+    color: var(--white) !important;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(29, 111, 164, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+      linear-gradient(160deg, #0a1628 0%, #0e1e38 50%, #091525 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 500;
+    line-height: 1.13;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.35s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    line-height: 1.75;
+    max-width: 540px;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(29, 111, 164, 0.4);
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(29, 111, 164, 0.5);
+  }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 40px;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+  }
+
+  .hero-card-label {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .hero-stat {
+    border-left: 2px solid rgba(201, 168, 76, 0.35);
+    padding-left: 16px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .hero-divider {
+    margin: 28px 0;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .specialties-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .specialty-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+  }
+
+  .specialty-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── TRUST BAR ── */
+  #trust {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 40px;
+  }
+
+  .trust-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  .trust-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .trust-num span { color: var(--gold); }
+
+  .trust-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .trust-sep { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── PROFILE ── */
+  #profile { background: var(--off-white); }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .profile-photo-wrap { position: relative; }
+
+  .profile-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #1a3355 0%, #0e1e38 100%);
+    border-radius: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px; position: relative; overflow: hidden;
+  }
+
+  .profile-photo::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 30%, rgba(29,111,164,0.2) 0%, transparent 60%);
+  }
+
+  .photo-icon {
+    width: 80px; height: 80px;
+    border: 2px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .photo-icon svg { width: 40px; height: 40px; stroke: rgba(201,168,76,0.6); fill: none; stroke-width: 1.5; }
+
+  .photo-placeholder-text {
+    color: rgba(255,255,255,0.3);
+    font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; position: relative; z-index: 1;
+  }
+
+  .profile-badge {
+    position: absolute;
+    bottom: -16px; left: 24px; right: 24px;
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .badge-icon {
+    width: 36px; height: 36px;
+    background: rgba(201,168,76,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .badge-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .badge-text { color: var(--white); font-size: 12px; line-height: 1.4; }
+  .badge-text strong { color: var(--gold); font-weight: 500; display: block; font-size: 13px; }
+
+  .profile-right { padding-top: 8px; }
+
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; color: var(--navy);
+    font-weight: 600; line-height: 1.15; margin-bottom: 6px;
+  }
+
+  .profile-title {
+    color: var(--accent); font-size: 12px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 28px;
+  }
+
+  .profile-bio {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px; color: #445566;
+    line-height: 1.8; font-weight: 300;
+    margin-bottom: 40px; max-width: 560px;
+  }
+
+  .credentials-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin-bottom: 40px;
+  }
+
+  .credential-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 20px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .credential-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(29,111,164,0.08);
+  }
+
+  .credential-icon {
+    width: 36px; height: 36px;
+    background: rgba(29,111,164,0.08);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  .credential-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+
+  .credential-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+  .credential-text span { font-size: 12px; color: var(--muted); }
+
+  /* ── PILLARS ── */
+  #pillars { background: var(--white); }
+
+  .pillars-header { text-align: center; margin-bottom: 64px; }
+  .pillars-header .section-eyebrow { justify-content: center; }
+  .pillars-header .section-eyebrow::before { display: none; }
+  .pillars-header p {
+    font-family: 'Source Serif 4', serif;
+    color: var(--muted); font-size: 16px;
+    max-width: 500px; margin: 16px auto 0;
+    font-weight: 300; line-height: 1.7;
+  }
+
+  .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+  .pillar-card {
+    background: var(--off-white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 36px 28px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  }
+
+  .pillar-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .pillar-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(10,22,40,0.12); border-color: transparent; }
+  .pillar-card:hover::before { transform: scaleX(1); }
+
+  .pillar-card.featured { background: var(--navy); border-color: var(--navy); }
+  .pillar-card.featured::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(1); }
+
+  .pillar-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(201,168,76,0.15); color: var(--gold);
+    font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 4px 9px;
+    border-radius: 20px; font-weight: 500;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .pillar-icon {
+    width: 52px; height: 52px;
+    background: rgba(29,111,164,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .featured .pillar-icon { background: rgba(201,168,76,0.12); }
+  .pillar-icon svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .featured .pillar-icon svg { stroke: var(--gold); }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 600; color: var(--navy);
+    margin-bottom: 10px; line-height: 1.2;
+  }
+
+  .featured .pillar-title { color: var(--white); }
+
+  .pillar-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+  .featured .pillar-desc { color: rgba(255,255,255,0.5); }
+
+  .pillar-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500; color: var(--accent);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: gap 0.2s;
+  }
+
+  .featured .pillar-link { color: var(--gold); }
+  .pillar-link:hover { gap: 10px; }
+  .pillar-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--off-white); }
+
+  .pricing-header { text-align: center; margin-bottom: 64px; }
+  .pricing-header .section-eyebrow { justify-content: center; }
+  .pricing-header .section-eyebrow::before { display: none; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px; align-items: start;
+  }
+
+  .pricing-intro { padding-right: 32px; }
+  .pricing-intro h2 { margin-bottom: 16px; }
+  .pricing-intro p {
+    font-family: 'Source Serif 4', serif;
+    color: var(--muted); font-size: 15px;
+    line-height: 1.75; font-weight: 300; margin-bottom: 24px;
+  }
+
+  .pricing-feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .pricing-feature-list li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #445566; }
+
+  .check {
+    width: 18px; height: 18px;
+    background: rgba(29,111,164,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  .check svg { width: 10px; height: 10px; stroke: var(--accent); stroke-width: 2.5; fill: none; }
+
+  .plan-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 36px 32px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(10,22,40,0.1); }
+
+  .plan-card.best-value { background: var(--navy); border-color: var(--navy); position: relative; }
+
+  .best-value-badge {
+    position: absolute; top: -13px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold); color: var(--navy);
+    font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 16px;
+    border-radius: 20px; font-weight: 600; white-space: nowrap;
+  }
+
+  .plan-type {
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--accent); margin-bottom: 20px;
+  }
+
+  .best-value .plan-type { color: rgba(255,255,255,0.45); }
+
+  .plan-price { display: flex; align-items: flex-end; gap: 4px; margin-bottom: 6px; }
+
+  .plan-currency { font-size: 18px; font-weight: 500; color: var(--navy); line-height: 1; padding-bottom: 6px; }
+  .best-value .plan-currency { color: var(--white); }
+
+  .plan-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px; font-weight: 700; color: var(--navy); line-height: 1;
+  }
+
+  .best-value .plan-amount { color: var(--white); }
+
+  .plan-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .best-value .plan-period { color: rgba(255,255,255,0.45); }
+
+  .plan-savings {
+    font-size: 12px; color: var(--gold); font-weight: 500;
+    margin-bottom: 28px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 4px; padding: 6px 10px; display: inline-block;
+  }
+
+  .plan-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 24px; }
+  .best-value .plan-divider { border-color: rgba(255,255,255,0.08); }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #445566; }
+  .best-value .plan-features li { color: rgba(255,255,255,0.65); }
+
+  .plan-btn {
+    display: block; width: 100%; text-align: center;
+    padding: 13px; border-radius: 6px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: all 0.2s;
+    background: var(--accent); color: var(--white);
+    border: 2px solid var(--accent);
+  }
+
+  .plan-btn:hover {
+    background: var(--accent-bright); border-color: var(--accent-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(29,111,164,0.3);
+  }
+
+  .plan-btn.outline { background: transparent; color: var(--navy); border-color: var(--border); }
+  .plan-btn.outline:hover { background: var(--navy); color: var(--white); border-color: var(--navy); box-shadow: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 72px 40px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 60px;
+  }
+
+  .footer-brand p {
+    color: rgba(255,255,255,0.4); font-size: 13.5px;
+    line-height: 1.7; margin-top: 16px; max-width: 280px;
+    font-family: 'Source Serif 4', serif; font-weight: 300;
+  }
+
+  .footer-col h4 {
+    color: rgba(255,255,255,0.5); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13.5px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 12.5px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-intro { padding-right: 0; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-card { max-width: 480px; }
+    .profile-grid { grid-template-columns: 280px 1fr; gap: 48px; }
+    .nav-links { gap: 14px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    section { padding: 72px 20px; }
+    #trust { padding: 28px 20px; }
+    footer { padding: 56px 20px 32px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-content { padding: 60px 20px; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .profile-photo { max-width: 280px; }
+    .credentials-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .trust-sep { display: none; }
+    .trust-inner { gap: 28px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .nav-right { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">GA</div>
+    <div class="logo-text">
+      <span class="logo-name">Dr. George Akhobadze</span>
+      <span class="logo-title" data-i18n="nav.subtitle">Pediatric Anesthesiology &amp; Critical Care</span>
+    </div>
+  </a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="academy.html" data-i18n="nav.academy">Academy</a></li>
+      <li><a href="neonatal.html" data-i18n="nav.neonatal">Neonatal Guide</a></li>
+      <li><a href="heart.html" data-i18n="nav.heart">Heart Guide</a></li>
+      <li><a href="patient-library.html" data-i18n="nav.library">Patient Library</a></li>
+      <li><a href="academy.html" class="btn-join" data-i18n="nav.join">Join Academy</a></li>
+    </ul>
+
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">ENG</button>
+      <button class="lang-btn" onclick="setLang('ka')">ქარ</button>
+    </div>
+
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow" data-i18n="hero.eyebrow">Pediatric Anesthesiology · Critical Care · Medical Education</div>
+      <h1 data-i18n="hero.h1">Expert Medical Knowledge,<br><em>For Everyone.</em></h1>
+      <p class="hero-sub" data-i18n="hero.sub">Dr. George Akhobadze brings 14 years of frontline clinical experience — across neonatal surgery, congenital heart procedures, and leading three hospital departments — to a platform built for students, parents, and patients alike.</p>
+      <div class="hero-ctas">
+        <a href="academy.html" class="btn-primary" data-i18n="hero.cta1">Join the Academy</a>
+        <a href="neonatal.html" class="btn-ghost" data-i18n="hero.cta2">Explore free resources →</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-label" data-i18n="hero.cardLabel">At a Glance</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-num">14<span>+</span></div>
+          <div class="stat-label" data-i18n="trust.exp">Years Clinical Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label" data-i18n="trust.dept">Hospital Departments Led</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">2<span>k+</span></div>
+          <div class="stat-label" data-i18n="trust.patients">Patients Helped</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">80<span>+</span></div>
+          <div class="stat-label" data-i18n="trust.lectures">Video Lectures</div>
+        </div>
+      </div>
+      <hr class="hero-divider">
+      <div class="specialties-list">
+        <div class="specialty-tag"><span class="specialty-dot"></span><span data-i18n="spec.1">Pediatric Anesthesiology</span></div>
+        <div class="specialty-tag"><span class="specialty-dot"></span><span data-i18n="spec.2">Neonatal Surgery Support</span></div>
+        <div class="specialty-tag"><span class="specialty-dot"></span><span data-i18n="spec.3">Congenital Heart Surgery</span></div>
+        <div class="specialty-tag"><span class="specialty-dot"></span><span data-i18n="spec.4">Pediatric Intensive Care</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num">14<span>+</span></div>
+      <div class="trust-label" data-i18n="trust.exp">Years of Experience</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">2<span>k+</span></div>
+      <div class="trust-label" data-i18n="trust.patients">Patients Helped</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">3</div>
+      <div class="trust-label" data-i18n="trust.dept">Departments Headed</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">80<span>+</span></div>
+      <div class="trust-label" data-i18n="trust.lectures">Lectures Created</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">4</div>
+      <div class="trust-label" data-i18n="trust.resources">Free Resources</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROFILE ── -->
+<section id="profile">
+  <div class="section-inner">
+    <div class="profile-grid">
+      <div class="profile-photo-wrap reveal">
+        <div class="profile-photo">
+          <div class="photo-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="photo-placeholder-text" data-i18n="profile.photo">Photo</div>
+        </div>
+        <div class="profile-badge">
+          <div class="badge-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="badge-text">
+            <strong data-i18n="profile.badgeTitle">Board Certified</strong>
+            <span data-i18n="profile.badgeSub">Pediatric Anesthesiology &amp; Critical Care</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-right reveal reveal-delay-2">
+        <div class="section-eyebrow" data-i18n="profile.eyebrow">About the Doctor</div>
+        <div class="profile-name">Dr. George<br>Akhobadze</div>
+        <div class="profile-title" data-i18n="profile.title">MD · Pediatric Anesthesiologist &amp; Critical Care Specialist</div>
+        <p class="profile-bio" data-i18n="profile.bio">With over 14 years of dedicated clinical practice, Dr. Akhobadze has established himself as a leading specialist in pediatric anesthesiology and critical care. His expertise spans some of the most complex and delicate medical procedures — including neonatal and congenital heart surgery — where precision and calm under pressure are paramount. Beyond the operating room, he leads three hospital departments and is passionate about making medical knowledge accessible to both aspiring physicians and the families who need it most.</p>
+
+        <div class="credentials-grid">
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.1.title">Anesthesiologist</strong><span data-i18n="cred.1.sub">Board Certified Specialist</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.2.title">14 Years Experience</strong><span data-i18n="cred.2.sub">Active Clinical Practice</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.3.title">Neonatal Surgery</strong><span data-i18n="cred.3.sub">Anesthetic Support Specialist</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.4.title">Head of 3 Departments</strong><span data-i18n="cred.4.sub">Hospital Leadership</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.5.title">Pediatric ICU</strong><span data-i18n="cred.5.sub">Critical Care Intensivist</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+            <div class="credential-text"><strong data-i18n="cred.6.title">Congenital Heart Surgery</strong><span data-i18n="cred.6.sub">Cardiac Anesthesia Expertise</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PILLARS ── -->
+<section id="pillars">
+  <div class="section-inner">
+    <div class="pillars-header">
+      <div class="section-eyebrow" data-i18n="pillars.eyebrow">The Platform</div>
+      <h2 data-i18n="pillars.h2">Four Resources. One Mission.</h2>
+      <p data-i18n="pillars.sub">Structured knowledge for medical students, guidance for new parents, and clear health information for all.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card featured reveal">
+        <div class="pillar-badge" data-i18n="pillar1.badge">Paid Access</div>
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+        <div class="pillar-title" data-i18n="pillar1.title">Medical Academy</div>
+        <p class="pillar-desc" data-i18n="pillar1.desc">Premium video lecture series for medical students and junior doctors. In-depth modules on anesthesiology, critical care, and pediatric practice — taught from the operating room floor.</p>
+        <a href="academy.html" class="pillar-link"><span data-i18n="pillar1.link">View pricing</span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pillar-card reveal reveal-delay-1">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="pillar-title" data-i18n="pillar2.title">Neonatal Care Guide</div>
+        <p class="pillar-desc" data-i18n="pillar2.desc">A comprehensive free guide for new mothers navigating neonatal care. Evidence-based, written in accessible language, and grounded in years of clinical observation in the NICU.</p>
+        <a href="#" class="pillar-link"><span data-i18n="pillar2.link">Access free guide</span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pillar-card reveal reveal-delay-2">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="pillar-title" data-i18n="pillar3.title">Congenital Heart Guide</div>
+        <p class="pillar-desc" data-i18n="pillar3.desc">A free resource for parents of children with congenital heart conditions. Understand diagnoses, surgical pathways, and what to expect — explained clearly by a specialist who's been in the room.</p>
+        <a href="#" class="pillar-link"><span data-i18n="pillar3.link">Access free guide</span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pillar-card reveal reveal-delay-3">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="pillar-title" data-i18n="pillar4.title">Patient Library</div>
+        <p class="pillar-desc" data-i18n="pillar4.desc">A growing free library of health articles, procedure explanations, and medical information for patients and their families. Trustworthy, clear, and continually updated.</p>
+        <a href="patient-library.html" class="pillar-link"><span data-i18n="pillar4.link">Browse library</span><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="pricing-header">
+      <div class="section-eyebrow" data-i18n="pricing.eyebrow">Academy Access</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-intro reveal">
+        <h2 data-i18n="pricing.h2">Invest in Your<br>Medical Education</h2>
+        <p data-i18n="pricing.sub">The Academy provides structured, exam-relevant, clinically grounded video lectures. Built by a practicing specialist — not a lecturer who left the bedside.</p>
+        <ul class="pricing-feature-list">
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pricing.f1">Full HD video lectures</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pricing.f2">Anesthesiology &amp; critical care modules</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pricing.f3">New content added monthly</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pricing.f4">Access on all devices</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pricing.f5">Cancel anytime</span></li>
+        </ul>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-1">
+        <div class="plan-type" data-i18n="plan1.type">Monthly Plan</div>
+        <div class="plan-price"><span class="plan-currency">₾</span><span class="plan-amount">19</span></div>
+        <div class="plan-period" data-i18n="plan1.period">per month · billed monthly</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan.feat1">Full library access</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan.feat2">New lectures each month</span></li>
+          <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan.feat3">Cancel anytime</span></li>
+        </ul>
+        <a href="#" class="plan-btn outline" data-i18n="plan1.btn">Get Monthly Access</a>
+      </div>
+
+      <div class="plan-card best-value reveal reveal-delay-2">
+        <div class="best-value-badge" data-i18n="plan2.badge">Best Value · Save 35%</div>
+        <div class="plan-type" data-i18n="plan2.type">Annual Plan</div>
+        <div class="plan-price"><span class="plan-currency" style="color:var(--white)">₾</span><span class="plan-amount">149</span></div>
+        <div class="plan-period" data-i18n="plan2.period">per year · billed annually</div>
+        <div class="plan-savings" data-i18n="plan2.savings">Equivalent to ₾12.42/month — save ₾79/yr</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li><div class="check" style="background:rgba(201,168,76,0.12)"><svg viewBox="0 0 24 24" style="stroke:var(--gold)"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan.feat1">Full library access</span></li>
+          <li><div class="check" style="background:rgba(201,168,76,0.12)"><svg viewBox="0 0 24 24" style="stroke:var(--gold)"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan2.feat2">Priority new content</span></li>
+          <li><div class="check" style="background:rgba(201,168,76,0.12)"><svg viewBox="0 0 24 24" style="stroke:var(--gold)"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan2.feat3">Exclusive Q&amp;A sessions</span></li>
+          <li><div class="check" style="background:rgba(201,168,76,0.12)"><svg viewBox="0 0 24 24" style="stroke:var(--gold)"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="plan2.feat4">Certificate of completion</span></li>
+        </ul>
+        <a href="#" class="plan-btn" style="background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:600" data-i18n="plan2.btn">Get Annual Access</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="logo-mark">GA</div>
+          <div class="logo-text">
+            <span class="logo-name">Dr. George Akhobadze</span>
+            <span class="logo-title" data-i18n="nav.subtitle">Pediatric Anesthesiology &amp; Critical Care</span>
+          </div>
+        </a>
+        <p data-i18n="footer.brand">Bridging clinical expertise and accessible medical education — for students, parents, and patients who deserve clarity.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col1">Academy</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer.l1">Video Lectures</a></li>
+          <li><a href="#" data-i18n="footer.l2">Anesthesiology Module</a></li>
+          <li><a href="#" data-i18n="footer.l3">Critical Care Module</a></li>
+          <li><a href="academy.html" data-i18n="footer.l4">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col2">Free Resources</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer.l5">Neonatal Care Guide</a></li>
+          <li><a href="heart.html" data-i18n="footer.l6">Congenital Heart Guide</a></li>
+          <li><a href="patient-library.html" data-i18n="footer.l7">Patient Library</a></li>
+          <li><a href="#" data-i18n="footer.l8">Health Articles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col3">About</h4>
+        <ul>
+          <li><a href="#profile" data-i18n="footer.l9">Dr. Akhobadze</a></li>
+          <li><a href="#" data-i18n="footer.l10">Contact</a></li>
+          <li><a href="#" data-i18n="footer.l11">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer.l12">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copy">© 2024 Dr. George Akhobadze. All rights reserved.</p>
+      <p data-i18n="footer.disclaimer">This platform is for educational purposes and does not constitute medical advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════
+//  TRANSLATION STRINGS
+// ════════════════════════════
+const T = {
+  en: {
+    "nav.subtitle":"Pediatric Anesthesiology & Critical Care","nav.academy":"Academy","nav.neonatal":"Neonatal Guide","nav.heart":"Heart Guide","nav.library":"Patient Library","nav.join":"Join Academy",
+    "hero.eyebrow":"Pediatric Anesthesiology · Critical Care · Medical Education","hero.h1":"Expert Medical Knowledge,<br><em>For Everyone.</em>","hero.sub":"Dr. George Akhobadze brings 14 years of frontline clinical experience — across neonatal surgery, congenital heart procedures, and leading three hospital departments — to a platform built for students, parents, and patients alike.","hero.cta1":"Join the Academy","hero.cta2":"Explore free resources →","hero.cardLabel":"At a Glance",
+    "trust.exp":"Years of Experience","trust.dept":"Departments Headed","trust.patients":"Patients Helped","trust.lectures":"Lectures Created","trust.resources":"Free Resources",
+    "spec.1":"Pediatric Anesthesiology","spec.2":"Neonatal Surgery Support","spec.3":"Congenital Heart Surgery","spec.4":"Pediatric Intensive Care",
+    "profile.eyebrow":"About the Doctor","profile.title":"MD · Pediatric Anesthesiologist & Critical Care Specialist","profile.photo":"Photo","profile.badgeTitle":"Board Certified","profile.badgeSub":"Pediatric Anesthesiology & Critical Care","profile.bio":"With over 14 years of dedicated clinical practice, Dr. Akhobadze has established himself as a leading specialist in pediatric anesthesiology and critical care. His expertise spans some of the most complex and delicate medical procedures — including neonatal and congenital heart surgery — where precision and calm under pressure are paramount. Beyond the operating room, he leads three hospital departments and is passionate about making medical knowledge accessible to both aspiring physicians and the families who need it most.",
+    "cred.1.title":"Anesthesiologist","cred.1.sub":"Board Certified Specialist","cred.2.title":"14 Years Experience","cred.2.sub":"Active Clinical Practice","cred.3.title":"Neonatal Surgery","cred.3.sub":"Anesthetic Support Specialist","cred.4.title":"Head of 3 Departments","cred.4.sub":"Hospital Leadership","cred.5.title":"Pediatric ICU","cred.5.sub":"Critical Care Intensivist","cred.6.title":"Congenital Heart Surgery","cred.6.sub":"Cardiac Anesthesia Expertise",
+    "pillars.eyebrow":"The Platform","pillars.h2":"Four Resources. One Mission.","pillars.sub":"Structured knowledge for medical students, guidance for new parents, and clear health information for all.",
+    "pillar1.badge":"Paid Access","pillar1.title":"Medical Academy","pillar1.desc":"Premium video lecture series for medical students and junior doctors. In-depth modules on anesthesiology, critical care, and pediatric practice — taught from the operating room floor.","pillar1.link":"View pricing",
+    "pillar2.title":"Neonatal Care Guide","pillar2.desc":"A comprehensive free guide for new mothers navigating neonatal care. Evidence-based, written in accessible language, and grounded in years of clinical observation in the NICU.","pillar2.link":"Access free guide",
+    "pillar3.title":"Congenital Heart Guide","pillar3.desc":"A free resource for parents of children with congenital heart conditions. Understand diagnoses, surgical pathways, and what to expect — explained clearly by a specialist who's been in the room.","pillar3.link":"Access free guide",
+    "pillar4.title":"Patient Library","pillar4.desc":"A growing free library of health articles, procedure explanations, and medical information for patients and their families. Trustworthy, clear, and continually updated.","pillar4.link":"Browse library",
+    "pricing.eyebrow":"Academy Access","pricing.h2":"Invest in Your<br>Medical Education","pricing.sub":"The Academy provides structured, exam-relevant, clinically grounded video lectures. Built by a practicing specialist — not a lecturer who left the bedside.","pricing.f1":"Full HD video lectures","pricing.f2":"Anesthesiology & critical care modules","pricing.f3":"New content added monthly","pricing.f4":"Access on all devices","pricing.f5":"Cancel anytime",
+    "plan1.type":"Monthly Plan","plan1.period":"per month · billed monthly","plan1.btn":"Get Monthly Access","plan.feat1":"Full library access","plan.feat2":"New lectures each month","plan.feat3":"Cancel anytime",
+    "plan2.type":"Annual Plan","plan2.badge":"Best Value · Save 35%","plan2.period":"per year · billed annually","plan2.savings":"Equivalent to ₾12.42/month — save ₾79/yr","plan2.feat2":"Priority new content","plan2.feat3":"Exclusive Q&A sessions","plan2.feat4":"Certificate of completion","plan2.btn":"Get Annual Access",
+    "footer.brand":"Bridging clinical expertise and accessible medical education — for students, parents, and patients who deserve clarity.","footer.col1":"Academy","footer.col2":"Free Resources","footer.col3":"About","footer.l1":"Video Lectures","footer.l2":"Anesthesiology Module","footer.l3":"Critical Care Module","footer.l4":"Pricing","footer.l5":"Neonatal Care Guide","footer.l6":"Congenital Heart Guide","footer.l7":"Patient Library","footer.l8":"Health Articles","footer.l9":"Dr. Akhobadze","footer.l10":"Contact","footer.l11":"Privacy Policy","footer.l12":"Terms of Use","footer.copy":"© 2024 Dr. George Akhobadze. All rights reserved.","footer.disclaimer":"This platform is for educational purposes and does not constitute medical advice."
+  },
+  ka: {
+    "nav.subtitle":"პედიატრიული ანესთეზიოლოგია და კრიტიკული მედიცინა","nav.academy":"აკადემია","nav.neonatal":"ნეონატალური გზამკვლევი","nav.heart":"გულის გზამკვლევი","nav.library":"პაციენტთა ბიბლიოთეკა","nav.join":"შეუერთდი",
+    "hero.eyebrow":"პედიატრიული ანესთეზიოლოგია · კრიტიკული მედიცინა · სამედიცინო განათლება","hero.h1":"სამედიცინო ცოდნა —<br><em>ყველასთვის.</em>","hero.sub":"დოქტორი გიორგი ახობაძე 14 წლის კლინიკურ გამოცდილებას — ნეონატალური ქირურგია, თანდაყოლილი გულის ოპერაციები და სამი განყოფილების ხელმძღვანელობა — სტუდენტებისთვის, მშობლებისა და პაციენტებისთვის შექმნილ პლატფორმად გარდაქმნის.","hero.cta1":"შეუერთდი აკადემიას","hero.cta2":"უფასო რესურსები →","hero.cardLabel":"მოკლე მიმოხილვა",
+    "trust.exp":"წელი გამოცდილება","trust.dept":"განყოფილება ხელმძღვანელობდა","trust.patients":"პაციენტი დაეხმარა","trust.lectures":"ლექცია შექმნა","trust.resources":"უფასო რესურსი",
+    "spec.1":"პედიატრიული ანესთეზიოლოგია","spec.2":"ნეონატალური ქირურგია","spec.3":"თანდაყოლილი გულის ქირურგია","spec.4":"პედიატრიული ინტენსიური თერაპია",
+    "profile.eyebrow":"ექიმის შესახებ","profile.title":"MD · პედიატრიული ანესთეზიოლოგი და კრიტიკული მედიცინის სპეციალისტი","profile.photo":"ფოტო","profile.badgeTitle":"სერტიფიცირებული სპეციალისტი","profile.badgeSub":"პედიატრიული ანესთეზიოლოგია და კრიტიკული მედიცინა","profile.bio":"14 წელზე მეტი კლინიკური პრაქტიკის მქონე დოქტორი ახობაძე პედიატრიული ანესთეზიოლოგიისა და კრიტიკული მედიცინის წამყვან სპეციალისტად ჩამოყალიბდა. მისი გამოცდილება მოიცავს ყველაზე რთულ სამედიცინო პროცედურებს — ნეონატალურ და თანდაყოლილი გულის ქირურგიას — სადაც სიზუსტე და სიმშვიდე გადამწყვეტია. ოპერაციების გარდა, ის სამ საავადმყოფო განყოფილებას ხელმძღვანელობს და სამედიცინო ცოდნის ხელმისაწვდომობაზე ზრუნავს.",
+    "cred.1.title":"ანესთეზიოლოგი","cred.1.sub":"სერტიფიცირებული სპეციალისტი","cred.2.title":"14 წლის გამოცდილება","cred.2.sub":"აქტიური კლინიკური პრაქტიკა","cred.3.title":"ნეონატალური ქირურგია","cred.3.sub":"ანესთეზიოლოგიური მხარდაჭერა","cred.4.title":"3 განყოფილების ხელმძღვანელი","cred.4.sub":"საავადმყოფოს ხელმძღვანელობა","cred.5.title":"პედიატრიული ICU","cred.5.sub":"კრიტიკული მდგომარეობების სპეციალისტი","cred.6.title":"თანდაყოლილი გულის ქირურგია","cred.6.sub":"კარდიოანესთეზიოლოგია",
+    "pillars.eyebrow":"პლატფორმა","pillars.h2":"ოთხი რესურსი. ერთი მიზანი.","pillars.sub":"სტრუქტურირებული ცოდნა სტუდენტებისთვის, გზამკვლევი მშობლებისთვის და სამედიცინო ინფორმაცია ყველასთვის.",
+    "pillar1.badge":"ფასიანი","pillar1.title":"სამედიცინო აკადემია","pillar1.desc":"პრემიუმ ვიდეო ლექციების სერია სამედიცინო სტუდენტებისა და ახალგაზრდა ექიმებისთვის. სიღრმისეული მოდულები ანესთეზიოლოგიასა და კრიტიკულ მედიცინაში — ოპერაციული დარბაზის გამოცდილებიდან.","pillar1.link":"ნახე ფასები",
+    "pillar2.title":"ნეონატალური მოვლის გზამკვლევი","pillar2.desc":"ყოვლისმომცველი უფასო გზამკვლევი ახალი დედებისთვის. მტკიცებულებებზე დაფუძნებული, მარტივი ენით დაწერილი და NICU-ს წლობით დაკვირვებაზე დამყარებული.","pillar2.link":"ჩამოტვირთე უფასოდ",
+    "pillar3.title":"გულის თანდაყოლილი მანკის გზამკვლევი","pillar3.desc":"უფასო რესურსი თანდაყოლილი გულის მქონე ბავშვების მშობლებისთვის. გაიგე დიაგნოზი, ქირურგიული გზები და რა უნდა ელოდო — ახსნილი სპეციალისტის მიერ.","pillar3.link":"ჩამოტვირთე უფასოდ",
+    "pillar4.title":"პაციენტთა ბიბლიოთეკა","pillar4.desc":"მზარდი უფასო ბიბლიოთეკა ჯანმრთელობის სტატიებით, პროცედურების განმარტებებით და სამედიცინო ინფორმაციით პაციენტებისა და მათი ოჯახებისთვის.","pillar4.link":"ბიბლიოთეკა",
+    "pricing.eyebrow":"აკადემიის წვდომა","pricing.h2":"ჩადე ინვესტიცია<br>შენს განათლებაში","pricing.sub":"აკადემია გთავაზობს სტრუქტურირებულ, კლინიკურად გამყარებულ ვიდეო ლექციებს — შექმნილი მოქმედი სპეციალისტის მიერ, არა ლექტორის.","pricing.f1":"სრული HD ვიდეო ლექციები","pricing.f2":"ანესთეზიოლოგიისა და კრიტიკული მედიცინის მოდულები","pricing.f3":"ახალი კონტენტი ყოველ თვე","pricing.f4":"წვდომა ყველა მოწყობილობიდან","pricing.f5":"გაუქმება ნებისმიერ დროს",
+    "plan1.type":"თვიური გეგმა","plan1.period":"თვეში · ანაზღაურება თვიურად","plan1.btn":"თვიური წვდომა","plan.feat1":"ბიბლიოთეკის სრული წვდომა","plan.feat2":"ახალი ლექციები ყოველ თვე","plan.feat3":"გაუქმება ნებისმიერ დროს",
+    "plan2.type":"წლიური გეგმა","plan2.badge":"საუკეთესო · 35% დაზოგვა","plan2.period":"წელიწადში · ანაზღაურება წლიურად","plan2.savings":"₾12.42/თვეში — დაზოგე ₾79/წელს","plan2.feat2":"პრიორიტეტული ახალი კონტენტი","plan2.feat3":"ექსკლუზიური Q&A სესიები","plan2.feat4":"დასრულების სერტიფიკატი","plan2.btn":"წლიური წვდომა",
+    "footer.brand":"კლინიკური გამოცდილება და ხელმისაწვდომი სამედიცინო განათლება — სტუდენტებისთვის, მშობლებისა და პაციენტებისთვის.","footer.col1":"აკადემია","footer.col2":"უფასო რესურსები","footer.col3":"შესახებ","footer.l1":"ვიდეო ლექციები","footer.l2":"ანესთეზიოლოგიის მოდული","footer.l3":"კრიტიკული მედიცინის მოდული","footer.l4":"ფასები","footer.l5":"ნეონატალური მოვლის გზამკვლევი","footer.l6":"გულის გზამკვლევი","footer.l7":"პაციენტთა ბიბლიოთეკა","footer.l8":"სამედიცინო სტატიები","footer.l9":"დოქტორი ახობაძე","footer.l10":"კონტაქტი","footer.l11":"კონფიდენციალურობა","footer.l12":"გამოყენების პირობები","footer.copy":"© 2024 დოქტორი გიორგი ახობაძე. ყველა უფლება დაცულია.","footer.disclaimer":"ეს პლატფორმა საგანმანათლებლო მიზნებისთვისაა და არ წარმოადგენს სამედიცინო რჩევას."
+  }
+};
+
+// ════════════════════════════
+//  LANGUAGE SWITCHER
+// ════════════════════════════
+let currentLang = 'en';
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+
+  document.body.classList.add('lang-switching');
+
+  setTimeout(() => {
+    const t = T[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isEn = btn.textContent.includes('ENG');
+      btn.classList.toggle('active', (lang === 'en') === isEn);
+    });
+
+    document.body.classList.remove('lang-switching');
+  }, 180);
+}
+
+// Load saved language
+const _savedLang = localStorage.getItem("lang");
+if (_savedLang === "ka") setLang("ka");
+
+// ════════════════════════════
+//  SCROLL REVEAL
+// ════════════════════════════
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ════════════════════════════
+//  NAV SHADOW ON SCROLL
+// ════════════════════════════
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow =
+    window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,0.3)' : 'none';
+});
+
+// ════════════════════════════
+//  TRUST BAR COUNTERS
+// ════════════════════════════
+function animateCounter(el, target) {
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / 1800, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(e * target);
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  };
+  requestAnimationFrame(step);
+}
+
+const trustObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.trust-num').forEach((el, i) => {
+        const targets = [14, 2000, 3, 80, 4];
+        const goldSpan = el.querySelector('span');
+        const suffix = goldSpan ? goldSpan.textContent : '';
+        const plain = el.cloneNode(false);
+        plain.textContent = '';
+        animateCounter(plain, targets[i]);
+        el.replaceWith(plain);
+        if (suffix) { const s = document.createElement('span'); s.textContent = suffix; plain.appendChild(s); }
+      });
+      trustObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+
+const trustEl = document.getElementById('trust');
+if (trustEl) trustObs.observe(trustEl);
+</script>
+</body>
+</html>
